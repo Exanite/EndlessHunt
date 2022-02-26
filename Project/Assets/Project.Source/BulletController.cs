@@ -8,28 +8,16 @@ public class BulletController : MonoBehaviour
     Rigidbody2D myRigidbody;
     public GameObject playerObject;
     PlayerMovement player;
-    float xSpeed;
-    Vector2 movement;
-    public Transform attackPivot;
+
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         player = playerObject.GetComponent<PlayerMovement>();
-        xSpeed = player.transform.localScale.x * bulletSpeed;
-        //transform.localScale = new Vector2(player.transform.localScale.x, 1f);
-
-
-        var offset = transform.position - attackPivot.transform.position;
-        var direction = offset.normalized;
-        movement = direction;
-        // this
     }
 
     void FixedUpdate()
     {
-        myRigidbody.velocity = (movement * bulletSpeed);
-        //myRigidbody.AddForce(movement * bulletSpeed * myRigidbody.mass * myRigidbody.drag);
-        //myRigidbody.velocity = new Vector2(xSpeed, 0f);
+        myRigidbody.velocity = (player.rotationTransform.right * bulletSpeed);
     }
 
     void OnTriggerEnter2D(Collider2D other) 
