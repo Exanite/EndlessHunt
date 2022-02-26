@@ -10,18 +10,30 @@ public class EnemyBulletController : MonoBehaviour
     EnemyRangedController myController;
     float bulletDamage = 1f;
     Vector2 targetPosition;
+    public float bulletTime = 3f;
+    float timer = 0;
 
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myController = myObject.GetComponent<EnemyRangedController>();
         bulletDamage = myController.basicAttackDamage;
+        timer = bulletTime;
         //targetPosition = myController.targetLocation;
     }
 
     void FixedUpdate()
     {
-        var velocity = (targetPosition - new Vector2(transform.position.x, transform.position.y)).normalized * bulletSpeed;
+        timer -= Time.deltaTime;
+        if(timer < 0) 
+        {
+            Destroy(gameObject);
+            timer = bulletTime;
+        }
+        var offset = myController.targetLocation - new Vector2(transform.position.x, transform.position.y);
+        var direction = -offset.normalized;
+        var velocity = direction;
+        //var velocity = (targetPosition - new Vector2(transform.position.x, transform.position.y)).normalized * bulletSpeed;
         myRigidbody.velocity = velocity;
         Debug.Log("vector = " + velocity);
         //myRigidbody.velocity = new Vector2(10,10);;
