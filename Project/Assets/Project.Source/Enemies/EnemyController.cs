@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(isDead) return;
         timer -= Time.deltaTime;
         UpdateTarget(GetNearbyEntityColliders(aggroRadius));
         UpdateMovementSpeed();
@@ -93,6 +94,7 @@ public class EnemyController : MonoBehaviour
 
     public void takeDamage(float damageTaken)
     {
+        if(isDead) return;
         health -= damageTaken;
         if(health <= 0)
         {
@@ -100,7 +102,8 @@ public class EnemyController : MonoBehaviour
             isDead = true;
             Debug.Log("Particles! YAY!");
             deathParticleSystem.Play();
-            Destroy(gameObject);
+            myRigidbody.velocity = new Vector2(0,0);
+            //Destroy(gameObject);
         }
         // else
         //     Debug.Log("Damage taken! health: " + health);

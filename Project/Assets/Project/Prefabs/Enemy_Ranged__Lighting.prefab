@@ -109,13 +109,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2823693669258454067, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2889946859852953517, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2889946859852953517, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_InstanceId
-      value: -406564
+      value: -281818
       objectReference: {fileID: 0}
     - target: {fileID: 3449485716154172588, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Layer
@@ -255,7 +259,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7229557065030329774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+    - {fileID: 5113381831998939751, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+--- !u!4 &4513433313621034111 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5576029254134607737, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+  m_PrefabInstance: {fileID: 8340920218879191814}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6638286354246349116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3449485716470880826, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
@@ -289,6 +299,24 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   attackPoint: {fileID: 0}
   isDead: 0
+--- !u!114 &1255902962952461132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6638286354246349116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82198b65852bd2e438e288b118d1e7da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1036714396364991313}
+  player: {fileID: 0}
+  spritesToFlip: []
+  transformsToFlip:
+  - {fileID: 4513433313621034111}
+  isFacingRight: 1
 --- !u!4 &6638286354246349119 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3449485716470880825, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
