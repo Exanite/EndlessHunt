@@ -364,6 +364,7 @@ MonoBehaviour:
   bulletSpeed: 5
   bulletTime: 0.5
   projectileSpawnDistance: 1
+  deathParticleSystem: {fileID: 2365176955744170341, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
   target: {fileID: 0}
   movement: {x: 0, y: 0}
   attackPoint: {fileID: 0}
