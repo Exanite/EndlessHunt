@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour
     [Header("Runtime")]
     public PlayerMovement target;
     public Vector2 movement = new Vector2(0, 0);
+    public Transform attackPoint;
+    public float basicAttackDamage = 1f;
     
     private Rigidbody2D myRigidbody;
     private float health = 10;
@@ -57,12 +59,17 @@ public class EnemyController : MonoBehaviour
         if (!target)
         {
             movement = Vector2.zero;
-
+            BasicAttack();
             return;
         }
 
         var offset = target.transform.position - transform.position;
         var direction = offset.normalized;
+        if (offset.magnitude < 2)
+        {
+            movement = Vector2.zero;
+            BasicAttack();
+        }
         movement = direction;
     }
 
@@ -71,10 +78,22 @@ public class EnemyController : MonoBehaviour
         health -= damageTaken;
         if(health <= 0)
         {
-            Debug.Log("im dead :(");
+            //Debug.Log("im dead :(");
             dead = true;
         }
-        else
-            Debug.Log("Damage taken! health: " + health);
+        //else
+            //Debug.Log("Damage taken! health: " + health);
+    }
+
+    public void BasicAttack()
+    {   
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
+        foreach(Collider2D collider in colliders) 
+        {
+            if(collider.TryGetComponent(out PlayerMovement player))
+            {
+                player.takeDamage(basicAttackDamage);
+            }
+        }
     }
 }

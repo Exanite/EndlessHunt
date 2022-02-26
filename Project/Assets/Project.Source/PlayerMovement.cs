@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     float AOEAttackDamage = 1f;
     public float AOERadius = 6f;
     public float AOEOffset = 2f;
+    float health = 10f;
+    bool dead = false;
 
     void Awake() 
     {
@@ -49,7 +51,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     public void OnDash(InputAction.CallbackContext context)
     {
         if(!context.performed) return;
-        Debug.Log("dashing!");
+        //Debug.Log("dashing!");
         myRigidbody.AddForce(movementInput * dashSpeed, ForceMode2D.Impulse);
     }
 
@@ -65,7 +67,6 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
             {
                 enemyController.takeDamage(basicAttackDamage);
                 //Debug.Log("Enemy here!");
-                // TODO: update enemy health
             }
         }
     }
@@ -84,11 +85,22 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
                 {
                     enemyController.takeDamage(AOEAttackDamage);
                     Debug.LogWarning("AOE DAMAGE " + i);
-                    // TODO: update enemy health
                 }
             }
         }
     }
+
+    public void takeDamage(float damageTaken)
+    {
+        health -= damageTaken;
+        if(health <= 0)
+        {
+            Debug.Log("im dead :(");
+            dead = true;
+        }
+        else
+            Debug.Log("Damage taken! health: " + health);
+    }    
 
     void FixedUpdate() 
     {
