@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     Collider2D myCollider;
     Rigidbody2D myRigidbody;
     public Transform attackPoint;
+    float basicAttackDamage = 1f;
+    float AOEAttackDamage = 1f;
 
     void Awake() 
     {
@@ -57,6 +59,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         {
             if(collider.TryGetComponent(out EnemyController enemyController)) 
             {
+                enemyController.takeDamage(basicAttackDamage);
                 //Debug.Log("Enemy here!");
                 // TODO: update enemy health
             }
