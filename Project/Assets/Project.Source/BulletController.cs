@@ -8,11 +8,13 @@ public class BulletController : MonoBehaviour
     Rigidbody2D myRigidbody;
     public GameObject playerObject;
     PlayerMovement player;
+    float bulletDamage = 1f;
 
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         player = playerObject.GetComponent<PlayerMovement>();
+        bulletDamage = player.getBasicAttackDamage();
     }
 
     void FixedUpdate()
@@ -24,7 +26,7 @@ public class BulletController : MonoBehaviour
     {
         if(other.TryGetComponent(out EnemyController enemyController))
         {
-            Destroy(other.gameObject);
+            enemyController.takeDamage(bulletDamage);
         }
         Destroy(gameObject);
     }
@@ -33,7 +35,7 @@ public class BulletController : MonoBehaviour
     {
         if(other.gameObject.TryGetComponent(out EnemyController enemyController)) 
         {
-            Destroy(other.gameObject);
+            enemyController.takeDamage(bulletDamage);
         }
         Destroy(gameObject);
     }
