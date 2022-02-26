@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed = 10f;
     public float aggroRadius = 5f;
     public float deaggroRadius = 10f;
+    public float stopDistance = 2f;
     
     [Header("Runtime")]
     public PlayerMovement target;
@@ -72,7 +73,7 @@ public class EnemyController : MonoBehaviour
         var direction = offset.normalized;
         movement = direction;
         
-        if (GetDistanceToTarget() < 2)
+        if (GetDistanceToTarget() < stopDistance)
         {
             movement = Vector2.zero;
             BasicAttack();
