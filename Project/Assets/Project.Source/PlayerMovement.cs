@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     public Transform attackPoint;
     float basicAttackDamage = 1f;
     float AOEAttackDamage = 1f;
+    public float AOERadius = 6f;
+    public float AOEOffset = 2f;
 
     void Awake() 
     {
@@ -46,14 +48,16 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        //Debug.Log("dashing!");
+        if(!context.performed) return;
+        Debug.Log("dashing!");
         myRigidbody.AddForce(movementInput * dashSpeed, ForceMode2D.Impulse);
     }
 
     public void OnBasicAttack(InputAction.CallbackContext context)
     {
-        //Debug.Log("Attacking");
-        
+        if(!context.performed) return;
+            //Debug.Log("Attacking");
+            
         Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(1f, 1f), transform.rotation.eulerAngles.z);
         foreach(Collider2D collider in colliders) 
         {
@@ -68,7 +72,22 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
     public void OnAOEAttack(InputAction.CallbackContext context)
     {
-        //Debug.Log("AOE Attack!");
+        if(!context.performed) return;
+            Debug.Log("AOE Attack!");
+
+        for(float i = AOERadius; i > 0; i-=AOEOffset) 
+        {
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(i, i), transform.rotation.eulerAngles.z);
+            foreach(Collider2D collider in colliders) 
+            {
+                if(collider.TryGetComponent(out EnemyController enemyController)) 
+                {
+                    enemyController.takeDamage(AOEAttackDamage);
+                    Debug.LogWarning("AOE DAMAGE " + i);
+                    // TODO: update enemy health
+                }
+            }
+        }
     }
 
     void FixedUpdate() 
