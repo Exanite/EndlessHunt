@@ -9,11 +9,15 @@ public class EnemyController : MonoBehaviour
     BoxCollider2D sightCollider;
     CapsuleCollider2D bodyCollider;
     Rigidbody2D myRigidbody;
+    SpriteRenderer mySprite;
+
+    PlayerMovement target;
     void Start()
     {
         sightCollider = GetComponent<BoxCollider2D>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
+        mySprite = GetComponent<SpriteRenderer>();
     }
 
     void OnTriggerEnter2D(Collider2D other) 
@@ -23,22 +27,26 @@ public class EnemyController : MonoBehaviour
         
         if(other.TryGetComponent(out PlayerMovement playerMovement)) 
         {
-            Vector2 playerPosition = other.transform.position;
-            if(myRigidbody.transform.position.x - playerPosition.x > 0)
-                movement = new Vector2(-moveSpeed, 0);
-            else
-                movement = new Vector2(moveSpeed, 0);
+            target = playerMovement;
+            
             Debug.Log("Its a player!");
-            myRigidbody.AddForce(movement);
         }
     }
 
     void FixedUpdate() 
     {
-        myRigidbody.AddForce(movement);
+        myRigidbody.AddForce(movement * moveSpeed);
+        
     }
     void Update()
     {
-        
+        Vector3 offset = target.transform.position - transform.position;
+        Vector3 direction = offset.normalized;
+        movement = direction;
+
+        if(offset.magnitude > 8) {
+            target = null;
+            movement = Vector2.zero;
+        }
     }
 }
