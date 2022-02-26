@@ -41,8 +41,6 @@ public class PlayerMovement : MonoBehaviour, GameInput.IPlayerActions
 
     void FixedUpdate() 
     {
-        
         myRigidbody.AddForce(movementInput * moveSpeed);
-        
     }
 }
