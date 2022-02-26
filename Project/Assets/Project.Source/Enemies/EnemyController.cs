@@ -5,14 +5,12 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [Header("Configuration")]
-    String enemyType = "Melee";
     public float moveSpeed = 10f;
     public float aggroRadius = 5f;
     public float deaggroRadius = 10f;
     public float stopDistance = 2f;
     public float health = 10;
-    public float basicAttackDamage = 1f;
-    public float bulletAttackDamage = 1f;
+    public float AttackDamage = 1f;
     public GameObject bullet;
     public float cooldown = 3f;
     public float bulletSpeed = 1f;
@@ -84,7 +82,8 @@ public class EnemyController : MonoBehaviour
             movement = Vector2.zero;
             if(timer < 0) 
             {
-                
+                BulletAttack();
+                timer = cooldown;
             }
         }
     }
@@ -102,16 +101,25 @@ public class EnemyController : MonoBehaviour
         //     Debug.Log("Damage taken! health: " + health);
     }
 
-    public void BasicAttack()
+    // public void BasicAttack()
+    // {   
+    //     Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
+    //     foreach(Collider2D collider in colliders) 
+    //     {
+    //         if(collider.TryGetComponent(out PlayerMovement player))
+    //         {
+    //             player.takeDamage(basicAttackDamage);
+    //         }
+    //     }
+    // }
+
+    public void BulletAttack()
     {   
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
-        foreach(Collider2D collider in colliders) 
-        {
-            if(collider.TryGetComponent(out PlayerMovement player))
-            {
-                player.takeDamage(basicAttackDamage);
-            }
-        }
+        if(isDead) return;
+        //Debug.Log("Shooting!");
+        var offset = target.transform.position - transform.position;
+        var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+        Instantiate(bullet, transform.position, Quaternion.Euler(0,0, angle));
     }
 
     public float GetDistanceToTarget()
