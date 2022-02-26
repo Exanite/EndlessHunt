@@ -11,11 +11,18 @@ public class EntitySpriteFlip : MonoBehaviour
     public List<SpriteRenderer> spritesToFlip;
     public List<Transform> transformsToFlip;
 
+    [Header("Runtime")]
+    public bool isFacingRight;
+    
     private void Update()
     {
         if (enemy)
         {
             UpdateEnemy();
+        }
+        else if (player)
+        {
+            UpdatePlayer();
         }
     }
 
@@ -29,13 +36,20 @@ public class EntitySpriteFlip : MonoBehaviour
         }
     }
 
+    private void UpdatePlayer()
+    {
+        SetFlipDirection(player.rotationTransform.right.x > 0);
+    }
+
     private void SetFlipDirection(bool isFacingRight)
     {
+        this.isFacingRight = isFacingRight;
+        
         foreach (var spriteRenderer in spritesToFlip)
         {
             spriteRenderer.flipX = !isFacingRight;
         }
-        
+
         foreach (var transform in transformsToFlip)
         {
             var scale = transform.localScale;

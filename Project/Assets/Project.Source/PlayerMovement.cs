@@ -20,6 +20,9 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     bool dead = false;
     public GameObject bullet;
 
+    [Header("Dependencies")]
+    public Transform rotationTransform;
+
     void Awake() 
     {
         playerInput = new PlayerInput();
