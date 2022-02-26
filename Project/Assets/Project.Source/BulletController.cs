@@ -13,11 +13,12 @@ public class BulletController : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         player = playerObject.GetComponent<PlayerMovement>();
+        myRigidbody.velocity = (player.rotationTransform.right * bulletSpeed);
     }
 
     void FixedUpdate()
     {
-        myRigidbody.velocity = (player.rotationTransform.right * bulletSpeed);
+        
     }
 
     void OnTriggerEnter2D(Collider2D other) 
