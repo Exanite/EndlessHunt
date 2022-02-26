@@ -24,10 +24,14 @@ public class EnemyController : MonoBehaviour
         if(other.TryGetComponent(out PlayerMovement playerMovement)) 
         {
             Vector2 playerPosition = other.transform.position;
-            if(myRigidbody.transform.position.x - playerPosition.x > 0)
+            if(myRigidbody.transform.position.x - playerPosition.x > 0) {
                 movement = new Vector2(-moveSpeed, 0);
-            else
+                myRigidbody.transform.localScale.Set(-1,1,1);
+            }
+            else {
                 movement = new Vector2(moveSpeed, 0);
+                myRigidbody.transform.localScale.Set(1,1,1);
+            }
             Debug.Log("Its a player!");
             myRigidbody.AddForce(movement);
         }
