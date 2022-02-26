@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!20 &519420031 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 519420031, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
+  m_PrefabInstance: {fileID: 864146605}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &530892308
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +356,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1505608989, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505608989, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 807610485613652819, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -512,3 +525,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1505608988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1505608988, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
+  m_PrefabInstance: {fileID: 864146605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1505608991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505608988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a64b62768c43bd8531e6935655565d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceCamera: {fileID: 519420031}

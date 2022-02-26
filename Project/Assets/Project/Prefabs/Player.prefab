@@ -212,6 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1505608989}
   - component: {fileID: 1505608990}
+  - component: {fileID: 1505608991}
   m_Layer: 0
   m_Name: ConeOfVision_Triangle
   m_TagString: Untagged
@@ -228,7 +229,7 @@ Transform:
   m_GameObject: {fileID: 1505608988}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 5, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 807610485613652831}
@@ -285,6 +286,19 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1505608991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505608988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a64b62768c43bd8531e6935655565d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceCamera: {fileID: 519420031}
 --- !u!1 &2004776395
 GameObject:
   m_ObjectHideFlags: 0
