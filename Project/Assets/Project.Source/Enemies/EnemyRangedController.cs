@@ -12,6 +12,7 @@ public class EnemyRangedController : MonoBehaviour
     public float health = 10;
     public float basicAttackDamage = 1f;
     public GameObject bullet;
+    public float cooldown = 3f;
     
     [Header("Runtime")]
     public PlayerMovement target;
@@ -19,6 +20,8 @@ public class EnemyRangedController : MonoBehaviour
     public Transform attackPoint;
     public bool isDead;
     public Vector2 targetLocation;
+    float timer = 0;
+    
     
     
     private Rigidbody2D myRigidbody;
@@ -30,6 +33,7 @@ public class EnemyRangedController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        timer -= Time.deltaTime;
         UpdateTarget(GetNearbyEntityColliders(aggroRadius));
         UpdateMovementSpeed();
         
@@ -78,8 +82,11 @@ public class EnemyRangedController : MonoBehaviour
         if (GetDistanceToTarget() < stopDistance)
         {
             movement = Vector2.zero;
-            
-            BasicAttack();
+            if(timer < 0) 
+            {
+                BasicAttack();
+                timer = cooldown;
+            }
         }
     }
 
