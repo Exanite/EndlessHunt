@@ -127,6 +127,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AOEAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""49791771-e485-4c4d-b6f8-d80ad8aab15b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -138,6 +147,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""BasicAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74d45d5d-952f-4542-b7d9-d6f8b9fa893b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AOEAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -153,6 +173,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // Attack
         m_Attack = asset.FindActionMap("Attack", throwIfNotFound: true);
         m_Attack_BasicAttack = m_Attack.FindAction("BasicAttack", throwIfNotFound: true);
+        m_Attack_AOEAttack = m_Attack.FindAction("AOEAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -254,11 +275,13 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Attack;
     private IAttackActions m_AttackActionsCallbackInterface;
     private readonly InputAction m_Attack_BasicAttack;
+    private readonly InputAction m_Attack_AOEAttack;
     public struct AttackActions
     {
         private @PlayerInput m_Wrapper;
         public AttackActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @BasicAttack => m_Wrapper.m_Attack_BasicAttack;
+        public InputAction @AOEAttack => m_Wrapper.m_Attack_AOEAttack;
         public InputActionMap Get() { return m_Wrapper.m_Attack; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -271,6 +294,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @BasicAttack.started -= m_Wrapper.m_AttackActionsCallbackInterface.OnBasicAttack;
                 @BasicAttack.performed -= m_Wrapper.m_AttackActionsCallbackInterface.OnBasicAttack;
                 @BasicAttack.canceled -= m_Wrapper.m_AttackActionsCallbackInterface.OnBasicAttack;
+                @AOEAttack.started -= m_Wrapper.m_AttackActionsCallbackInterface.OnAOEAttack;
+                @AOEAttack.performed -= m_Wrapper.m_AttackActionsCallbackInterface.OnAOEAttack;
+                @AOEAttack.canceled -= m_Wrapper.m_AttackActionsCallbackInterface.OnAOEAttack;
             }
             m_Wrapper.m_AttackActionsCallbackInterface = instance;
             if (instance != null)
@@ -278,6 +304,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @BasicAttack.started += instance.OnBasicAttack;
                 @BasicAttack.performed += instance.OnBasicAttack;
                 @BasicAttack.canceled += instance.OnBasicAttack;
+                @AOEAttack.started += instance.OnAOEAttack;
+                @AOEAttack.performed += instance.OnAOEAttack;
+                @AOEAttack.canceled += instance.OnAOEAttack;
             }
         }
     }
@@ -290,5 +319,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface IAttackActions
     {
         void OnBasicAttack(InputAction.CallbackContext context);
+        void OnAOEAttack(InputAction.CallbackContext context);
     }
 }

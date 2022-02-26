@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour, GameInput.IPlayerActions
+public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.IAttackActions
 {
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float dashSpeed = 10f;
     Vector2 movementInput;
-    GameInput inputClass;
+    PlayerInput playerInput;
+
     Collider2D myCollider;
     Rigidbody2D myRigidbody;
 
     void Awake() 
     {
-        inputClass = new GameInput();
-        inputClass.Player.SetCallbacks(this);
+        playerInput = new PlayerInput();
+        playerInput.Movement.SetCallbacks(this);
+        playerInput.Attack.SetCallbacks(this);
     }
     void Start() 
     {
@@ -26,12 +28,12 @@ public class PlayerMovement : MonoBehaviour, GameInput.IPlayerActions
 
     void OnEnable()
     {
-        inputClass.Enable();
+        playerInput.Enable();
     }
 
     void OnDisable() 
     {
-        inputClass.Disable();
+        playerInput.Disable();
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -44,6 +46,16 @@ public class PlayerMovement : MonoBehaviour, GameInput.IPlayerActions
     {
         Debug.Log("dashing!");
         myRigidbody.AddForce(movementInput * dashSpeed, ForceMode2D.Impulse);
+    }
+
+    public void OnBasicAttack(InputAction.CallbackContext context)
+    {
+        Debug.Log("Attacking");
+    }
+
+    public void OnAOEAttack(InputAction.CallbackContext context)
+    {
+        Debug.Log("AOE Attack!");
     }
 
     void FixedUpdate() 
