@@ -5,19 +5,26 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [Header("Configuration")]
+    String enemyType = "Melee";
     public float moveSpeed = 10f;
     public float aggroRadius = 5f;
     public float deaggroRadius = 10f;
     public float stopDistance = 2f;
     public float health = 10;
+    public float basicAttackDamage = 1f;
+    public float bulletAttackDamage = 1f;
+    public GameObject bullet;
+    public float cooldown = 3f;
+    public float bulletSpeed = 1f;
+    public float bulletTime = 3f;
     
     [Header("Runtime")]
+
     public PlayerMovement target;
     public Vector2 movement = new Vector2(0, 0);
     public Transform attackPoint;
-    public float basicAttackDamage = 1f;
     public bool isDead;
-    
+    float timer = 0;
     private Rigidbody2D myRigidbody;
 
     private void Start()
@@ -27,6 +34,7 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        timer -= Time.deltaTime;
         UpdateTarget(GetNearbyEntityColliders(aggroRadius));
         UpdateMovementSpeed();
         
@@ -64,7 +72,6 @@ public class EnemyController : MonoBehaviour
         if (!target)
         {
             movement = Vector2.zero;
-            BasicAttack();
             return;
         }
 
@@ -75,7 +82,10 @@ public class EnemyController : MonoBehaviour
         if (GetDistanceToTarget() < stopDistance)
         {
             movement = Vector2.zero;
-            BasicAttack();
+            if(timer < 0) 
+            {
+                
+            }
         }
     }
 
@@ -84,12 +94,12 @@ public class EnemyController : MonoBehaviour
         health -= damageTaken;
         if(health <= 0)
         {
-            Debug.Log("im dead :(");
+            //Debug.Log("im dead :(");
             isDead = true;
             Destroy(gameObject);
         }
-        else
-            Debug.Log("Damage taken! health: " + health);
+        // else
+        //     Debug.Log("Damage taken! health: " + health);
     }
 
     public void BasicAttack()

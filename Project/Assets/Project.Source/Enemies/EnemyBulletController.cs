@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class EnemyBulletController : MonoBehaviour
 {
-    public float bulletSpeed = 1f;
+    float bulletSpeed = 1f;
     Rigidbody2D myRigidbody;
     public GameObject myObject;
     EnemyRangedController myController;
     float bulletDamage = 1f;
     Vector2 targetPosition;
-    public float bulletTime = 3f;
+    float bulletTime = 3f;
     float timer = 0;
 
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myController = myObject.GetComponent<EnemyRangedController>();
+        bulletSpeed = myController.bulletSpeed;
+        bulletTime = myController.bulletTime;
         bulletDamage = myController.basicAttackDamage;
         timer = bulletTime;
         //targetPosition = myController.targetLocation;
@@ -30,10 +32,8 @@ public class EnemyBulletController : MonoBehaviour
             Destroy(gameObject);
             timer = bulletTime;
         }
-        var offset = myController.targetLocation - new Vector2(transform.position.x, transform.position.y);
-        var direction = -offset.normalized;
-        var velocity = direction;
-        myRigidbody.velocity = velocity;
+        
+        myRigidbody.velocity = transform.right * bulletSpeed;
     }
 
     void OnTriggerEnter2D(Collider2D other) 
@@ -44,6 +44,6 @@ public class EnemyBulletController : MonoBehaviour
         {
             player.takeDamage(bulletDamage);
         }
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

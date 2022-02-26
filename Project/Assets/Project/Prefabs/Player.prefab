@@ -742,8 +742,9 @@ MonoBehaviour:
   AOEAttackDamage: 1
   AOERadius: 6
   AOEOffset: 2
-  bullet: {fileID: 3515391831697274391, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
+  dead: 0
   rotationTransform: {fileID: 5297734401927022959}
+  bullet: {fileID: 3515391831697274391, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
 --- !u!114 &-588718393047848135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,7 +858,7 @@ GameObject:
   - component: {fileID: 6378854429246458841}
   - component: {fileID: 4195889486784360125}
   - component: {fileID: 1679194074104046381}
-  - component: {fileID: 4030759575203286413}
+  - component: {fileID: 2276249961561647975}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -958,8 +959,8 @@ MonoBehaviour:
   - {x: 0.08254404, y: -0.038834974, z: 0}
   m_ShapePathHash: 888784330
   m_Mesh: {fileID: 0}
-  m_InstanceId: 125302
---- !u!95 &4030759575203286413
+  m_InstanceId: 131336
+--- !u!95 &2276249961561647975
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0

@@ -35,13 +35,4 @@ public class PlayerBulletController : MonoBehaviour
         }
         Destroy(gameObject);
     }
-
-    // void OnCollisionEnter2D(Collision2D other) 
-    // {
-    //     if(other.gameObject.TryGetComponent(out EnemyController enemyController)) 
-    //     {
-    //         enemyController.takeDamage(bulletDamage);
-    //     }
-    //     Destroy(gameObject);
-    // }
 }

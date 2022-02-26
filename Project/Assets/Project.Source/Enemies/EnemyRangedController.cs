@@ -13,17 +13,15 @@ public class EnemyRangedController : MonoBehaviour
     public float basicAttackDamage = 1f;
     public GameObject bullet;
     public float cooldown = 3f;
+    public float bulletSpeed = 1f;
+    public float bulletTime = 3f;
     
     [Header("Runtime")]
     public PlayerMovement target;
     public Vector2 movement = new Vector2(0, 0);
     public Transform attackPoint;
     public bool isDead;
-    public Vector2 targetLocation;
     float timer = 0;
-    
-    
-    
     private Rigidbody2D myRigidbody;
 
     private void Start()
@@ -71,7 +69,6 @@ public class EnemyRangedController : MonoBehaviour
         if (!target)
         {
             movement = Vector2.zero;
-            //BasicAttack();
             return;
         }
 
@@ -84,7 +81,7 @@ public class EnemyRangedController : MonoBehaviour
             movement = Vector2.zero;
             if(timer < 0) 
             {
-                BasicAttack();
+                BulletAttack();
                 timer = cooldown;
             }
         }
@@ -95,20 +92,21 @@ public class EnemyRangedController : MonoBehaviour
         health -= damageTaken;
         if(health <= 0)
         {
-            Debug.Log("im dead :(");
+            //Debug.Log("im dead :(");
             isDead = true;
             Destroy(gameObject);
         }
-        else
-            Debug.Log("Damage taken! health: " + health);
+        // else
+        //     Debug.Log("Damage taken! health: " + health);
     }
 
-    public void BasicAttack()
+    public void BulletAttack()
     {   
         if(isDead) return;
         //Debug.Log("Shooting!");
-        targetLocation = target.transform.position;
-        Instantiate(bullet, transform.position, transform.rotation);
+        var offset = target.transform.position - transform.position;
+        var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+        Instantiate(bullet, transform.position, Quaternion.Euler(0,0, angle));
     }
 
     public float GetDistanceToTarget()
