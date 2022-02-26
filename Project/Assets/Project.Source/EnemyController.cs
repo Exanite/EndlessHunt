@@ -9,16 +9,16 @@ public class EnemyController : MonoBehaviour
     public float aggroRadius = 5f;
     public float deaggroRadius = 10f;
     public float stopDistance = 2f;
+    public float health = 10;
     
     [Header("Runtime")]
     public PlayerMovement target;
     public Vector2 movement = new Vector2(0, 0);
     public Transform attackPoint;
     public float basicAttackDamage = 1f;
+    public bool isDead = false;
     
     private Rigidbody2D myRigidbody;
-    private float health = 10;
-    bool dead = false;
 
     private void Start()
     {
@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
         if(health <= 0)
         {
             //Debug.Log("im dead :(");
-            dead = true;
+            isDead = true;
         }
         //else
             //Debug.Log("Damage taken! health: " + health);
