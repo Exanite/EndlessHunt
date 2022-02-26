@@ -539,6 +539,39 @@ Transform:
   m_Father: {fileID: 5297734401927022959}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &294694998672739322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367592735108024692}
+  m_Layer: 0
+  m_Name: Flip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1367592735108024692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294694998672739322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6097511744389846919}
+  - {fileID: 6378854429246458841}
+  m_Father: {fileID: 807610485613652831}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &370622014107932158
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,15 +653,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434413003794118624}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6664107699116704643}
   - {fileID: 3863874216376820085}
-  m_Father: {fileID: 807610485613652831}
-  m_RootOrder: 4
+  m_Father: {fileID: 1367592735108024692}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &807610485613652819
 GameObject:
@@ -641,6 +674,7 @@ GameObject:
   - component: {fileID: 807610485613652831}
   - component: {fileID: 807610485613652829}
   - component: {fileID: 807610485613652818}
+  - component: {fileID: -588718393047848135}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -660,11 +694,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6378854429246458841}
+  - {fileID: 1367592735108024692}
   - {fileID: 5297734401927022959}
   - {fileID: 2004776398}
   - {fileID: 519420032}
-  - {fileID: 6097511744389846919}
   - {fileID: 6404608919973111547}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -709,6 +742,24 @@ MonoBehaviour:
   AOEOffset: 2
   bullet: {fileID: 3515391831697274391, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
   rotationTransform: {fileID: 5297734401927022959}
+--- !u!114 &-588718393047848135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807610485613652819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82198b65852bd2e438e288b118d1e7da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  player: {fileID: 807610485613652818}
+  spritesToFlip: []
+  transformsToFlip:
+  - {fileID: 1367592735108024692}
+  isFacingRight: 0
 --- !u!1 &1354075786717804306
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,13 +869,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019180144092647622}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 807610485613652831}
-  m_RootOrder: 0
+  m_Father: {fileID: 1367592735108024692}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4195889486784360125
 SpriteRenderer:
@@ -1103,7 +1154,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 807610485613652831}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7793928681930643362
 SpriteRenderer:
