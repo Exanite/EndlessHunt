@@ -1713,18 +1713,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 519420030, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 519420030, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
-      propertyPath: m_VolumeLayerMask.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 519420030, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
-      propertyPath: m_VolumeFrameworkUpdateModeOption
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 807610485613652819, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1777,10 +1765,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1099335421}
-    - target: {fileID: 1679194074104046381, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
-      propertyPath: m_InstanceId
-      value: -242746
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
 --- !u!43 &908404278
