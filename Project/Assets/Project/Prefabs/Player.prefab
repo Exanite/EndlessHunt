@@ -259,7 +259,7 @@ Transform:
   m_Children:
   - {fileID: 1243380319}
   m_Father: {fileID: 5297734401927022959}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!331 &1505608990
 SpriteMask:
@@ -516,10 +516,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7943224849887910509}
-  - component: {fileID: 8594233185484214832}
-  - component: {fileID: 5124094442853275267}
+  - component: {fileID: 4561337383689872632}
   m_Layer: 0
-  m_Name: AttackTrigger
+  m_Name: AttackPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -533,14 +532,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157956040546391762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01, y: -0.68, z: 0}
-  m_LocalScale: {x: 2.1957812, y: 1.325, z: 1}
+  m_LocalPosition: {x: 1.31, y: -0.01, z: 0}
+  m_LocalScale: {x: 2.1957812, y: 1.325, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 807610485613652831}
-  m_RootOrder: 3
+  m_Father: {fileID: 5297734401927022959}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8594233185484214832
+--- !u!212 &4561337383689872632
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -581,43 +580,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5124094442853275267
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157956040546391762}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &807610485613652819
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,6 +605,7 @@ GameObject:
   - component: {fileID: 807610485613652818}
   - component: {fileID: 863838522}
   - component: {fileID: 863838523}
+  - component: {fileID: 1885974700}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -654,7 +628,6 @@ Transform:
   - {fileID: 5297734401927022959}
   - {fileID: 2004776398}
   - {fileID: 519420032}
-  - {fileID: 7943224849887910509}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -745,6 +718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 100
   dashSpeed: 10
+  attackPoint: {fileID: 0}
 --- !u!58 &863838522
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -787,7 +761,23 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -160662
+  m_InstanceId: 46240
+--- !u!58 &1885974700
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807610485613652819}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &2483683309869172244
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,6 +917,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7943224849887910509}
   - {fileID: 1505608989}
   m_Father: {fileID: 807610485613652831}
   m_RootOrder: 0

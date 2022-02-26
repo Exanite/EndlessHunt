@@ -40,10 +40,12 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
+        if(!target)
+            return;
         Vector3 offset = target.transform.position - transform.position;
         Vector3 direction = offset.normalized;
         movement = direction;
-
+        
         if(offset.magnitude > 8) {
             target = null;
             movement = Vector2.zero;

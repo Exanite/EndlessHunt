@@ -9,9 +9,10 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     [SerializeField] float dashSpeed = 10f;
     Vector2 movementInput;
     PlayerInput playerInput;
-
     Collider2D myCollider;
     Rigidbody2D myRigidbody;
+    Collider2D enemyBody;
+    public Transform attackPoint;
 
     void Awake() 
     {
@@ -51,6 +52,9 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     public void OnBasicAttack(InputAction.CallbackContext context)
     {
         Debug.Log("Attacking");
+        
+        enemyBody = Physics2D.OverlapBox(attackPoint.position, new Vector2(1f, 1f), transform.rotation.eulerAngles.z);
+        
     }
 
     public void OnAOEAttack(InputAction.CallbackContext context)
