@@ -1,3 +1,4 @@
+using Project.Source;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -43,10 +44,10 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRadius);
+            var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRadius, GameSettings.Instance.entityWorldLayerMask);
             foreach (var collider in colliders)
             {
-                if (collider.TryGetComponent(out PlayerMovement player))
+                if (collider.attachedRigidbody && collider.attachedRigidbody.TryGetComponent(out PlayerMovement player))
                 {
                     target = player;
                 }
