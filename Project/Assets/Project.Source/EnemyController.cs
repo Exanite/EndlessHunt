@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
     public Vector2 movement = new Vector2(0, 0);
     
     private Rigidbody2D myRigidbody;
+    private float health = 10;
+    bool dead = false;
 
     private void Start()
     {
@@ -62,5 +64,17 @@ public class EnemyController : MonoBehaviour
         var offset = target.transform.position - transform.position;
         var direction = offset.normalized;
         movement = direction;
+    }
+
+    public void takeDamage(float damageTaken)
+    {
+        health -= damageTaken;
+        if(health <= 0)
+        {
+            Debug.Log("im dead :(");
+            dead = true;
+        }
+        else
+            Debug.Log("Damage taken! health: " + health);
     }
 }
