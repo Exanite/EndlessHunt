@@ -596,7 +596,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &807610485613652818
 MonoBehaviour:
@@ -611,8 +611,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 100
-  dashSpeed: 10
+  dashSpeed: 30
   attackPoint: {fileID: 7943224849887910509}
+  AOERadius: 6
+  AOEOffset: 2
 --- !u!61 &3573269368289591520
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -828,13 +830,13 @@ MonoBehaviour:
   m_SelfShadows: 0
   m_ApplyToSortingLayers: 91f1aedd0000000091f33f2da7c2b55697134635
   m_ShapePath:
-  - {x: -0.13493544, y: -0.020024598, z: 0}
-  - {x: -0.16697493, y: 1.3351818, z: 0}
-  - {x: 0.15095526, y: 1.3391869, z: 0}
-  - {x: 0.13493541, y: -0.024029613, z: 0}
-  m_ShapePathHash: 1314793569
+  - {x: -0.15497617, y: -0.036725163, z: 0}
+  - {x: -0.20371628, y: 1.3452023, z: 0}
+  - {x: 0.21107744, y: 1.345867, z: 0}
+  - {x: 0.16833663, y: -0.050750613, z: 0}
+  m_ShapePathHash: 1609380305
   m_Mesh: {fileID: 0}
-  m_InstanceId: 107502
+  m_InstanceId: 112018
 --- !u!1 &2483683309869172244
 GameObject:
   m_ObjectHideFlags: 0
