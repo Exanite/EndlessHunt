@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3449485716470880826, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Name
-      value: Enemt_Ranged_Lighting
+      value: Enemy_Ranged__Lighting
       objectReference: {fileID: 0}
     - target: {fileID: 3449485716470880826, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Layer
@@ -186,8 +186,10 @@ MonoBehaviour:
   health: 10
   basicAttackDamage: 1
   bullet: {fileID: 4735115630353999671, guid: c68f786077a2ca24d988cf3fbfc32392, type: 3}
+  cooldown: 3
+  bulletSpeed: 5
+  bulletTime: 3
   target: {fileID: 0}
   movement: {x: 0, y: 0}
   attackPoint: {fileID: 0}
   isDead: 0
-  targetLocation: {x: 0, y: 0}
