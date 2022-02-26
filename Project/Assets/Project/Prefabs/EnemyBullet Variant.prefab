@@ -82,7 +82,7 @@ PrefabInstance:
     - target: {fileID: 8724226050208120037, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+      objectReference: {fileID: 21300000, guid: 4c605daa18bac6b46b2b01f4824f622c, type: 3}
     - target: {fileID: 8724226050208120037, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
       propertyPath: m_Color.b
       value: 0.13656996
@@ -121,3 +121,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 1
   myObject: {fileID: 6638286354246349116, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
+  bulletTime: 3
