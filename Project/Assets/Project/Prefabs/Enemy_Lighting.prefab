@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6294895023278408790}
   - component: {fileID: 2889946859852953517}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.1994996, y: 0.0056066513, z: 0}
   m_ShapePathHash: 1512121589
   m_Mesh: {fileID: 0}
-  m_InstanceId: 51798
+  m_InstanceId: 50158
 --- !u!1 &2248949315317763465
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6685574542799345888}
   - component: {fileID: 8454267872918444246}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3449485716154172562}
   - component: {fileID: 3449485716154172589}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite_InView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3449485716271789532}
   - component: {fileID: 3449485716271789507}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite_OutOfView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 3449485716470880827}
   - component: {fileID: 7229557065030329774}
   - component: {fileID: 5113381831998939751}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy_Lighting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,6 +380,7 @@ MonoBehaviour:
   spritesToFlip: []
   transformsToFlip:
   - {fileID: 5576029254134607737}
+  isFacingRight: 0
 --- !u!1 &5766755991856951728
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8454044760411920915}
   - component: {fileID: 5680742737623288135}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3791718259300875512}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5576029254134607737}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +519,7 @@ GameObject:
   - component: {fileID: 9045553285136789085}
   - component: {fileID: 5774035318346278717}
   - component: {fileID: 236598851101142105}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SlimeAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}

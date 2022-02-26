@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class PlayerBulletController : MonoBehaviour
 {
     public float bulletSpeed = 1f;
     Rigidbody2D myRigidbody;
@@ -24,19 +24,24 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) 
     {
+        if(other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out PlayerMovement player)) return;
         if(other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out EnemyController enemyController))
         {
             enemyController.takeDamage(bulletDamage);
         }
-        Destroy(gameObject);
-    }
-
-    void OnCollisionEnter2D(Collision2D other) 
-    {
-        if(other.gameObject.TryGetComponent(out EnemyController enemyController)) 
+        if(other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out EnemyRangedController enemyRangedController))
         {
-            enemyController.takeDamage(bulletDamage);
+            enemyRangedController.takeDamage(bulletDamage);
         }
         Destroy(gameObject);
     }
+
+    // void OnCollisionEnter2D(Collision2D other) 
+    // {
+    //     if(other.gameObject.TryGetComponent(out EnemyController enemyController)) 
+    //     {
+    //         enemyController.takeDamage(bulletDamage);
+    //     }
+    //     Destroy(gameObject);
+    // }
 }
