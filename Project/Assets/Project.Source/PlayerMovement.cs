@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour, GameInput.IPlayerActions
 {
-    [SerializeField] float moveSpeed;
+    [SerializeField] float moveSpeed = 10f;
     GameInput inputClass;
     Collider2D myCollider;
     Rigidbody2D myRigidbody;
@@ -36,6 +36,6 @@ public class PlayerMovement : MonoBehaviour, GameInput.IPlayerActions
     {
         //Debug.Log("moving!");
         Vector2 movement = context.ReadValue<Vector2>();
-        myRigidbody.AddForce(movement);
+        myRigidbody.AddForce(movement * moveSpeed);
     }
 }
