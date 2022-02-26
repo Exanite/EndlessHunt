@@ -1,3 +1,4 @@
+using Project.Source;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,9 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     public Transform rotationTransform;
     public GameObject bullet;
     public Animator animator;
+
+    [Header("Sounds")]
+    public AudioClip dashSound;
 
     [Header("Configuration")]
     [SerializeField]
@@ -69,6 +73,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
         //Debug.Log("dashing!");
         myRigidbody.AddForce(movementInput * dashSpeed, ForceMode2D.Impulse);
+        SoundManager.Instance.PlaySound(dashSound, transform.position, 0.75f);
     }
 
     public void OnBasicAttack(InputAction.CallbackContext context)
