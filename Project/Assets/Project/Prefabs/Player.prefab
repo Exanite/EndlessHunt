@@ -738,6 +738,8 @@ MonoBehaviour:
   moveSpeed: 100
   dashSpeed: 30
   attackPoint: {fileID: 7943224849887910509}
+  basicAttackDamage: 4
+  AOEAttackDamage: 1
   AOERadius: 6
   AOEOffset: 2
   bullet: {fileID: 3515391831697274391, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}

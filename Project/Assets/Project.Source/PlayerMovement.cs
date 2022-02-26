@@ -5,18 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.IAttackActions
 {
+    [Header("Configuration")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float dashSpeed = 10f;
+    public Transform attackPoint;
+    public float basicAttackDamage = 1f;
+    public float AOEAttackDamage = 1f;
+    public float AOERadius = 6f;
+    public float AOEOffset = 2f;
+    float health = 10f;
+
+    [Header("Runtime")]
     Vector2 movementInput;
     PlayerInput playerInput;
     Collider2D myCollider;
     Rigidbody2D myRigidbody;
-    public Transform attackPoint;
-    float basicAttackDamage = 1f;
-    float AOEAttackDamage = 1f;
-    public float AOERadius = 6f;
-    public float AOEOffset = 2f;
-    float health = 10f;
     bool dead = false;
     public GameObject bullet;
 
@@ -63,7 +66,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     {
         if(dead) return;
         if(!context.performed) return;
-        Debug.Log("Shooting!");
+        //Debug.Log("Shooting!");
         Instantiate(bullet, attackPoint.position, attackPoint.transform.rotation);
         // if(!context.performed) return;
         //     //Debug.Log("Attacking");
@@ -113,5 +116,10 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     void FixedUpdate() 
     {
         myRigidbody.AddForce(movementInput * moveSpeed);
+    }
+
+    public float getBasicAttackDamage()
+    {
+        return basicAttackDamage;
     }
 }

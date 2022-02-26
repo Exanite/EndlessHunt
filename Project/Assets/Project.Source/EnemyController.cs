@@ -84,11 +84,12 @@ public class EnemyController : MonoBehaviour
         health -= damageTaken;
         if(health <= 0)
         {
-            //Debug.Log("im dead :(");
+            Debug.Log("im dead :(");
             isDead = true;
+            Destroy(gameObject);
         }
-        //else
-            //Debug.Log("Damage taken! health: " + health);
+        else
+            Debug.Log("Damage taken! health: " + health);
     }
 
     public void BasicAttack()
