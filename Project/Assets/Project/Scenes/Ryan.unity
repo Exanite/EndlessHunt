@@ -298,21 +298,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 420967131143834828, guid: 186268b2a902b7642add8224e9ad4ff3, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4449410768593989027, guid: 186268b2a902b7642add8224e9ad4ff3, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5248666351544632628, guid: 186268b2a902b7642add8224e9ad4ff3, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 6075291663382665360, guid: 186268b2a902b7642add8224e9ad4ff3, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
+      propertyPath: m_Size.x
+      value: 4.90066
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075291663382665360, guid: 186268b2a902b7642add8224e9ad4ff3, type: 3}
+      propertyPath: m_Size.y
+      value: 2.1315904
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075291663382665360, guid: 186268b2a902b7642add8224e9ad4ff3, type: 3}
+      propertyPath: m_Offset.x
+      value: 1.9503162
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075291663382665360, guid: 186268b2a902b7642add8224e9ad4ff3, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.10924389
       objectReference: {fileID: 0}
     - target: {fileID: 6117634246712055546, guid: 186268b2a902b7642add8224e9ad4ff3, type: 3}
       propertyPath: m_RootOrder
@@ -357,6 +361,10 @@ PrefabInstance:
     - target: {fileID: 6117634246712055546, guid: 186268b2a902b7642add8224e9ad4ff3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452196951560248183, guid: 186268b2a902b7642add8224e9ad4ff3, type: 3}
+      propertyPath: moveSpeed
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 186268b2a902b7642add8224e9ad4ff3, type: 3}
