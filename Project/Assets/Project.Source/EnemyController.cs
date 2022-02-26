@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
         UpdateTarget();
         UpdateMovementSpeed();
         
-        myRigidbody.AddForce(movement * moveSpeed);
+        myRigidbody.AddForce(movement * moveSpeed * myRigidbody.mass * myRigidbody.drag);
     }
 
     private void UpdateTarget()
