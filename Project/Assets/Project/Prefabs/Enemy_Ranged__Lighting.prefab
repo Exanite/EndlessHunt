@@ -1,5 +1,95 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6432787846542496815
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6638286354246349119}
+    m_Modifications:
+    - target: {fileID: 1328692508058779887, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_Name
+      value: Death Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365176955744170341, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365176955744170341, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365176955744170341, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365176955744170341, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365176955744170341, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365176955744170341, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: EmissionModule.rateOverTime.minScalar
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365176955744170341, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363214968600995133, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363214968600995133, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.039
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363214968600995133, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.066
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363214968600995133, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.04813231
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363214968600995133, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363214968600995133, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363214968600995133, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363214968600995133, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363214968600995133, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363214968600995133, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363214968600995133, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+--- !u!198 &8761490971357586762 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2365176955744170341, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+  m_PrefabInstance: {fileID: 6432787846542496815}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8340920218879191814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,6 +97,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 680654342094412678, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2163389675124273774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -21,7 +115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2889946859852953517, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_InstanceId
-      value: -281818
+      value: -406564
       objectReference: {fileID: 0}
     - target: {fileID: 3449485716154172588, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Layer
@@ -190,8 +284,13 @@ MonoBehaviour:
   bulletSpeed: 5
   bulletTime: 3
   projectileSpawnDistance: 2
-  deathParticleSystem: {fileID: 2365176955744170341, guid: ff5096ca141715646917040eaa18fc3d, type: 3}
+  deathParticleSystem: {fileID: 8761490971357586762}
   target: {fileID: 0}
   movement: {x: 0, y: 0}
   attackPoint: {fileID: 0}
   isDead: 0
+--- !u!4 &6638286354246349119 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3449485716470880825, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+  m_PrefabInstance: {fileID: 8340920218879191814}
+  m_PrefabAsset: {fileID: 0}

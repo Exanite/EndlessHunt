@@ -84,7 +84,7 @@ public class EnemyController : MonoBehaviour
             movement = Vector2.zero;
             if(timer < 0) 
             {
-                Debug.Log("attack!");
+                //Debug.Log("attack!");
                 BulletAttack();
                 timer = cooldown;
             }
@@ -98,6 +98,7 @@ public class EnemyController : MonoBehaviour
         {
             //Debug.Log("im dead :(");
             isDead = true;
+            Debug.Log("Particles! YAY!");
             deathParticleSystem.Play();
             Destroy(gameObject);
         }
