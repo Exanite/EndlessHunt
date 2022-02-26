@@ -735,6 +735,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7073833f06e56ed4c9de1d909068011c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationTransform: {fileID: 5297734401927022959}
+  bullet: {fileID: 3515391831697274391, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
+  animator: {fileID: 2276249961561647975}
   moveSpeed: 100
   dashSpeed: 30
   attackPoint: {fileID: 7943224849887910509}
@@ -743,8 +746,6 @@ MonoBehaviour:
   AOERadius: 6
   AOEOffset: 2
   dead: 0
-  rotationTransform: {fileID: 5297734401927022959}
-  bullet: {fileID: 3515391831697274391, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
 --- !u!114 &-588718393047848135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,7 +960,7 @@ MonoBehaviour:
   - {x: 0.08254404, y: -0.038834974, z: 0}
   m_ShapePathHash: 888784330
   m_Mesh: {fileID: 0}
-  m_InstanceId: 131336
+  m_InstanceId: -289920
 --- !u!95 &2276249961561647975
 Animator:
   serializedVersion: 4
