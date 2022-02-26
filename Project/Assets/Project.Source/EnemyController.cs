@@ -1,54 +1,66 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 10f;
-    Vector2 movement = new Vector2(0,0);
-    BoxCollider2D sightCollider;
-    CapsuleCollider2D bodyCollider;
-    Rigidbody2D myRigidbody;
-    SpriteRenderer mySprite;
+    [Header("Configuration")]
+    public float moveSpeed = 10f;
+    public float aggroRadius = 5f;
+    public float deaggroRadius = 10f;
+    
+    [Header("Runtime")]
+    public PlayerMovement target;
+    public Vector2 movement = new Vector2(0, 0);
+    
+    private Rigidbody2D myRigidbody;
 
-    PlayerMovement target;
-    void Start()
+    private void Start()
     {
-        sightCollider = GetComponent<BoxCollider2D>();
-        bodyCollider = GetComponent<CapsuleCollider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
-        mySprite = GetComponent<SpriteRenderer>();
     }
 
-    void OnTriggerEnter2D(Collider2D other) 
+    private void FixedUpdate()
     {
-        Debug.Log(other);
-        Debug.Log("Person here!!");
+        UpdateTarget();
+        UpdateMovementSpeed();
         
-        if(other.TryGetComponent(out PlayerMovement playerMovement)) 
-        {
-            target = playerMovement;
-            
-            Debug.Log("Its a player!");
-        }
-    }
-
-    void FixedUpdate() 
-    {
         myRigidbody.AddForce(movement * moveSpeed);
-        
     }
-    void Update()
+
+    private void UpdateTarget()
     {
-        if(!target)
-            return;
-        Vector3 offset = target.transform.position - transform.position;
-        Vector3 direction = offset.normalized;
-        movement = direction;
-        
-        if(offset.magnitude > 8) {
-            target = null;
-            movement = Vector2.zero;
+        if (target)
+        {
+            var offset = target.transform.position - transform.position;
+
+            if (offset.magnitude > deaggroRadius)
+            {
+                target = null;
+            }
         }
+        else
+        {
+            var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRadius);
+            foreach (var collider in colliders)
+            {
+                if (collider.TryGetComponent(out PlayerMovement player))
+                {
+                    target = player;
+                }
+            }
+        }
+    }
+
+    private void UpdateMovementSpeed()
+    {
+        if (!target)
+        {
+            movement = Vector2.zero;
+
+            return;
+        }
+
+        var offset = target.transform.position - transform.position;
+        var direction = offset.normalized;
+        movement = direction;
     }
 }
