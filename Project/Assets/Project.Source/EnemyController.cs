@@ -1,3 +1,4 @@
+using System;
 using Project.Source;
 using UnityEngine;
 
@@ -31,13 +32,16 @@ public class EnemyController : MonoBehaviour
         myRigidbody.AddForce(movement * moveSpeed * myRigidbody.mass * myRigidbody.drag);
     }
 
+    private Collider[] GetNearbyEntityColliders(float radius)
+    {
+        throw new NotImplementedException();
+    }
+
     private void UpdateTarget()
     {
         if (target)
         {
-            var offset = target.transform.position - transform.position;
-
-            if (offset.magnitude > deaggroRadius)
+            if (GetDistanceToTarget() > deaggroRadius)
             {
                 target = null;
             }
@@ -66,12 +70,13 @@ public class EnemyController : MonoBehaviour
 
         var offset = target.transform.position - transform.position;
         var direction = offset.normalized;
-        if (offset.magnitude < 2)
+        movement = direction;
+        
+        if (GetDistanceToTarget() < 2)
         {
             movement = Vector2.zero;
             BasicAttack();
         }
-        movement = direction;
     }
 
     public void takeDamage(float damageTaken)
@@ -96,5 +101,15 @@ public class EnemyController : MonoBehaviour
                 player.takeDamage(basicAttackDamage);
             }
         }
+    }
+
+    public float GetDistanceToTarget()
+    {
+        if (!target)
+        {
+            return float.PositiveInfinity;
+        }
+
+        return (target.transform.position - transform.position).magnitude;
     }
 }
