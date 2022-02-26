@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     PlayerInput playerInput;
     Collider2D myCollider;
     Rigidbody2D myRigidbody;
-    Collider2D enemyBody;
     public Transform attackPoint;
 
     void Awake() 
@@ -45,21 +44,28 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        Debug.Log("dashing!");
+        //Debug.Log("dashing!");
         myRigidbody.AddForce(movementInput * dashSpeed, ForceMode2D.Impulse);
     }
 
     public void OnBasicAttack(InputAction.CallbackContext context)
     {
-        Debug.Log("Attacking");
+        //Debug.Log("Attacking");
         
-        enemyBody = Physics2D.OverlapBox(attackPoint.position, new Vector2(1f, 1f), transform.rotation.eulerAngles.z);
-        
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(1f, 1f), transform.rotation.eulerAngles.z);
+        foreach(Collider2D collider in colliders) 
+        {
+            if(collider.TryGetComponent(out EnemyController enemyController)) 
+            {
+                //Debug.Log("Enemy here!");
+                // TODO: update enemy health
+            }
+        }
     }
 
     public void OnAOEAttack(InputAction.CallbackContext context)
     {
-        Debug.Log("AOE Attack!");
+        //Debug.Log("AOE Attack!");
     }
 
     void FixedUpdate() 
