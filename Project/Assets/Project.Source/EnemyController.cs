@@ -9,11 +9,14 @@ public class EnemyController : MonoBehaviour
     BoxCollider2D sightCollider;
     CapsuleCollider2D bodyCollider;
     Rigidbody2D myRigidbody;
+    SpriteRenderer mySprite;
+    Vector2 playerPosition;
     void Start()
     {
         sightCollider = GetComponent<BoxCollider2D>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
+        mySprite = GetComponent<SpriteRenderer>();
     }
 
     void OnTriggerEnter2D(Collider2D other) 
@@ -23,23 +26,54 @@ public class EnemyController : MonoBehaviour
         
         if(other.TryGetComponent(out PlayerMovement playerMovement)) 
         {
-            Vector2 playerPosition = other.transform.position;
-            if(myRigidbody.transform.position.x - playerPosition.x > 0) {
-                movement = new Vector2(-moveSpeed, 0);
-                myRigidbody.transform.localScale.Set(-1,1,1);
+            playerPosition = other.transform.position;
+            float xDifference = myRigidbody.transform.position.x - playerPosition.x;
+            float yDifference = myRigidbody.transform.position.y - playerPosition.y;
+            if(Mathf.Abs(xDifference) > Mathf.Abs(yDifference)) 
+            {
+                if(xDifference > 0) {
+                    movement = new Vector2(-moveSpeed, 0);
+                    FlipObjectX();
+                    //mySprite.flipX = true;
+                }
+                else {
+                    movement = new Vector2(moveSpeed, 0);
+                    FlipObjectX();
+                    //mySprite.flipX = false;
+                }
             }
-            else {
-                movement = new Vector2(moveSpeed, 0);
-                myRigidbody.transform.localScale.Set(1,1,1);
+            else 
+            {
+                if(yDifference > 0) {
+                    movement = new Vector2(0, -moveSpeed);
+                    FlipObjectY();
+                    //mySprite.flipX = true;
+                }
+                else {
+                    movement = new Vector2(0, moveSpeed);
+                    FlipObjectY();
+                    //mySprite.flipX = false;
+                }
             }
             Debug.Log("Its a player!");
             myRigidbody.AddForce(movement);
         }
     }
 
+    void FlipObjectX()
+    {
+        transform.localScale = new Vector2 (-myRigidbody.transform.localScale.x, 1f);
+    }
+
+    void FlipObjectY()
+    {
+        transform.localScale = new Vector2 (1f, -myRigidbody.transform.localScale.y);
+    }
+
     void FixedUpdate() 
     {
         myRigidbody.AddForce(movement);
+        
     }
     void Update()
     {
