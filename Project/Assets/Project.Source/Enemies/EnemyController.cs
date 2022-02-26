@@ -98,28 +98,17 @@ public class EnemyController : MonoBehaviour
         health -= damageTaken;
         if(health <= 0)
         {
-            //Debug.Log("im dead :(");
             isDead = true;
-            Debug.Log("Particles! YAY!");
-            deathParticleSystem.Play();
             myRigidbody.velocity = new Vector2(0,0);
-            //Destroy(gameObject);
+            deathParticleSystem.Play();
+            Invoke("death", deathParticleSystem.main.duration);
         }
-        // else
-        //     Debug.Log("Damage taken! health: " + health);
     }
 
-    // public void BasicAttack()
-    // {   
-    //     Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
-    //     foreach(Collider2D collider in colliders) 
-    //     {
-    //         if(collider.TryGetComponent(out PlayerMovement player))
-    //         {
-    //             player.takeDamage(basicAttackDamage);
-    //         }
-    //     }
-    // }
+    void death()
+    {
+        Destroy(gameObject);
+    }
 
     public void BulletAttack()
     {   
