@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     public float bulletSpeed = 1f;
     public float bulletTime = 3f;
     public float projectileSpawnDistance = 1f;
+    public ParticleSystem deathParticleSystem;
     
     [Header("Runtime")]
 
@@ -97,6 +98,7 @@ public class EnemyController : MonoBehaviour
         {
             //Debug.Log("im dead :(");
             isDead = true;
+            deathParticleSystem.Play();
             Destroy(gameObject);
         }
         // else
