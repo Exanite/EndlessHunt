@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour, GameInput.IPlayerActions
 {
     [SerializeField] float moveSpeed = 10f;
+    Vector2 movementInput;
     GameInput inputClass;
     Collider2D myCollider;
     Rigidbody2D myRigidbody;
@@ -35,7 +36,13 @@ public class PlayerMovement : MonoBehaviour, GameInput.IPlayerActions
     public void OnMovement(InputAction.CallbackContext context)
     {
         //Debug.Log("moving!");
-        Vector2 movement = context.ReadValue<Vector2>();
-        myRigidbody.AddForce(movement * moveSpeed);
+        movementInput = context.ReadValue<Vector2>();
+    }
+
+    void FixedUpdate() 
+    {
+        
+        myRigidbody.AddForce(movementInput * moveSpeed);
+        
     }
 }
