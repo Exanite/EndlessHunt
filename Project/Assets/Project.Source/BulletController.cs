@@ -24,7 +24,7 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.TryGetComponent(out EnemyController enemyController))
+        if(other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out EnemyController enemyController))
         {
             enemyController.takeDamage(bulletDamage);
         }
