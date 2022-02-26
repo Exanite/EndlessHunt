@@ -10,7 +10,8 @@ public class EnemyController : MonoBehaviour
     CapsuleCollider2D bodyCollider;
     Rigidbody2D myRigidbody;
     SpriteRenderer mySprite;
-    Vector2 playerPosition;
+
+    PlayerMovement target;
     void Start()
     {
         sightCollider = GetComponent<BoxCollider2D>();
@@ -26,57 +27,26 @@ public class EnemyController : MonoBehaviour
         
         if(other.TryGetComponent(out PlayerMovement playerMovement)) 
         {
-            playerPosition = other.transform.position;
-            float xDifference = myRigidbody.transform.position.x - playerPosition.x;
-            float yDifference = myRigidbody.transform.position.y - playerPosition.y;
-            if(Mathf.Abs(xDifference) > Mathf.Abs(yDifference)) 
-            {
-                if(xDifference > 0) {
-                    movement = new Vector2(-moveSpeed, 0);
-                    FlipObjectX();
-                    //mySprite.flipX = true;
-                }
-                else {
-                    movement = new Vector2(moveSpeed, 0);
-                    FlipObjectX();
-                    //mySprite.flipX = false;
-                }
-            }
-            else 
-            {
-                if(yDifference > 0) {
-                    movement = new Vector2(0, -moveSpeed);
-                    FlipObjectY();
-                    //mySprite.flipX = true;
-                }
-                else {
-                    movement = new Vector2(0, moveSpeed);
-                    FlipObjectY();
-                    //mySprite.flipX = false;
-                }
-            }
+            target = playerMovement;
+            
             Debug.Log("Its a player!");
-            myRigidbody.AddForce(movement);
         }
-    }
-
-    void FlipObjectX()
-    {
-        transform.localScale = new Vector2 (-myRigidbody.transform.localScale.x, 1f);
-    }
-
-    void FlipObjectY()
-    {
-        transform.localScale = new Vector2 (1f, -myRigidbody.transform.localScale.y);
     }
 
     void FixedUpdate() 
     {
-        myRigidbody.AddForce(movement);
+        myRigidbody.AddForce(movement * moveSpeed);
         
     }
     void Update()
     {
-        
+        Vector3 offset = target.transform.position - transform.position;
+        Vector3 direction = offset.normalized;
+        movement = direction;
+
+        if(offset.magnitude > 8) {
+            target = null;
+            movement = Vector2.zero;
+        }
     }
 }
