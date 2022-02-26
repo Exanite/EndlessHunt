@@ -707,6 +707,7 @@ MonoBehaviour:
   attackPoint: {fileID: 7943224849887910509}
   AOERadius: 6
   AOEOffset: 2
+  bullet: {fileID: 3515391831697274391, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
 --- !u!1 &1354075786717804306
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +903,7 @@ MonoBehaviour:
   - {x: 0.08254404, y: -0.038834974, z: 0}
   m_ShapePathHash: 888784330
   m_Mesh: {fileID: 0}
-  m_InstanceId: -242746
+  m_InstanceId: -4836
 --- !u!1 &2222550953212586012
 GameObject:
   m_ObjectHideFlags: 0

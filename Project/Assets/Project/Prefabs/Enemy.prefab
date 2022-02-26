@@ -99,7 +99,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 10
   m_AngularDrag: 10
   m_GravityScale: 0
@@ -120,11 +120,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fc3598ff216e94e8b678add1fc24ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 5
   aggroRadius: 5
   deaggroRadius: 10
+  stopDistance: 2
+  health: 10
   target: {fileID: 0}
   movement: {x: 0, y: 0}
+  attackPoint: {fileID: 0}
+  basicAttackDamage: 1
+  isDead: 0
 --- !u!70 &6917857631237172908
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
