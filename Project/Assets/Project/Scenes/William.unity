@@ -1765,18 +1765,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 750262440}
-    - target: {fileID: 1679194074104046381, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
-      propertyPath: m_InstanceId
-      value: -44240
-      objectReference: {fileID: 0}
-    - target: {fileID: 8818337830044226612, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
-      propertyPath: transformsToFlip.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8818337830044226612, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
-      propertyPath: transformsToFlip.Array.data[0]
-      value: 
-      objectReference: {fileID: 1648464267}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
 --- !u!43 &896190914
@@ -3247,11 +3235,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!4 &1648464267 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4156005785570798902, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
-  m_PrefabInstance: {fileID: 864146605}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1658684631
 Mesh:
   m_ObjectHideFlags: 0
