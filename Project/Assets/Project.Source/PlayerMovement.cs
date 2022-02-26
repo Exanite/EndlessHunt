@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour, GameInput.IPlayerActions
 {
     [SerializeField] float moveSpeed = 10f;
+    [SerializeField] float dashSpeed = 10f;
     Vector2 movementInput;
     GameInput inputClass;
     Collider2D myCollider;
@@ -37,6 +38,12 @@ public class PlayerMovement : MonoBehaviour, GameInput.IPlayerActions
     {
         //Debug.Log("moving!");
         movementInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        Debug.Log("dashing!");
+        myRigidbody.AddForce(movementInput * dashSpeed, ForceMode2D.Impulse);
     }
 
     void FixedUpdate() 

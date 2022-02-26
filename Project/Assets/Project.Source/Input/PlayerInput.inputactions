@@ -1,8 +1,8 @@
 {
-    "name": "GameInput",
+    "name": "PlayerInput",
     "maps": [
         {
-            "name": "Player",
+            "name": "Movement",
             "id": "22b39491-17ec-4483-8adf-df58c74e9453",
             "actions": [
                 {
@@ -10,6 +10,15 @@
                     "type": "PassThrough",
                     "id": "1998dc5f-c875-4024-a3bc-ff18c5efb4d4",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "122e160b-e7e9-4b3e-8c3d-48a22096abaf",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -70,6 +79,45 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a99e0b8d-6a05-4023-938f-5554c5a9e084",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Attack",
+            "id": "8337c666-dd5b-4fd3-ac27-280d025f77ee",
+            "actions": [
+                {
+                    "name": "BasicAttack",
+                    "type": "Button",
+                    "id": "ca86ff98-a8f5-41cb-830e-a60cfbfbd775",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8c0cd42c-1188-4a77-8c43-dbdf311e9172",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BasicAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
