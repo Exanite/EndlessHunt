@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     public Vector2 movement = new Vector2(0, 0);
     public Transform attackPoint;
     public float basicAttackDamage = 1f;
-    public bool isDead = false;
+    public bool isDead;
     
     private Rigidbody2D myRigidbody;
 
@@ -27,18 +27,18 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateTarget();
+        UpdateTarget(GetNearbyEntityColliders(aggroRadius));
         UpdateMovementSpeed();
         
         myRigidbody.AddForce(movement * moveSpeed * myRigidbody.mass * myRigidbody.drag);
     }
 
-    private Collider[] GetNearbyEntityColliders(float radius)
+    private Collider2D[] GetNearbyEntityColliders(float radius)
     {
-        throw new NotImplementedException();
+        return Physics2D.OverlapCircleAll(transform.position, aggroRadius, GameSettings.Instance.entityWorldLayerMask);
     }
 
-    private void UpdateTarget()
+    private void UpdateTarget(Collider2D[] colliders)
     {
         if (target)
         {
@@ -49,7 +49,6 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRadius, GameSettings.Instance.entityWorldLayerMask);
             foreach (var collider in colliders)
             {
                 if (collider.attachedRigidbody && collider.attachedRigidbody.TryGetComponent(out PlayerMovement player))
