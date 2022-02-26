@@ -317,7 +317,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &294604369
+--- !u!43 &367584963
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -871,7 +871,7 @@ PrefabInstance:
     - target: {fileID: 1679194074104046381, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 294604369}
+      objectReference: {fileID: 367584963}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ae9dd635b18f14795054ea640c3c1f, type: 3}
 --- !u!1001 &6258046837199248470

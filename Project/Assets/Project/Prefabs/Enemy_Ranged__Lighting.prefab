@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3449485716470880826, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Name
-      value: Enemy_Ranged__Lighting
+      value: Enemt_Ranged_Lighting
       objectReference: {fileID: 0}
     - target: {fileID: 3449485716470880826, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Layer
@@ -167,7 +167,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3449485716470880826, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
   m_PrefabInstance: {fileID: 8340920218879191814}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &96705653
+--- !u!114 &1036714396364991313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6638286354246349116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f514396a056bfa4fb6b630a64fc854e, type: 3}
+  m_Script: {fileID: 11500000, guid: e8fc3598ff216e94e8b678add1fc24ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
@@ -184,7 +184,7 @@ MonoBehaviour:
   deaggroRadius: 12
   stopDistance: 5
   health: 10
-  basicAttackDamage: 1
+  AttackDamage: 2
   bullet: {fileID: 4735115630353999671, guid: c68f786077a2ca24d988cf3fbfc32392, type: 3}
   cooldown: 3
   bulletSpeed: 5
