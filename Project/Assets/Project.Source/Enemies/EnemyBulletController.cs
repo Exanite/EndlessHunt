@@ -7,7 +7,7 @@ public class EnemyBulletController : MonoBehaviour
     float bulletSpeed = 1f;
     Rigidbody2D myRigidbody;
     public GameObject myObject;
-    EnemyRangedController myController;
+    EnemyController myController;
     float bulletDamage = 1f;
     Vector2 targetPosition;
     float bulletTime = 3f;
@@ -16,10 +16,10 @@ public class EnemyBulletController : MonoBehaviour
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        myController = myObject.GetComponent<EnemyRangedController>();
+        myController = myObject.GetComponent<EnemyController>();
         bulletSpeed = myController.bulletSpeed;
         bulletTime = myController.bulletTime;
-        bulletDamage = myController.basicAttackDamage;
+        bulletDamage = myController.attackDamage;
         timer = bulletTime;
         //targetPosition = myController.targetLocation;
     }

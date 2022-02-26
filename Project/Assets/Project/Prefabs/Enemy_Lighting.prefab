@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.1994996, y: 0.0056066513, z: 0}
   m_ShapePathHash: 1512121589
   m_Mesh: {fileID: 0}
-  m_InstanceId: 50158
+  m_InstanceId: -268252
 --- !u!1 &2248949315317763465
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,10 +358,15 @@ MonoBehaviour:
   deaggroRadius: 10
   stopDistance: 2
   health: 10
+  attackDamage: 1
+  bullet: {fileID: 4735115630353999671, guid: 37a7ef0cbe7dc854392818e5f2505a55, type: 3}
+  cooldown: 3
+  bulletSpeed: 5
+  bulletTime: 0.5
+  projectileSpawnDistance: 1
   target: {fileID: 0}
   movement: {x: 0, y: 0}
   attackPoint: {fileID: 0}
-  basicAttackDamage: 1
   isDead: 0
 --- !u!114 &5113381831998939751
 MonoBehaviour:

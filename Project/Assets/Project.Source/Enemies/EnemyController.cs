@@ -10,11 +10,12 @@ public class EnemyController : MonoBehaviour
     public float deaggroRadius = 10f;
     public float stopDistance = 2f;
     public float health = 10;
-    public float AttackDamage = 1f;
+    public float attackDamage = 1f;
     public GameObject bullet;
     public float cooldown = 3f;
     public float bulletSpeed = 1f;
     public float bulletTime = 3f;
+    public float projectileSpawnDistance = 1f;
     
     [Header("Runtime")]
 
@@ -82,6 +83,7 @@ public class EnemyController : MonoBehaviour
             movement = Vector2.zero;
             if(timer < 0) 
             {
+                Debug.Log("attack!");
                 BulletAttack();
                 timer = cooldown;
             }
@@ -119,7 +121,8 @@ public class EnemyController : MonoBehaviour
         //Debug.Log("Shooting!");
         var offset = target.transform.position - transform.position;
         var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
-        Instantiate(bullet, transform.position, Quaternion.Euler(0,0, angle));
+        var rotation = Quaternion.Euler(0,0, angle);
+        Instantiate(bullet, transform.position + offset.normalized * projectileSpawnDistance, rotation);
     }
 
     public float GetDistanceToTarget()

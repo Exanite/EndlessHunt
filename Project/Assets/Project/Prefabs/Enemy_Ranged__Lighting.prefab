@@ -184,11 +184,12 @@ MonoBehaviour:
   deaggroRadius: 12
   stopDistance: 5
   health: 10
-  AttackDamage: 2
+  attackDamage: 1
   bullet: {fileID: 4735115630353999671, guid: c68f786077a2ca24d988cf3fbfc32392, type: 3}
   cooldown: 3
   bulletSpeed: 5
   bulletTime: 3
+  projectileSpawnDistance: 2
   target: {fileID: 0}
   movement: {x: 0, y: 0}
   attackPoint: {fileID: 0}
