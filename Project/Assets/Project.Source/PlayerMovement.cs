@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     public float AOEOffset = 2f;
     float health = 10f;
     bool dead = false;
+    public GameObject bullet;
 
     void Awake() 
     {
@@ -57,18 +58,22 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
     public void OnBasicAttack(InputAction.CallbackContext context)
     {
+        if(dead) return;
         if(!context.performed) return;
-            //Debug.Log("Attacking");
+        Debug.Log("Shooting!");
+        Instantiate(bullet, attackPoint.position, attackPoint.transform.rotation);
+        // if(!context.performed) return;
+        //     //Debug.Log("Attacking");
             
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(1f, 1f), transform.rotation.eulerAngles.z);
-        foreach(Collider2D collider in colliders) 
-        {
-            if(collider.TryGetComponent(out EnemyController enemyController)) 
-            {
-                enemyController.takeDamage(basicAttackDamage);
-                //Debug.Log("Enemy here!");
-            }
-        }
+        // Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(1f, 1f), transform.rotation.eulerAngles.z);
+        // foreach(Collider2D collider in colliders) 
+        // {
+        //     if(collider.TryGetComponent(out EnemyController enemyController)) 
+        //     {
+        //         enemyController.takeDamage(basicAttackDamage);
+        //         //Debug.Log("Enemy here!");
+        //     }
+        // }
     }
 
     public void OnAOEAttack(InputAction.CallbackContext context)
