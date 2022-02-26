@@ -47,6 +47,9 @@ TagManager:
   - name: Entity
     uniqueID: 759165841
     locked: 0
+  - name: EnemyViewCone
+    uniqueID: 1454752423
+    locked: 0
   - name: Fog
     uniqueID: 893784983
     locked: 0
