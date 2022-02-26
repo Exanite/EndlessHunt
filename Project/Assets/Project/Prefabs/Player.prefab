@@ -61,7 +61,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 0
   m_PointLightOuterAngle: 45
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 10
+  m_PointLightOuterRadius: 20
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
