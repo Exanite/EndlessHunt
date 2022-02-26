@@ -109,6 +109,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2823693669258454067, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2889946859852953517, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -257,6 +261,11 @@ PrefabInstance:
     - {fileID: 7229557065030329774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
     - {fileID: 5113381831998939751, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+--- !u!4 &4513433313621034111 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5576029254134607737, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+  m_PrefabInstance: {fileID: 8340920218879191814}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6638286354246349116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3449485716470880826, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
@@ -306,7 +315,7 @@ MonoBehaviour:
   player: {fileID: 0}
   spritesToFlip: []
   transformsToFlip:
-  - {fileID: 0}
+  - {fileID: 4513433313621034111}
   isFacingRight: 1
 --- !u!4 &6638286354246349119 stripped
 Transform:
