@@ -306,7 +306,7 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 893784983
   m_BackSortingLayerID: 759165841
-  m_FrontSortingLayer: 2
+  m_FrontSortingLayer: 3
   m_BackSortingLayer: 1
   m_FrontSortingOrder: 0
   m_BackSortingOrder: 0
@@ -718,7 +718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 100
   dashSpeed: 10
-  attackPoint: {fileID: 0}
+  attackPoint: {fileID: 7943224849887910509}
 --- !u!58 &863838522
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -761,7 +761,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46240
+  m_InstanceId: -109784
 --- !u!58 &1885974700
 CircleCollider2D:
   m_ObjectHideFlags: 0

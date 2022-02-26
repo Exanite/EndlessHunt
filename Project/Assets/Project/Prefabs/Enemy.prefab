@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6117634246712055546}
   - component: {fileID: 4449410768593989027}
-  - component: {fileID: 4957226502278261720}
   - component: {fileID: 420967131143834828}
   - component: {fileID: 7452196951560248183}
   - component: {fileID: 6917857631237172908}
@@ -88,32 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4957226502278261720
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5248666351544632628}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.6309566, y: -0.2619586}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 5.0421925, y: 6.387265}
-  m_EdgeRadius: 0
 --- !u!50 &420967131143834828
 Rigidbody2D:
   serializedVersion: 4
@@ -148,6 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
+  aggroRadius: 5
+  deaggroRadius: 10
+  target: {fileID: 0}
+  movement: {x: 0, y: 0}
 --- !u!70 &6917857631237172908
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
