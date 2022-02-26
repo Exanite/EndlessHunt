@@ -33,10 +33,7 @@ public class EnemyBulletController : MonoBehaviour
         var offset = myController.targetLocation - new Vector2(transform.position.x, transform.position.y);
         var direction = -offset.normalized;
         var velocity = direction;
-        //var velocity = (targetPosition - new Vector2(transform.position.x, transform.position.y)).normalized * bulletSpeed;
         myRigidbody.velocity = velocity;
-        Debug.Log("vector = " + velocity);
-        //myRigidbody.velocity = new Vector2(10,10);;
     }
 
     void OnTriggerEnter2D(Collider2D other) 
