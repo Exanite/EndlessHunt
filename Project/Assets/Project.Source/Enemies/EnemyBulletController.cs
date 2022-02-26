@@ -44,6 +44,6 @@ public class EnemyBulletController : MonoBehaviour
         {
             player.takeDamage(bulletDamage);
         }
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

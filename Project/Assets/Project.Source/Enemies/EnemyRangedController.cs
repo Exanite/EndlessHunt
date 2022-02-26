@@ -22,9 +22,6 @@ public class EnemyRangedController : MonoBehaviour
     public Transform attackPoint;
     public bool isDead;
     float timer = 0;
-    
-    
-    
     private Rigidbody2D myRigidbody;
 
     private void Start()
@@ -72,7 +69,6 @@ public class EnemyRangedController : MonoBehaviour
         if (!target)
         {
             movement = Vector2.zero;
-            //BasicAttack();
             return;
         }
 
@@ -85,7 +81,7 @@ public class EnemyRangedController : MonoBehaviour
             movement = Vector2.zero;
             if(timer < 0) 
             {
-                BasicAttack();
+                BulletAttack();
                 timer = cooldown;
             }
         }
@@ -96,15 +92,15 @@ public class EnemyRangedController : MonoBehaviour
         health -= damageTaken;
         if(health <= 0)
         {
-            Debug.Log("im dead :(");
+            //Debug.Log("im dead :(");
             isDead = true;
             Destroy(gameObject);
         }
-        else
-            Debug.Log("Damage taken! health: " + health);
+        // else
+        //     Debug.Log("Damage taken! health: " + health);
     }
 
-    public void BasicAttack()
+    public void BulletAttack()
     {   
         if(isDead) return;
         //Debug.Log("Shooting!");
