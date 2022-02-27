@@ -99,8 +99,13 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8724226050208120037, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14e1cf7ec230d914f870733690e7e196, type: 2}
     m_RemovedComponents:
     - {fileID: 4500699552393342109, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
+    - {fileID: 6994647610633568650, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
 --- !u!1 &4735115630353999671 stripped
 GameObject:

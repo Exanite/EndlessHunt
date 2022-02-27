@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 14e1cf7ec230d914f870733690e7e196, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -198,6 +198,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4500699552393342109, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
     - {fileID: 8724226050208120037, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
+    - {fileID: 6994647610633568650, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
 --- !u!1 &4735115630353999671 stripped
 GameObject:
