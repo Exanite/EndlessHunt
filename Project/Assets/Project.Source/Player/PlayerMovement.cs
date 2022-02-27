@@ -1,6 +1,9 @@
 using Project.Source;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.IAttackActions
 {
@@ -35,6 +38,8 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     private PlayerInput playerInput;
     private Collider2D myCollider;
     private Rigidbody2D myRigidbody;
+
+    private bool reloading = false;
 
     private void Awake()
     {
@@ -119,6 +124,8 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         health -= damageTaken;
         if (health <= 0)
         {
+            if(!reloading)
+                StartCoroutine(Death());
             Debug.Log("im dead :(");
             dead = true;
         }
@@ -126,6 +133,15 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         {
             Debug.Log("Damage taken! health: " + health);
         }
+    }
+
+    private IEnumerator Death()
+    {
+        reloading = true;
+        //Debug.Log("about to reload");
+        yield return new WaitForSeconds(1);
+        //Debug.Log("reloading");
+        SceneManager.LoadScene(0);
     }
 
     private void FixedUpdate()
