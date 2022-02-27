@@ -10,6 +10,7 @@ public class SlimeController : MonoBehaviour
     public float moveSpeed = 10f;
     public float aggroRadius = 3f;
     public float followDistance = 2f;
+    public float lostDistance = 10f;
     public PlayerMovement playerTarget;
     public float cooldown = 1f;
     public SlimeBulletController bulletPrefab;
@@ -52,6 +53,8 @@ public class SlimeController : MonoBehaviour
         
         if(GetDistanceToPlayerTarget() < followDistance)
             movement = Vector2.zero;
+        if(GetDistanceToPlayerTarget() > lostDistance)
+            TeleportToPlayer();
         if (GetDistanceToEnemyTarget() < aggroRadius)
         {
             if(timer < 0) 
@@ -60,6 +63,12 @@ public class SlimeController : MonoBehaviour
                 timer = cooldown;
             }
         }
+    }
+
+    private void TeleportToPlayer()
+    {
+        if(!playerTarget) return;
+            transform.position = playerTarget.transform.position;
     }
 
     public float GetDistanceToPlayerTarget()

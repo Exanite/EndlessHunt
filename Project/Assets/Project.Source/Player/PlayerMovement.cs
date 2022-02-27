@@ -106,41 +106,41 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
     public void OnSpreadAttack(InputAction.CallbackContext context)
     {   
-        if(dead) return;
-        if (!context.performed)
-        {
-            return;
-        }
-        Vector3 rot = attackPoint.transform.rotation.eulerAngles;
-        rot = new Vector3(0,0,rot.z);
-        var angle1 = Quaternion.Euler(rot);
-        rot = new Vector3(0,0,rot.z-20);
-        var angle2 = Quaternion.Euler(rot);
-        rot = new Vector3(0,0,rot.z+40);
-        var angle3 = Quaternion.Euler(rot);
-        Instantiate(bullet, attackPoint.position, angle1);
-        Instantiate(bullet, attackPoint.position, angle2);
-        Instantiate(bullet, attackPoint.position, angle3);
-        leftArmAnimator.SetTrigger(OnAttack);
-        rightArmAnimator.SetTrigger(OnAttack);
+    //     if(dead) return;
+    //     if (!context.performed)
+    //     {
+    //         return;
+    //     }
+    //     Vector3 rot = attackPoint.transform.rotation.eulerAngles;
+    //     rot = new Vector3(0,0,rot.z);
+    //     var angle1 = Quaternion.Euler(rot);
+    //     rot = new Vector3(0,0,rot.z-20);
+    //     var angle2 = Quaternion.Euler(rot);
+    //     rot = new Vector3(0,0,rot.z+40);
+    //     var angle3 = Quaternion.Euler(rot);
+    //     Instantiate(bullet, attackPoint.position, angle1);
+    //     Instantiate(bullet, attackPoint.position, angle2);
+    //     Instantiate(bullet, attackPoint.position, angle3);
+    //     leftArmAnimator.SetTrigger(OnAttack);
+    //     rightArmAnimator.SetTrigger(OnAttack);
     }
 
     public void OnAOEAttack(InputAction.CallbackContext context)
     {
-        if(dead) return;
-        if (!context.performed)
-        {
-            return;
-        }
-        Vector3 rot = transform.rotation.eulerAngles;
-        leftArmAnimator.SetTrigger(OnAttack);
-        rightArmAnimator.SetTrigger(OnAttack);
-        for(int i = 0; i < 19; i++)
-        {
-            rot = new Vector3(0,0,rot.z - 20);
-            var angle1 = Quaternion.Euler(rot);
-            Instantiate(bullet, attackPoint.position, angle1); 
-        }
+    //     if(dead) return;
+    //     if (!context.performed)
+    //     {
+    //         return;
+    //     }
+    //     Vector3 rot = transform.rotation.eulerAngles;
+    //     leftArmAnimator.SetTrigger(OnAttack);
+    //     rightArmAnimator.SetTrigger(OnAttack);
+    //     for(int i = 0; i < 19; i++)
+    //     {
+    //         rot = new Vector3(0,0,rot.z - 20);
+    //         var angle1 = Quaternion.Euler(rot);
+    //         Instantiate(bullet, attackPoint.position, angle1); 
+    //     }
     }
 
     public void takeDamage(float damageTaken)
