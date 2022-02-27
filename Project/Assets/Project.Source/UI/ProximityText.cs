@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class HelpText : MonoBehaviour
+public class ProximityText : MonoBehaviour
 {
     public PlayerMovement player;
     public TMP_Text text;
