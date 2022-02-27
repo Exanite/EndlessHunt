@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.1994996, y: 0.0056066513, z: 0}
   m_ShapePathHash: 1512121589
   m_Mesh: {fileID: 0}
-  m_InstanceId: 75480
+  m_InstanceId: 263648
 --- !u!1 &2248949315317763465
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +524,10 @@ PrefabInstance:
     - target: {fileID: 2034104723807215267, guid: 8dc760e70e3909c4399c79767e9ef7b7, type: 3}
       propertyPath: m_Name
       value: Death Particle System 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3357480093390352169, guid: 8dc760e70e3909c4399c79767e9ef7b7, type: 3}
+      propertyPath: looping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4910918292432829297, guid: 8dc760e70e3909c4399c79767e9ef7b7, type: 3}
       propertyPath: m_RootOrder

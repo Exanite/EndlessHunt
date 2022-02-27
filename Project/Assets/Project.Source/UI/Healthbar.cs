@@ -8,19 +8,22 @@ public class Healthbar : MonoBehaviour
     public Image fill;
     public PlayerMovement player;
 
+    public float smoothTime = 0.3f;
+    private float smoothVelocity;
+    
     private void Update()
     {
         if (!player)
         {
-            SetDisplay(0, 0);
+            UpdateDisplay(0, 0);
 
             return;
         }
 
-        SetDisplay(player.health, player.maxHealth);
+        UpdateDisplay(player.health, player.maxHealth);
     }
 
-    private void SetDisplay(float health, float maxHealth)
+    private void UpdateDisplay(float health, float maxHealth)
     {
         if (health < 0)
         {
@@ -28,8 +31,11 @@ public class Healthbar : MonoBehaviour
         }
 
         text.text = $"{health:N0}/{maxHealth:N0}";
+
+        var targetHealthRatio = health / maxHealth;
+        
         var anchorMax = fill.rectTransform.anchorMax;
-        anchorMax.x = health / maxHealth;
+        anchorMax.x = Mathf.SmoothDamp(anchorMax.x, targetHealthRatio, ref smoothVelocity, smoothTime);
         fill.rectTransform.anchorMax = anchorMax;
     }
 }
