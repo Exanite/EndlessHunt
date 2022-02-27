@@ -323,12 +323,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360909455}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -341.10117, y: -299.57224, z: -9.539644}
-  m_LocalScale: {x: 1.1538463, y: 1.1538463, z: 1.1538463}
+  m_LocalPosition: {x: 2.3789978, y: 0.37072754, z: -8.267692}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1405098365}
-  m_RootOrder: 8
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1360909457
 MonoBehaviour:
@@ -343,11 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTransition: {fileID: 1947393245}
---- !u!224 &1405098365 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4137819473058607240, guid: 507b1688c44b5db4f9d1c4608bc601b4, type: 3}
-  m_PrefabInstance: {fileID: 6938202591240674327}
-  m_PrefabAsset: {fileID: 0}
+  duration: 3
 --- !u!114 &1947393245 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4137819473462558588, guid: 507b1688c44b5db4f9d1c4608bc601b4, type: 3}

@@ -160,6 +160,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Menu",
+            "id": "aee468c3-004a-44f2-9e33-fe36f7be4811",
+            "actions": [
+                {
+                    "name": "MenuEscape",
+                    "type": "Button",
+                    "id": "41699445-87ce-4136-a54c-76b92531437c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "97334d47-e58d-4867-8e7c-04880cbca888",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuEscape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
