@@ -310,7 +310,7 @@ SpriteMask:
   m_BackSortingLayer: 1
   m_FrontSortingOrder: 0
   m_BackSortingOrder: 0
-  m_IsCustomRangeActive: 1
+  m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1574426081
 GameObject:
@@ -986,7 +986,7 @@ MonoBehaviour:
   - {x: 0.08254404, y: -0.038834974, z: 0}
   m_ShapePathHash: 888784330
   m_Mesh: {fileID: 0}
-  m_InstanceId: -450990
+  m_InstanceId: -610230
 --- !u!95 &2276249961561647975
 Animator:
   serializedVersion: 4
