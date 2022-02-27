@@ -26,7 +26,7 @@ public class LevelComponent : MonoBehaviour
             if(enemy != null)
                 remainingEnemies++;
         }
-        Debug.Log("enemies: " + remainingEnemies);
+        //Debug.Log("enemies: " + remainingEnemies);
         if(remainingEnemies == 0)
         {
             teleporter.gameObject.SetActive(true);
