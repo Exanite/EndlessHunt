@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
     public PlayerMovement target;
     public Vector2 movement = new Vector2(0, 0);
     public Transform attackPoint;
-    public bool isDead;
+    public bool isDead = false;
     float timer = 0;
     private Rigidbody2D myRigidbody;
 
@@ -101,6 +101,7 @@ public class EnemyController : MonoBehaviour
         if(health <= 0)
         {
             isDead = true;
+            myRigidbody.mass = myRigidbody.mass * 100;
             myRigidbody.velocity = new Vector2(0,0);
             deathParticleSystem.Play();
             Invoke("death", deathParticleSystem.main.duration);
