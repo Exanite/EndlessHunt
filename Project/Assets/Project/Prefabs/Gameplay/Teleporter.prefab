@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9203646785463567373}
   - component: {fileID: 9203646785463567372}
   - component: {fileID: 9203646785463567375}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
-  renderer: {fileID: 0}
+  myRenderer: {fileID: 0}
 --- !u!1 &9203646786455922074
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043b8b631d96686408de9fac85a5adc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canTeleport: 0
   target: {fileID: 0}
 --- !u!50 &9203646786455922076
 Rigidbody2D:
