@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
     [Header("Sounds")]
     public AudioClip dashSound;
+    public AudioClip runSound;
 
     [Header("Configuration")]
     [SerializeField]
