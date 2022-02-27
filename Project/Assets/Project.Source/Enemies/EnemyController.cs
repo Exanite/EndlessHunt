@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     public float health = 10;
     public float attackDamage = 1f;
     public float bulletSpread = 10f;
+    public bool isMelee = false;
+    public Animation meleeAnim;
     [FormerlySerializedAs("bullet")]
     public EnemyBulletController bulletPrefab;
     public float cooldown = 3f;
@@ -117,6 +119,7 @@ public class EnemyController : MonoBehaviour
     public void BulletAttack()
     {   
         if(isDead) return;
+
         //Debug.Log("Shooting!");
         var angleDifference = UnityEngine.Random.Range(-bulletSpread,bulletSpread);
         var offset = target.transform.position - transform.position;
@@ -124,6 +127,8 @@ public class EnemyController : MonoBehaviour
         var rotation = Quaternion.Euler(0,0, angle + angleDifference);
         var bullet = Instantiate(bulletPrefab, transform.position + offset.normalized * projectileSpawnDistance, rotation);
         bullet.myController = this;
+        if(isMelee)
+            Instantiate(meleeAnim, transform.position + offset.normalized * projectileSpawnDistance, rotation);
     }
 
     public float GetDistanceToTarget()

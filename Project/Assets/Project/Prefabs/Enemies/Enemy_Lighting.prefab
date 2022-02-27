@@ -402,6 +402,9 @@ MonoBehaviour:
   stopDistance: 2
   health: 10
   attackDamage: 1
+  bulletSpread: 10
+  isMelee: 1
+  meleeAnim: {fileID: 0}
   bulletPrefab: {fileID: 2146526291249091898, guid: 37a7ef0cbe7dc854392818e5f2505a55, type: 3}
   cooldown: 0.5
   bulletSpeed: 20
@@ -426,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 7229557065030329774}
   player: {fileID: 0}
+  slime: {fileID: 0}
   spritesToFlip: []
   transformsToFlip:
   - {fileID: 5576029254134607737}

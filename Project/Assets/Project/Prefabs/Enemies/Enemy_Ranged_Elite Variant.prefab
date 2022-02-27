@@ -16,6 +16,10 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
+      propertyPath: isMelee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: cooldown
       value: 0.125
       objectReference: {fileID: 0}
@@ -61,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6638286354246349116, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_Name
-      value: Enemy_Ranged_Elite
+      value: Enemy_Ranged_Elite Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6638286354246349119, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_RootOrder
