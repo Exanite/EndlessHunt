@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
         yield return FadeTransition.Instance.FadeToBlack(0.5f);
         //Debug.Log("reloading");
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void FixedUpdate()
