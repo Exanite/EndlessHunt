@@ -6,6 +6,7 @@ public class EntitySpriteFlip : MonoBehaviour
     [Header("Assign one")]
     public EnemyController enemy;
     public PlayerMovement player;
+    public SlimeController slime;
 
     [Header("Configuration")]
     public List<SpriteRenderer> spritesToFlip;
@@ -23,6 +24,20 @@ public class EntitySpriteFlip : MonoBehaviour
         else if (player)
         {
             UpdatePlayer();
+        }
+        else if(slime)
+        {
+            UpdateSlime();
+        }
+    }
+
+    private void UpdateSlime()
+    {
+        if (slime.target)
+        {
+            var offset = slime.target.transform.position - slime.transform.position;
+
+            SetFlipDirection(offset.x > 0);
         }
     }
 

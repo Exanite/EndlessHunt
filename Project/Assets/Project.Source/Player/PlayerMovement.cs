@@ -154,12 +154,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
             deathParticleSystem2.Play();
             StartCoroutine(Death());
             myRigidbody.velocity = new Vector2(0,0);
-            Debug.Log("im dead :(");
             dead = true;
-        }
-        else
-        {
-            Debug.Log("Damage taken! health: " + health);
         }
     }
 
@@ -184,7 +179,6 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         if(runNoise.isPlaying)
             if(!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d"))
             {
-                Debug.Log("Keys are up!");
                 runNoise.Pause();
             }
     }
