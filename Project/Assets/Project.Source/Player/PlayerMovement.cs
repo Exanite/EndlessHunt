@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     private Rigidbody2D myRigidbody;
 
     private bool reloading = false;
-    bool isMoving = false;
 
     private void Awake()
     {
@@ -75,7 +74,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     {
         //Debug.Log("moving!");
         movementInput = context.ReadValue<Vector2>();
-        isMoving = true;
+
         if(!runNoise.isPlaying)
             runNoise.Play();
     }
