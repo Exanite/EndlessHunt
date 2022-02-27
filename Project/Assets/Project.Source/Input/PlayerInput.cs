@@ -182,34 +182,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""Menu"",
-            ""id"": ""aee468c3-004a-44f2-9e33-fe36f7be4811"",
-            ""actions"": [
-                {
-                    ""name"": ""MenuEscape"",
-                    ""type"": ""Button"",
-                    ""id"": ""41699445-87ce-4136-a54c-76b92531437c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""97334d47-e58d-4867-8e7c-04880cbca888"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MenuEscape"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": []
@@ -223,9 +195,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Attack_BasicAttack = m_Attack.FindAction("BasicAttack", throwIfNotFound: true);
         m_Attack_AOEAttack = m_Attack.FindAction("AOEAttack", throwIfNotFound: true);
         m_Attack_SpreadAttack = m_Attack.FindAction("SpreadAttack", throwIfNotFound: true);
-        // Menu
-        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-        m_Menu_MenuEscape = m_Menu.FindAction("MenuEscape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -371,39 +340,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         }
     }
     public AttackActions @Attack => new AttackActions(this);
-
-    // Menu
-    private readonly InputActionMap m_Menu;
-    private IMenuActions m_MenuActionsCallbackInterface;
-    private readonly InputAction m_Menu_MenuEscape;
-    public struct MenuActions
-    {
-        private @PlayerInput m_Wrapper;
-        public MenuActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @MenuEscape => m_Wrapper.m_Menu_MenuEscape;
-        public InputActionMap Get() { return m_Wrapper.m_Menu; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
-        public void SetCallbacks(IMenuActions instance)
-        {
-            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
-            {
-                @MenuEscape.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuEscape;
-                @MenuEscape.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuEscape;
-                @MenuEscape.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuEscape;
-            }
-            m_Wrapper.m_MenuActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @MenuEscape.started += instance.OnMenuEscape;
-                @MenuEscape.performed += instance.OnMenuEscape;
-                @MenuEscape.canceled += instance.OnMenuEscape;
-            }
-        }
-    }
-    public MenuActions @Menu => new MenuActions(this);
     public interface IMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -414,9 +350,5 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnBasicAttack(InputAction.CallbackContext context);
         void OnAOEAttack(InputAction.CallbackContext context);
         void OnSpreadAttack(InputAction.CallbackContext context);
-    }
-    public interface IMenuActions
-    {
-        void OnMenuEscape(InputAction.CallbackContext context);
     }
 }

@@ -1,21 +1,28 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.InputSystem;
 using UnityEngine;
 
-public class LeaveMenu : MonoBehaviour, PlayerInput.IMenuActions
+public class LeaveMenu : MonoBehaviour
 {
     public FadeTransition fadeTransition;
-    public float duration = 3;
+    public float duration = .5f;
     void Start()
     {
         fadeTransition = FindObjectOfType<Canvas>().GetComponentInChildren<FadeTransition>();
     }
 
-    public void OnMenuEscape(InputAction.CallbackContext context)
+    void Update()
     {
-        Debug.Log("space pressed");
-        fadeTransition.FadeToBlack(duration);
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("space pressed");
+            StartCoroutine(Fade());
+        }
+    }
+
+    private IEnumerator Fade()
+    {
+        yield return FadeTransition.Instance.FadeToBlack(duration);
     }
 }
