@@ -54,7 +54,6 @@ public class SlimeController : MonoBehaviour
             movement = Vector2.zero;
         if (GetDistanceToEnemyTarget() < aggroRadius)
         {
-            Debug.Log("close to an enemy!");
             if(timer < 0) 
             {
                 BulletAttack();
@@ -96,12 +95,15 @@ public class SlimeController : MonoBehaviour
         {
             foreach (var collider in colliders)
             {
+                Debug.Log("there is a collider!" + collider.attachedRigidbody.name);
                 if (collider.attachedRigidbody && collider.attachedRigidbody.TryGetComponent(out EnemyController enemy))
                 {
+                    Debug.Log("enemy set!");
                     enemyTarget = enemy;
                 }
             }
         }
+        Debug.Log("does this output?");
     }
 
     public void BulletAttack()

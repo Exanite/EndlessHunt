@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  deaggroRadius: 10
-  followDistance: 4
+  aggroRadius: 10
+  followDistance: 3
   playerTarget: {fileID: 0}
   cooldown: 1
   bulletPrefab: {fileID: -9040522048432340090, guid: 2b2e8c2dc4f9ba6449bf77cf046dd06d, type: 3}
@@ -165,7 +165,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
