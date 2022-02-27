@@ -32,10 +32,11 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     
     public float health = 10f;
     public float maxHealth = 10f;
+    public float timePerHealthPoint = 1f;
     
     [Header("Runtime")]
     public bool dead;
-    
+    private float timer = 0;
     // Private
     private Vector2 movementInput;
     private PlayerInput playerInput;
@@ -55,6 +56,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     {
         myCollider = GetComponent<Collider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
+        timer = timePerHealthPoint;
     }
 
     private void OnEnable()
@@ -76,6 +78,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
     public void OnDash(InputAction.CallbackContext context)
     {
+        if (dead) return;
         if (!context.performed)
         {
             return;
@@ -86,10 +89,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
     public void OnBasicAttack(InputAction.CallbackContext context)
     {
-        if (dead)
-        {
-            return;
-        }
+        if (dead) return;
 
         if (!context.performed)
         {
@@ -131,6 +131,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         {
             if(!reloading)
                 StartCoroutine(Death());
+            myRigidbody.velocity = new Vector2(0,0);
             Debug.Log("im dead :(");
             dead = true;
         }
@@ -151,6 +152,10 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
     private void FixedUpdate()
     {
+        if (dead) return;
+        timer -= Time.deltaTime;
+        if(timer < 0)
+            health++;
         myRigidbody.AddForce(movementInput * moveSpeed);
         playerAnimator.SetBool(IsWalking, movementInput.sqrMagnitude > 0.1f);
     }
