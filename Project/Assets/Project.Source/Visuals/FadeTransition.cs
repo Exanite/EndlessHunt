@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Project.Source;
 using UnityEngine;
@@ -6,6 +7,16 @@ using UnityEngine.UI;
 public class FadeTransition : SingletonBehaviour<FadeTransition>
 {
     public Image image;
+
+    public bool fadeInOnStart = true;
+    
+    private void Start()
+    {
+        if (fadeInOnStart)
+        {
+            StartCoroutine(FadeOut(0.3f));
+        }
+    }
 
     public IEnumerator FadeIn(float duration)
     {
