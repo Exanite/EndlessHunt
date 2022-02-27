@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2889946859852953517, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_InstanceId
-      value: -860774
+      value: -1279324
       objectReference: {fileID: 0}
     - target: {fileID: 3449485716154172588, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Layer
@@ -154,6 +154,10 @@ PrefabInstance:
     - target: {fileID: 7229557065030329774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: cooldown
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229557065030329774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+      propertyPath: moveSpeed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7229557065030329774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: bulletTime
