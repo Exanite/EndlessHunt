@@ -26,14 +26,12 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     public float AOEAttackDamage = 1f;
     public float AOERadius = 6f;
     public float AOEOffset = 2f;
-    
     public float health = 10f;
     public float maxHealth = 10f;
-    public float timePerHealthPoint = 1f;
+    public float timePerHealthPoint = 0.1f;
     
     [Header("Runtime")]
     public bool dead;
-    private float timer = 0;
     // Private
     private Vector2 movementInput;
     private PlayerInput playerInput;
@@ -53,7 +51,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     {
         myCollider = GetComponent<Collider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
-        timer = timePerHealthPoint;
+        health = maxHealth;
     }
 
     private void OnEnable()
@@ -148,9 +146,8 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     private void FixedUpdate()
     {
         if (dead) return;
-        timer -= Time.deltaTime;
-        if(timer < 0)
-            health++;
+        if(health < maxHealth)
+            health += Time.deltaTime*timePerHealthPoint;
         myRigidbody.AddForce(movementInput * moveSpeed);
         animator.SetBool(IsWalking, movementInput.sqrMagnitude > 0.1f);
     }
