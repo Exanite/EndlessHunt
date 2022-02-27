@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class LevelComponent : MonoBehaviour
 {
-    EnemyController[] enemyControllers;
-    float remainingEnemies = 0;
-    Teleporter teleporter;
+    public EnemyController[] enemyControllers;
+    public float remainingEnemies = 0;
+    public Teleporter teleporter;
     void Awake() 
     {
         enemyControllers = GetComponentsInChildren<EnemyController>();

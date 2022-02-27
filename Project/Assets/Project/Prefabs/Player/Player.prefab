@@ -986,7 +986,7 @@ MonoBehaviour:
   - {x: 0.08254404, y: -0.038834974, z: 0}
   m_ShapePathHash: 888784330
   m_Mesh: {fileID: 0}
-  m_InstanceId: -610230
+  m_InstanceId: 57038
 --- !u!95 &2276249961561647975
 Animator:
   serializedVersion: 4
