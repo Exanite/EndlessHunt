@@ -103,12 +103,10 @@ public class SlimeController : MonoBehaviour
                 }
             }
         }
-        Debug.Log("does this output?");
     }
 
     public void BulletAttack()
     {   
-        Debug.Log("attacking!");
         if(isDead) return;
         //Debug.Log("Shooting!");
         var angleDifference = UnityEngine.Random.Range(-bulletSpread,bulletSpread);

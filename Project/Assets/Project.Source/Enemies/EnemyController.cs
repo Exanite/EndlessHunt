@@ -29,7 +29,6 @@ public class EnemyController : MonoBehaviour
     public bool isDead = false;
     float timer = 0;
     private Rigidbody2D myRigidbody;
-    public String name = "enemy";
 
     private void Start()
     {
