@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 4735115630353999671, guid: 6013baa54ef644b46b8b85c23cc2611e, type: 3}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: health
-      value: 40
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: isMelee
@@ -38,10 +38,6 @@ PrefabInstance:
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: bulletSpeed
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
-      propertyPath: attackDamage
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: bulletPrefab
