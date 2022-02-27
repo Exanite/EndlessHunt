@@ -306,7 +306,7 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 893784983
   m_BackSortingLayerID: 759165841
-  m_FrontSortingLayer: 3
+  m_FrontSortingLayer: 4
   m_BackSortingLayer: 1
   m_FrontSortingOrder: 0
   m_BackSortingOrder: 0
@@ -984,7 +984,7 @@ MonoBehaviour:
   - {x: 0.08254404, y: -0.038834974, z: 0}
   m_ShapePathHash: 888784330
   m_Mesh: {fileID: 0}
-  m_InstanceId: -151602
+  m_InstanceId: 147534
 --- !u!95 &2276249961561647975
 Animator:
   serializedVersion: 4
@@ -1698,8 +1698,16 @@ PrefabInstance:
       value: PlayerDeathParticles
       objectReference: {fileID: 0}
     - target: {fileID: 5362581408111655190, guid: a26f8f32b2eb7ac41981e279d9d5bdc1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5362581408111655190, guid: a26f8f32b2eb7ac41981e279d9d5bdc1, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5362581408111655190, guid: a26f8f32b2eb7ac41981e279d9d5bdc1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 759165841
       objectReference: {fileID: 0}
     - target: {fileID: 7552359939719535697, guid: a26f8f32b2eb7ac41981e279d9d5bdc1, type: 3}
       propertyPath: playOnAwake
