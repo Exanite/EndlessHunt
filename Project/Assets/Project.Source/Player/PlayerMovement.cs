@@ -7,8 +7,8 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.IAttackActions
 {
-    private static readonly int IsWalking = Animator.StringToHash("IsWalking");
-    private static readonly int OnAttack = Animator.StringToHash("OnAttack");
+    public static readonly int IsWalking = Animator.StringToHash("IsWalking");
+    public static readonly int OnAttack = Animator.StringToHash("OnAttack");
     
     [Header("Dependencies")]
     public Transform rotationTransform;
