@@ -9,6 +9,7 @@ public class ThemeScene : MonoBehaviour
     private IEnumerator Start()
     {
         yield return FadeTransition.Instance.FadeToClear(2f);
+        yield return new WaitForSeconds(1);
         yield return FadeTransition.Instance.FadeToBlack(2f);
 
         SceneManager.LoadScene(nextScene);
