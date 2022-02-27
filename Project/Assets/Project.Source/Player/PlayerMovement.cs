@@ -10,23 +10,23 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     public Transform rotationTransform;
     public GameObject bullet;
     public Animator animator;
+    public Transform attackPoint;
 
     [Header("Sounds")]
     public AudioClip dashSound;
     public AudioClip runSound;
 
     [Header("Configuration")]
-    [SerializeField]
-    private float moveSpeed = 10f;
-    [SerializeField]
-    private float dashSpeed = 10f;
-    public Transform attackPoint;
+    public float moveSpeed = 10f;
+    public float dashSpeed = 10f;
     public float basicAttackDamage = 1f;
     public float AOEAttackDamage = 1f;
     public float AOERadius = 6f;
     public float AOEOffset = 2f;
-    private float health = 10f;
-
+    
+    public float health = 10f;
+    public float maxHealth = 10f;
+    
     [Header("Runtime")]
     public bool dead;
     
