@@ -17,6 +17,8 @@ public class SlimeController : MonoBehaviour
     public float bulletSpread = 10f;
     public float projectileSpawnDistance = 0.5f;
     public float basicAttackDamage = 1f;
+    public float bulletExistence = .5f;
+    public float bulletSpeed = 2f;
 
     [Header("Runtime")]
     EnemyController enemyTarget;
@@ -42,7 +44,7 @@ public class SlimeController : MonoBehaviour
 
     private Collider2D[] GetNearbyEntityColliders(float radius)
     {
-        return Physics2D.OverlapCircleAll(transform.position, aggroRadius, GameSettings.Instance.entityWorldLayerMask);
+        return Physics2D.OverlapCircleAll(transform.position, aggroRadius);
     }
 
     void UpdateMovementSpeed()
@@ -104,11 +106,12 @@ public class SlimeController : MonoBehaviour
         {
             foreach (var collider in colliders)
             {
-                Debug.Log("there is a collider!" + collider.attachedRigidbody.name);
+                //Debug.Log("there is a collider!" + collider.attachedRigidbody.name);
                 if (collider.attachedRigidbody && collider.attachedRigidbody.TryGetComponent(out EnemyController enemy))
                 {
-                    Debug.Log("enemy set!");
-                    enemyTarget = enemy;
+                    //Debug.Log("enemy set!");
+                    if(enemy.health > 0)
+                        enemyTarget = enemy;
                 }
             }
         }

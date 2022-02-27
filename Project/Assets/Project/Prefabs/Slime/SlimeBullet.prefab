@@ -216,4 +216,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 1
-  playerObject: {fileID: 0}
+  slimeObject: {fileID: 9010499508959968286, guid: 02ac77aca42fa7b41aa0efeaab12f5e8, type: 3}
