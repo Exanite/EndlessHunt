@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa57dd385d96c2140a974982dfa92615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 5
   aggroRadius: 10
   followDistance: 3
   lostDistance: 10
@@ -131,9 +131,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: -9040522048432340090, guid: 2b2e8c2dc4f9ba6449bf77cf046dd06d, type: 3}
   bulletSpread: 10
   projectileSpawnDistance: 0.5
-  basicAttackDamage: 1
-  bulletExistence: 0.5
-  bulletSpeed: 5
+  basicAttackDamage: 0.5
+  bulletExistence: 2
+  bulletSpeed: 10
   movement: {x: 0, y: 0}
   isDead: 0
 --- !u!114 &9010499508959968485
