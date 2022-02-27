@@ -740,7 +740,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationTransform: {fileID: 5297734401927022959}
   bullet: {fileID: 3515391831697274391, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
-  animator: {fileID: 2276249961561647975}
+  playerAnimator: {fileID: 2276249961561647975}
+  leftArmAnimator: {fileID: 7787965033791307422}
+  rightArmAnimator: {fileID: 7194343707456675885}
   attackPoint: {fileID: 7943224849887910509}
   dashSound: {fileID: 8300000, guid: ec73f0cdf8783e04db5255e95ec257a9, type: 3}
   runSound: {fileID: 0}
@@ -967,7 +969,7 @@ MonoBehaviour:
   - {x: 0.08254404, y: -0.038834974, z: 0}
   m_ShapePathHash: 888784330
   m_Mesh: {fileID: 0}
-  m_InstanceId: 286266
+  m_InstanceId: 328546
 --- !u!95 &2276249961561647975
 Animator:
   serializedVersion: 4

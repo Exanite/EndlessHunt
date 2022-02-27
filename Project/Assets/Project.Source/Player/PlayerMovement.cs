@@ -8,11 +8,14 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.IAttackActions
 {
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
+    private static readonly int OnAttack = Animator.StringToHash("OnAttack");
     
     [Header("Dependencies")]
     public Transform rotationTransform;
     public GameObject bullet;
-    public Animator animator;
+    public Animator playerAnimator;
+    public Animator leftArmAnimator;
+    public Animator rightArmAnimator;
     public Transform attackPoint;
 
     [Header("Sounds")]
@@ -94,6 +97,8 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         }
 
         Instantiate(bullet, attackPoint.position, attackPoint.transform.rotation);
+        leftArmAnimator.SetTrigger(OnAttack);
+        rightArmAnimator.SetTrigger(OnAttack);
     }
 
     public void OnAOEAttack(InputAction.CallbackContext context)
@@ -147,7 +152,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     private void FixedUpdate()
     {
         myRigidbody.AddForce(movementInput * moveSpeed);
-        animator.SetBool(IsWalking, movementInput.sqrMagnitude > 0.1f);
+        playerAnimator.SetBool(IsWalking, movementInput.sqrMagnitude > 0.1f);
     }
 
     public float getBasicAttackDamage()
