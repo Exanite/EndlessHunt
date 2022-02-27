@@ -6,6 +6,8 @@ namespace Project.Source
     public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<T>
     {
         private static T instance;
+
+        public bool dontDestroyOnLoad;
         
         public static T Instance
         {
@@ -24,12 +26,17 @@ namespace Project.Source
         {
             if (instance)
             {
-                Destroy(this);
+                Destroy(gameObject);
 
                 return;
             }
-
+            
             instance = (T)this;
+
+            if (dontDestroyOnLoad)
+            {
+                DontDestroyOnLoad(this);
+            }
         }
     }
 }
