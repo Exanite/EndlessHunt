@@ -9,7 +9,7 @@ namespace Project.Source.Visuals
         public AnimationCurve emissionCurve;
 
         [Header("Runtime")]
-        public Renderer renderer;
+        public Renderer myRenderer;
 
         private MaterialPropertyBlock block;
 
@@ -20,16 +20,16 @@ namespace Project.Source.Visuals
 
         private void Start()
         {
-            renderer = GetComponent<Renderer>();
+            myRenderer = GetComponent<Renderer>();
         }
 
         private void Update()
         {
             var emissionMultiplier = emissionCurve.Evaluate(Time.time);
-            var baseEmissionColor = renderer.sharedMaterial.GetColor(EmissionColor);
+            var baseEmissionColor = myRenderer.sharedMaterial.GetColor(EmissionColor);
 
             block.SetColor(EmissionColor, baseEmissionColor * emissionMultiplier);
-            renderer.SetPropertyBlock(block);
+            myRenderer.SetPropertyBlock(block);
         }
     }
 }
