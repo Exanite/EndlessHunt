@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     public Animator leftArmAnimator;
     public Animator rightArmAnimator;
     public Transform attackPoint;
+    public ParticleSystem deathParticleSystem;
 
     [Header("Sounds")]
     public AudioClip dashSound;
@@ -127,8 +128,9 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         health -= damageTaken;
         if (health <= 0)
         {
-            if(!reloading)
-                StartCoroutine(Death());
+            if(reloading) return;
+            deathParticleSystem.Play();
+            StartCoroutine(Death());
             myRigidbody.velocity = new Vector2(0,0);
             Debug.Log("im dead :(");
             dead = true;
