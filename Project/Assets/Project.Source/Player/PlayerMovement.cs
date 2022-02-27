@@ -101,26 +101,62 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         rightArmAnimator.SetTrigger(OnAttack);
     }
 
-    public void OnAOEAttack(InputAction.CallbackContext context)
-    {
+    public void OnSpreadAttack(InputAction.CallbackContext context)
+    {   
+        if(dead) return;
         if (!context.performed)
         {
             return;
         }
+        Vector3 rot = attackPoint.transform.rotation.eulerAngles;
+        rot = new Vector3(0,0,rot.z);
+        var angle1 = Quaternion.Euler(rot);
+        rot = new Vector3(0,0,rot.z-20);
+        var angle2 = Quaternion.Euler(rot);
+        rot = new Vector3(0,0,rot.z+40);
+        var angle3 = Quaternion.Euler(rot);
+        Instantiate(bullet, attackPoint.position, angle1);
+        Instantiate(bullet, attackPoint.position, angle2);
+        Instantiate(bullet, attackPoint.position, angle3);
+        leftArmAnimator.SetTrigger(OnAttack);
+        rightArmAnimator.SetTrigger(OnAttack);
+    }
 
-        Debug.Log("AOE Attack!");
+    public void OnAOEAttack(InputAction.CallbackContext context)
+    {
+        // if (!context.performed)
+        // {
+        //     return;
+        // }
 
-        for (var i = AOERadius; i > 0; i -= AOEOffset)
+        // Debug.Log("AOE Attack!");
+
+        // for (var i = AOERadius; i > 0; i -= AOEOffset)
+        // {
+        //     var colliders = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(i, i), transform.rotation.eulerAngles.z);
+        //     foreach (var collider in colliders)
+        //     {
+        //         if (collider.TryGetComponent(out EnemyController enemyController))
+        //         {
+        //             enemyController.takeDamage(AOEAttackDamage);
+        //             Debug.LogWarning("AOE DAMAGE " + i);
+        //         }
+        //     }
+        // }
+
+        if(dead) return;
+        if (!context.performed)
         {
-            var colliders = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(i, i), transform.rotation.eulerAngles.z);
-            foreach (var collider in colliders)
-            {
-                if (collider.TryGetComponent(out EnemyController enemyController))
-                {
-                    enemyController.takeDamage(AOEAttackDamage);
-                    Debug.LogWarning("AOE DAMAGE " + i);
-                }
-            }
+            return;
+        }
+        Vector3 rot = transform.rotation.eulerAngles;
+        leftArmAnimator.SetTrigger(OnAttack);
+        rightArmAnimator.SetTrigger(OnAttack);
+        for(int i = 0; i < 19; i++)
+        {
+            rot = new Vector3(0,0,rot.z - 20);
+            var angle1 = Quaternion.Euler(rot);
+            Instantiate(bullet, attackPoint.position, angle1); 
         }
     }
 

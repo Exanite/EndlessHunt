@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     public float stopDistance = 2f;
     public float health = 10;
     public float attackDamage = 1f;
+    public float bulletSpread = 10f;
     [FormerlySerializedAs("bullet")]
     public EnemyBulletController bulletPrefab;
     public float cooldown = 3f;
@@ -117,9 +118,10 @@ public class EnemyController : MonoBehaviour
     {   
         if(isDead) return;
         //Debug.Log("Shooting!");
+        var angleDifference = UnityEngine.Random.Range(-bulletSpread,bulletSpread);
         var offset = target.transform.position - transform.position;
         var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
-        var rotation = Quaternion.Euler(0,0, angle);
+        var rotation = Quaternion.Euler(0,0, angle + angleDifference);
         var bullet = Instantiate(bulletPrefab, transform.position + offset.normalized * projectileSpawnDistance, rotation);
         bullet.myController = this;
     }

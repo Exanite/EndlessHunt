@@ -136,6 +136,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpreadAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""136a1328-b7cf-4216-a17b-8e9267545a98"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -160,6 +169,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""AOEAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2122417-4a86-4f73-b600-68d1dfbb022d"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpreadAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -174,6 +194,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Attack = asset.FindActionMap("Attack", throwIfNotFound: true);
         m_Attack_BasicAttack = m_Attack.FindAction("BasicAttack", throwIfNotFound: true);
         m_Attack_AOEAttack = m_Attack.FindAction("AOEAttack", throwIfNotFound: true);
+        m_Attack_SpreadAttack = m_Attack.FindAction("SpreadAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -276,12 +297,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IAttackActions m_AttackActionsCallbackInterface;
     private readonly InputAction m_Attack_BasicAttack;
     private readonly InputAction m_Attack_AOEAttack;
+    private readonly InputAction m_Attack_SpreadAttack;
     public struct AttackActions
     {
         private @PlayerInput m_Wrapper;
         public AttackActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @BasicAttack => m_Wrapper.m_Attack_BasicAttack;
         public InputAction @AOEAttack => m_Wrapper.m_Attack_AOEAttack;
+        public InputAction @SpreadAttack => m_Wrapper.m_Attack_SpreadAttack;
         public InputActionMap Get() { return m_Wrapper.m_Attack; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -297,6 +320,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @AOEAttack.started -= m_Wrapper.m_AttackActionsCallbackInterface.OnAOEAttack;
                 @AOEAttack.performed -= m_Wrapper.m_AttackActionsCallbackInterface.OnAOEAttack;
                 @AOEAttack.canceled -= m_Wrapper.m_AttackActionsCallbackInterface.OnAOEAttack;
+                @SpreadAttack.started -= m_Wrapper.m_AttackActionsCallbackInterface.OnSpreadAttack;
+                @SpreadAttack.performed -= m_Wrapper.m_AttackActionsCallbackInterface.OnSpreadAttack;
+                @SpreadAttack.canceled -= m_Wrapper.m_AttackActionsCallbackInterface.OnSpreadAttack;
             }
             m_Wrapper.m_AttackActionsCallbackInterface = instance;
             if (instance != null)
@@ -307,6 +333,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @AOEAttack.started += instance.OnAOEAttack;
                 @AOEAttack.performed += instance.OnAOEAttack;
                 @AOEAttack.canceled += instance.OnAOEAttack;
+                @SpreadAttack.started += instance.OnSpreadAttack;
+                @SpreadAttack.performed += instance.OnSpreadAttack;
+                @SpreadAttack.canceled += instance.OnSpreadAttack;
             }
         }
     }
@@ -320,5 +349,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnBasicAttack(InputAction.CallbackContext context);
         void OnAOEAttack(InputAction.CallbackContext context);
+        void OnSpreadAttack(InputAction.CallbackContext context);
     }
 }
