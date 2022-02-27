@@ -749,7 +749,8 @@ MonoBehaviour:
   deathParticleSystem: {fileID: 2184515853530754625}
   deathParticleSystem2: {fileID: 1761732664021445536}
   dashSound: {fileID: 8300000, guid: ec73f0cdf8783e04db5255e95ec257a9, type: 3}
-  runSound: {fileID: 0}
+  runSound: {fileID: 8300000, guid: 95ec74d8727325348812e57ccaa50f73, type: 3}
+  runNoise: {fileID: 0}
   moveSpeed: 100
   dashSpeed: 30
   basicAttackDamage: 2
@@ -974,7 +975,7 @@ MonoBehaviour:
   - {x: 0.08254404, y: -0.038834974, z: 0}
   m_ShapePathHash: 888784330
   m_Mesh: {fileID: 0}
-  m_InstanceId: 120136
+  m_InstanceId: -2972
 --- !u!95 &2276249961561647975
 Animator:
   serializedVersion: 4

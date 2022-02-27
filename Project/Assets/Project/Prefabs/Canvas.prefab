@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 306620786}
   - component: {fileID: 306620785}
   m_Layer: 5
-  m_Name: Credits
+  m_Name: CreditsScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1285,5 +1285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4200e915cd8148f0a2920746392dc1e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   image: {fileID: 4137819473462558586}
   fadeInOnStart: 1

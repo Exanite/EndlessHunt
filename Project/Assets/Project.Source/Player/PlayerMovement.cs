@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     [Header("Sounds")]
     public AudioClip dashSound;
     public AudioClip runSound;
+    public AudioSource runNoise;
 
     [Header("Configuration")]
     public float moveSpeed = 10f;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     private Rigidbody2D myRigidbody;
 
     private bool reloading = false;
+    bool isMoving = false;
 
     private void Awake()
     {
@@ -73,7 +75,9 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     {
         //Debug.Log("moving!");
         movementInput = context.ReadValue<Vector2>();
-        //SoundManager.Instance.PlaySound(runSound, transform.position, 0.75f);
+        isMoving = true;
+        if(!runNoise.isPlaying)
+            runNoise.Play();
     }
 
     public void OnDash(InputAction.CallbackContext context)
@@ -124,26 +128,6 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
     public void OnAOEAttack(InputAction.CallbackContext context)
     {
-        // if (!context.performed)
-        // {
-        //     return;
-        // }
-
-        // Debug.Log("AOE Attack!");
-
-        // for (var i = AOERadius; i > 0; i -= AOEOffset)
-        // {
-        //     var colliders = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(i, i), transform.rotation.eulerAngles.z);
-        //     foreach (var collider in colliders)
-        //     {
-        //         if (collider.TryGetComponent(out EnemyController enemyController))
-        //         {
-        //             enemyController.takeDamage(AOEAttackDamage);
-        //             Debug.LogWarning("AOE DAMAGE " + i);
-        //         }
-        //     }
-        // }
-
         if(dead) return;
         if (!context.performed)
         {
@@ -197,6 +181,12 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
             health += Time.deltaTime*timePerHealthPoint;
         myRigidbody.AddForce(movementInput * moveSpeed);
         playerAnimator.SetBool(IsWalking, movementInput.sqrMagnitude > 0.1f);
+        if(runNoise.isPlaying)
+            if(!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d"))
+            {
+                Debug.Log("Keys are up!");
+                runNoise.Pause();
+            }
     }
 
     public float getBasicAttackDamage()

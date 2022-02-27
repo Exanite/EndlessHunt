@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4767177759085242660}
   - component: {fileID: 4767177759085242659}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GameSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11f75c198bf4be59ae478758fa7f8c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   entityDamageLayerMask:
     serializedVersion: 2
     m_Bits: 128
