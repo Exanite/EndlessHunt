@@ -14,11 +14,11 @@ public class FadeTransition : SingletonBehaviour<FadeTransition>
     {
         if (fadeInOnStart)
         {
-            StartCoroutine(FadeOut(0.3f));
+            StartCoroutine(FadeToClear(0.3f));
         }
     }
 
-    public IEnumerator FadeIn(float duration)
+    public IEnumerator FadeToBlack(float duration)
     {
         var timer = 0f;
 
@@ -35,7 +35,7 @@ public class FadeTransition : SingletonBehaviour<FadeTransition>
         }
     }
 
-    public IEnumerator FadeOut(float duration)
+    public IEnumerator FadeToClear(float duration)
     {
         var timer = 0f;
 

@@ -148,6 +148,8 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         reloading = true;
         //Debug.Log("about to reload");
         yield return new WaitForSeconds(1);
+
+        yield return FadeTransition.Instance.FadeToBlack(0.5f);
         //Debug.Log("reloading");
         SceneManager.LoadScene(0);
     }

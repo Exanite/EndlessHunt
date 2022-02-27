@@ -29,11 +29,11 @@ public class Teleporter : MonoBehaviour
     {
         canTeleport = false;
         
-        yield return StartCoroutine(FadeTransition.Instance.FadeIn(0.15f));
+        yield return StartCoroutine(FadeTransition.Instance.FadeToBlack(0.15f));
 
         player.transform.position = target.position;
         
-        yield return StartCoroutine(FadeTransition.Instance.FadeOut(0.3f));
+        yield return StartCoroutine(FadeTransition.Instance.FadeToClear(0.3f));
 
         canTeleport = true;
     }
