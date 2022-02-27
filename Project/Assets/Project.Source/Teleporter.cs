@@ -7,7 +7,7 @@ public class Teleporter : MonoBehaviour
 
     private void Awake()
     {
-        canTeleport = false;
+        canTeleport = true;
     }
 
     public Transform target;
