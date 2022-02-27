@@ -1,6 +1,7 @@
 using System;
 using Project.Source;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyController : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class EnemyController : MonoBehaviour
     public float stopDistance = 2f;
     public float health = 10;
     public float attackDamage = 1f;
-    public GameObject bullet;
+    [FormerlySerializedAs("bullet")]
+    public EnemyBulletController bulletPrefab;
     public float cooldown = 3f;
     public float bulletSpeed = 1f;
     public float bulletTime = 3f;
@@ -117,7 +119,8 @@ public class EnemyController : MonoBehaviour
         var offset = target.transform.position - transform.position;
         var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
         var rotation = Quaternion.Euler(0,0, angle);
-        Instantiate(bullet, transform.position + offset.normalized * projectileSpawnDistance, rotation);
+        var bullet = Instantiate(bulletPrefab, transform.position + offset.normalized * projectileSpawnDistance, rotation);
+        bullet.myController = this;
     }
 
     public float GetDistanceToTarget()

@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.1994996, y: 0.0056066513, z: 0}
   m_ShapePathHash: 1512121589
   m_Mesh: {fileID: 0}
-  m_InstanceId: 280746
+  m_InstanceId: 542608
 --- !u!1 &2248949315317763465
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +402,7 @@ MonoBehaviour:
   stopDistance: 2
   health: 10
   attackDamage: 1
-  bullet: {fileID: 4735115630353999671, guid: 37a7ef0cbe7dc854392818e5f2505a55, type: 3}
+  bulletPrefab: {fileID: 2146526291249091898, guid: 37a7ef0cbe7dc854392818e5f2505a55, type: 3}
   cooldown: 1
   bulletSpeed: 15
   bulletTime: 0.15

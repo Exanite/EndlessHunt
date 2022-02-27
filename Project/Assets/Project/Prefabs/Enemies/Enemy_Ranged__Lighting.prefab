@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2889946859852953517, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_InstanceId
-      value: -352818
+      value: -532132
       objectReference: {fileID: 0}
     - target: {fileID: 3449485716154172588, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Layer
@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: bulletSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7229557065030329774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 2146526291249091898, guid: c68f786077a2ca24d988cf3fbfc32392, type: 3}
     - target: {fileID: 7229557065030329774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: stopDistance
       value: 6

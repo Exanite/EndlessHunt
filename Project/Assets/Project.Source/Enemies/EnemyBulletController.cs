@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class EnemyBulletController : MonoBehaviour
 {
+    public EnemyController myController;
+    
     float bulletSpeed = 1f;
     Rigidbody2D myRigidbody;
-    public GameObject myObject;
-    EnemyController myController;
     float bulletDamage = 1f;
-    Vector2 targetPosition;
     float bulletTime = 3f;
     float timer = 0;
 
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        myController = myObject.GetComponent<EnemyController>();
         bulletSpeed = myController.bulletSpeed;
         bulletTime = myController.bulletTime;
         bulletDamage = myController.attackDamage;
         timer = bulletTime;
-        //targetPosition = myController.targetLocation;
     }
 
     void FixedUpdate()
