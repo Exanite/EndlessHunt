@@ -7,10 +7,14 @@ public class LevelComponent : MonoBehaviour
     EnemyController[] enemyControllers;
     float remainingEnemies = 0;
     Teleporter teleporter;
-    void Start()
+    void Awake() 
     {
         enemyControllers = GetComponentsInChildren<EnemyController>();
         teleporter = GetComponentInChildren<Teleporter>();
+    }
+    void Start()
+    {
+        teleporter.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -25,6 +29,7 @@ public class LevelComponent : MonoBehaviour
         Debug.Log("enemies: " + remainingEnemies);
         if(remainingEnemies == 0)
         {
+            teleporter.gameObject.SetActive(true);
             teleporter.canTeleport = true;
         }
     }
