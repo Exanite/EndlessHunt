@@ -17,7 +17,7 @@ public class LeaveMenu : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("space pressed");
+            //Debug.Log("space pressed");
             StartCoroutine(Fade());
         }
     }
