@@ -13,14 +13,16 @@ public class EnemyController : MonoBehaviour
     public float health = 10;
     public float attackDamage = 1f;
     public float bulletSpread = 10f;
+    //public float meleeTimer = 0.2f;
     public bool isMelee = false;
-    public Animation meleeAnim;
+    public GameObject meleeAnim;
     [FormerlySerializedAs("bullet")]
     public EnemyBulletController bulletPrefab;
     public float cooldown = 3f;
     public float bulletSpeed = 1f;
     public float bulletTime = 3f;
     public float projectileSpawnDistance = 1f;
+    public float meleeSpawnDistance = 1f;
     public ParticleSystem deathParticleSystem;
     
     [Header("Runtime")]
@@ -128,7 +130,7 @@ public class EnemyController : MonoBehaviour
         var bullet = Instantiate(bulletPrefab, transform.position + offset.normalized * projectileSpawnDistance, rotation);
         bullet.myController = this;
         if(isMelee)
-            Instantiate(meleeAnim, transform.position + offset.normalized * projectileSpawnDistance, rotation);
+            Instantiate(meleeAnim, transform.position + offset.normalized * meleeSpawnDistance, rotation);   
     }
 
     public float GetDistanceToTarget()
