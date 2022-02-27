@@ -677,7 +677,6 @@ GameObject:
   - component: {fileID: 807610485613652829}
   - component: {fileID: 807610485613652818}
   - component: {fileID: -588718393047848135}
-  - component: {fileID: 2024942259}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -779,17 +778,6 @@ MonoBehaviour:
   transformsToFlip:
   - {fileID: 1367592735108024692}
   isFacingRight: 0
---- !u!210 &2024942259
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 807610485613652819}
-  m_Enabled: 1
-  m_SortingLayerID: 759165841
-  m_SortingLayer: 1
-  m_SortingOrder: 0
 --- !u!1 &1354075786717804306
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,7 +974,7 @@ MonoBehaviour:
   - {x: 0.08254404, y: -0.038834974, z: 0}
   m_ShapePathHash: 888784330
   m_Mesh: {fileID: 0}
-  m_InstanceId: 57038
+  m_InstanceId: 64306
 --- !u!95 &2276249961561647975
 Animator:
   serializedVersion: 4
