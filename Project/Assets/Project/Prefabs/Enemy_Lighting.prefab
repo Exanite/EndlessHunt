@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.1994996, y: 0.0056066513, z: 0}
   m_ShapePathHash: 1512121589
   m_Mesh: {fileID: 0}
-  m_InstanceId: 263648
+  m_InstanceId: 281300
 --- !u!1 &2248949315317763465
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,14 +354,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fc3598ff216e94e8b678add1fc24ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 8
   aggroRadius: 5
   deaggroRadius: 10
   stopDistance: 2
   health: 10
   attackDamage: 1
   bullet: {fileID: 4735115630353999671, guid: 37a7ef0cbe7dc854392818e5f2505a55, type: 3}
-  cooldown: 3
+  cooldown: 1
   bulletSpeed: 5
   bulletTime: 0.1
   projectileSpawnDistance: 1
