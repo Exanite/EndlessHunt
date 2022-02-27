@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
 
     [Header("Sounds")]
     public AudioClip dashSound;
+    public AudioClip runSound;
 
     [Header("Configuration")]
     [SerializeField]
@@ -62,6 +63,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     {
         //Debug.Log("moving!");
         movementInput = context.ReadValue<Vector2>();
+        //SoundManager.Instance.PlaySound(runSound, transform.position, 0.75f);
     }
 
     public void OnDash(InputAction.CallbackContext context)
@@ -70,8 +72,6 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         {
             return;
         }
-
-        //Debug.Log("dashing!");
         myRigidbody.AddForce(movementInput * dashSpeed, ForceMode2D.Impulse);
         SoundManager.Instance.PlaySound(dashSound, transform.position, 0.75f);
     }
@@ -88,20 +88,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
             return;
         }
 
-        //Debug.Log("Shooting!");
         Instantiate(bullet, attackPoint.position, attackPoint.transform.rotation);
-        // if(!context.performed) return;
-        //     //Debug.Log("Attacking");
-
-        // Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(1f, 1f), transform.rotation.eulerAngles.z);
-        // foreach(Collider2D collider in colliders) 
-        // {
-        //     if(collider.TryGetComponent(out EnemyController enemyController)) 
-        //     {
-        //         enemyController.takeDamage(basicAttackDamage);
-        //         //Debug.Log("Enemy here!");
-        //     }
-        // }
     }
 
     public void OnAOEAttack(InputAction.CallbackContext context)
