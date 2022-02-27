@@ -33,9 +33,9 @@ public class EntitySpriteFlip : MonoBehaviour
 
     private void UpdateSlime()
     {
-        if (slime.target)
+        if (slime.playerTarget)
         {
-            var offset = slime.target.transform.position - slime.transform.position;
+            var offset = slime.playerTarget.transform.position - slime.transform.position;
 
             SetFlipDirection(offset.x > 0);
         }
