@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     public Animator rightArmAnimator;
     public Transform attackPoint;
     public ParticleSystem deathParticleSystem;
+    public ParticleSystem deathParticleSystem2;
 
     [Header("Sounds")]
     public AudioClip dashSound;
@@ -130,6 +131,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         {
             if(reloading) return;
             deathParticleSystem.Play();
+            deathParticleSystem2.Play();
             StartCoroutine(Death());
             myRigidbody.velocity = new Vector2(0,0);
             Debug.Log("im dead :(");
