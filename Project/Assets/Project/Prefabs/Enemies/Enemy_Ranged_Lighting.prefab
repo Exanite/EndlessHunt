@@ -113,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3449485716470880826, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Name
-      value: Enemy_Ranged__Lighting
+      value: Enemy_Ranged_Lighting
       objectReference: {fileID: 0}
     - target: {fileID: 3449485716470880826, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Layer
@@ -169,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7229557065030329774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: bulletSpeed
-      value: 5
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 7229557065030329774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: bulletPrefab
@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 2146526291249091898, guid: c68f786077a2ca24d988cf3fbfc32392, type: 3}
     - target: {fileID: 7229557065030329774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: stopDistance
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7229557065030329774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: deaggroRadius

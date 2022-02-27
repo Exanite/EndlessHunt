@@ -752,7 +752,7 @@ MonoBehaviour:
   runSound: {fileID: 0}
   moveSpeed: 100
   dashSpeed: 30
-  basicAttackDamage: 4
+  basicAttackDamage: 2
   AOEAttackDamage: 1
   AOERadius: 6
   AOEOffset: 2
