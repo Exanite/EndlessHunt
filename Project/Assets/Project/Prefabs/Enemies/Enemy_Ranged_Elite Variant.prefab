@@ -16,6 +16,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
+      propertyPath: isMelee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: cooldown
       value: 0.125
       objectReference: {fileID: 0}

@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 759165841
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &8178445307945046304
@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3515391831697274391, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
       propertyPath: m_Name
-      value: EnemyBullet Variant 1
+      value: EnemyBullet_Melee
       objectReference: {fileID: 0}
     - target: {fileID: 8724226050208120037, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
       propertyPath: m_Sprite
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78bbd5550ec8f041b34a974099a62b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myObject: {fileID: 3449485716470880826, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+  myController: {fileID: 0}
 --- !u!4 &8672397518007802500 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 658976029080275876, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
