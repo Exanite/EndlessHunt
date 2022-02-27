@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
-    public static bool canTeleport;
+    public bool canTeleport;
 
     private void Awake()
     {
-        canTeleport = true;
+        canTeleport = false;
     }
 
     public Transform target;
