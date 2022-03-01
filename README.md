@@ -1,4 +1,4 @@
-# GDA-Spring-2022-Jam
+# Endless Hunt
 
 Game created by Lei, Ryan, and William in 48 hours for the GDA Spring 2022 Game Jam!
 
