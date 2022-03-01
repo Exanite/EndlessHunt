@@ -4,6 +4,8 @@ Game created by Lei, Ryan, and William in 48 hours for the GDA Spring 2022 Game 
 
 The game can be found [here on itch.io](https://exanite.itch.io/endless-hunt).
 
+![Endless Hunt title screen](images/title-screen.png)
+
 ## Description
 
 > "In order to survive, you must get rid of everyone."
