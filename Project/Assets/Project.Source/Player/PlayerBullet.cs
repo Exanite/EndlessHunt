@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class PlayerBulletController : MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
     public float bulletSpeed = 1f;
     private Rigidbody2D myRigidbody;
     public GameObject playerObject;
-    private PlayerMovement player;
+    private Player player;
     private float bulletDamage = 1f;
 
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        player = playerObject.GetComponent<PlayerMovement>();
+        player = playerObject.GetComponent<Player>();
         bulletDamage = player.getBasicAttackDamage();
     }
 
@@ -22,14 +22,14 @@ public class PlayerBulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out PlayerMovement player))
+        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Player player))
         {
             return;
         }
 
-        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out EnemyController enemyController))
+        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Enemy enemy))
         {
-            enemyController.takeDamage(bulletDamage);
+            enemy.takeDamage(bulletDamage);
         }
 
         Destroy(gameObject);

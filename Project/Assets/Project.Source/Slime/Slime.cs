@@ -4,16 +4,16 @@ using UnityEngine;
 using System;
 using Project.Source;
 
-public class SlimeController : MonoBehaviour
+public class Slime : MonoBehaviour
 {    
     [Header("Configuration")]
     public float moveSpeed = 10f;
     public float aggroRadius = 3f;
     public float followDistance = 2f;
     public float lostDistance = 10f;
-    public PlayerMovement playerTarget;
+    public Player playerTarget;
     public float cooldown = 1f;
-    public SlimeBulletController bulletPrefab;
+    public SlimeBullet bulletPrefab;
     public float bulletSpread = 10f;
     public float projectileSpawnDistance = 0.5f;
     public float basicAttackDamage = 1f;
@@ -21,7 +21,7 @@ public class SlimeController : MonoBehaviour
     public float bulletSpeed = 2f;
 
     [Header("Runtime")]
-    EnemyController enemyTarget;
+    Enemy enemyTarget;
     public Vector2 movement = new Vector2(0, 0);
     public bool isDead = false;
     float timer = 0;
@@ -29,7 +29,7 @@ public class SlimeController : MonoBehaviour
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        playerTarget = FindObjectOfType<PlayerMovement>();
+        playerTarget = FindObjectOfType<Player>();
     }
 
     void FixedUpdate()
@@ -107,7 +107,7 @@ public class SlimeController : MonoBehaviour
             foreach (var collider in colliders)
             {
                 //Debug.Log("there is a collider!" + collider.attachedRigidbody.name);
-                if (collider.attachedRigidbody && collider.attachedRigidbody.TryGetComponent(out EnemyController enemy))
+                if (collider.attachedRigidbody && collider.attachedRigidbody.TryGetComponent(out Enemy enemy))
                 {
                     //Debug.Log("enemy set!");
                     if(enemy.health > 0)

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class EnemyBulletController : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
-    public EnemyController myController;
+    public Enemy owner;
 
     private float bulletSpeed = 1f;
     private Rigidbody2D myRigidbody;
@@ -13,9 +13,9 @@ public class EnemyBulletController : MonoBehaviour
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        bulletSpeed = myController.bulletSpeed;
-        bulletTime = myController.bulletTime;
-        bulletDamage = myController.attackDamage;
+        bulletSpeed = owner.bulletSpeed;
+        bulletTime = owner.bulletTime;
+        bulletDamage = owner.attackDamage;
         timer = bulletTime;
     }
 
@@ -33,12 +33,12 @@ public class EnemyBulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out EnemyController enemyController))
+        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Enemy enemy))
         {
             return;
         }
 
-        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out PlayerMovement player))
+        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Player player))
         {
             player.takeDamage(bulletDamage);
         }

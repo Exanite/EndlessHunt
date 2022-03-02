@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.IAttackActions
+public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.IAttackActions
 {
     public static readonly int IsWalking = Animator.StringToHash("IsWalking");
     public static readonly int OnAttack = Animator.StringToHash("OnAttack");

@@ -4,9 +4,9 @@ using UnityEngine;
 public class EntitySpriteFlip : MonoBehaviour
 {
     [Header("Assign one")]
-    public EnemyController enemy;
-    public PlayerMovement player;
-    public SlimeController slime;
+    public Enemy enemy;
+    public Player player;
+    public Slime slime;
 
     [Header("Configuration")]
     public List<SpriteRenderer> spritesToFlip;

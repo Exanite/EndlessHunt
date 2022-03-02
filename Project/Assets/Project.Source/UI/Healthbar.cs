@@ -6,7 +6,7 @@ public class Healthbar : MonoBehaviour
 {
     public TMP_Text text;
     public Image fill;
-    public PlayerMovement player;
+    public Player player;
 
     public float smoothTime = 0.3f;
     private float smoothVelocity;

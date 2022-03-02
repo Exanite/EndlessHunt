@@ -1,11 +1,11 @@
 using Project.Source;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [Header("Dependencies")]
     public GameObject meleeAnim;
-    public EnemyBulletController bulletPrefab;
+    public EnemyBullet bulletPrefab;
     public ParticleSystem deathParticleSystem;
     public Transform attackPoint;
     public SpriteRenderer outOfViewSprite;
@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
     public float meleeSpawnDistance = 1f;
 
     [Header("Runtime")]
-    public PlayerMovement target;
+    public Player target;
     public Vector2 movement = new Vector2(0, 0);
     public bool isDead;
     
@@ -70,7 +70,7 @@ public class EnemyController : MonoBehaviour
         {
             foreach (var collider in colliders)
             {
-                if (collider.attachedRigidbody && collider.attachedRigidbody.TryGetComponent(out PlayerMovement player))
+                if (collider.attachedRigidbody && collider.attachedRigidbody.TryGetComponent(out Player player))
                 {
                     target = player;
                 }
@@ -139,7 +139,7 @@ public class EnemyController : MonoBehaviour
         var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
         var rotation = Quaternion.Euler(0, 0, angle + angleDifference);
         var bullet = Instantiate(bulletPrefab, transform.position + offset.normalized * projectileSpawnDistance, rotation);
-        bullet.myController = this;
+        bullet.owner = this;
         if (isMelee)
         {
             Instantiate(meleeAnim, transform.position + offset.normalized * meleeSpawnDistance, rotation);

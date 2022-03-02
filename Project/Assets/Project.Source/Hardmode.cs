@@ -19,7 +19,7 @@ public class Hardmode : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out PlayerMovement player))
+        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Player player))
         {
             EnableHardmode();
         }
@@ -31,7 +31,7 @@ public class Hardmode : MonoBehaviour
         
         gameObject.SetActive(false);
 
-        foreach (var enemy in world.GetComponentsInChildren<EnemyController>())
+        foreach (var enemy in world.GetComponentsInChildren<Enemy>())
         {
             enemy.aggroRadius *= 1.25f;
             enemy.deaggroRadius *= 1.5f;

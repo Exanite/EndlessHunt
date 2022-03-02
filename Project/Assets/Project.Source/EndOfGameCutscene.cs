@@ -9,7 +9,7 @@ public class EndOfGameCutscene : MonoBehaviour
 {
     public string nextScene = "Credits";
 
-    public PlayerMovement player;
+    public Player player;
     public SpriteRenderer playerSprite;
     public SpriteRenderer playerSpriteWhite;
     public ShadowCaster2D playerShadow;
@@ -35,7 +35,7 @@ public class EndOfGameCutscene : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out PlayerMovement player))
+        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Player player))
         {
             StartCoroutine(StartCutscene());
         }
@@ -65,12 +65,12 @@ public class EndOfGameCutscene : MonoBehaviour
             sharedTimer += Time.deltaTime;
             var targetPosition = Vector3.Lerp(marker1.position, marker2.position, sharedTimer / walkToEdgeDuration);
             player.transform.position = targetPosition;
-            player.playerAnimator.SetBool(PlayerMovement.IsWalking, true);
+            player.playerAnimator.SetBool(Player.IsWalking, true);
 
             yield return null;
         }
 
-        player.playerAnimator.SetBool(PlayerMovement.IsWalking, false);
+        player.playerAnimator.SetBool(Player.IsWalking, false);
         sharedTimer = 0;
 
         yield return new WaitForSeconds(1f);

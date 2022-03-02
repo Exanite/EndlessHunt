@@ -19,13 +19,13 @@ public class Teleporter : MonoBehaviour
             return;
         }
 
-        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out PlayerMovement player))
+        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Player player))
         {
             StartCoroutine(Teleport(player));
         }
     }
 
-    private IEnumerator Teleport(PlayerMovement player)
+    private IEnumerator Teleport(Player player)
     {
         canTeleport = false;
         

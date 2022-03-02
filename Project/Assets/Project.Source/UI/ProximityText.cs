@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ProximityText : MonoBehaviour
 {
-    public PlayerMovement player;
+    public Player player;
     public TMP_Text text;
 
     public float fadeStartDistance = 5;
