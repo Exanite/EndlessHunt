@@ -39,10 +39,6 @@ public class SlimeBulletController : MonoBehaviour
         {
             enemyController.takeDamage(bulletDamage);
         }
-        if(other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out EnemyRangedController enemyRangedController))
-        {
-            enemyRangedController.takeDamage(bulletDamage);
-        }
         Destroy(gameObject);
     }
 }
