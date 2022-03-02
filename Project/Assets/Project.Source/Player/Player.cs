@@ -220,7 +220,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
         castTimer -= Time.deltaTime;
         if (isCasting && castTimer < 0)
         {
-            castTimer += 1 / castRate;
+            castTimer = 1 / castRate;
             Attack();
         }
 
