@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     public float projectileSpawnDistance = 1f;
     public float meleeSpawnDistance = 1f;
     public float onHitDeaggroTime = 5f;
-    public float onHitEnrageAmount = 1.1f;
+    public float onHitEnrageAmount = 0.1f;
 
     [Header("Runtime")]
     public Player target;
@@ -109,8 +109,8 @@ public class Enemy : MonoBehaviour
         }
 
         deaggroTimer = onHitDeaggroTime;
-        movement *= onHitEnrageAmount;
-        cooldown /= onHitEnrageAmount;
+        movement *= 1 + onHitEnrageAmount;
+        cooldown /= 1 + onHitEnrageAmount;
         target = PlayerManager.Instance.GetClosestPlayer(transform.position);
 
         health -= damage;

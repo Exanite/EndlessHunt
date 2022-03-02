@@ -741,6 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7073833f06e56ed4c9de1d909068011c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSprite: {fileID: 4195889486784360125}
   rotationTransform: {fileID: 5297734401927022959}
   bulletPrefab: {fileID: 4500699552393342109, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
   playerAnimator: {fileID: 2276249961561647975}
@@ -750,12 +751,14 @@ MonoBehaviour:
   deathParticleSystem: {fileID: 2184515853530754625}
   deathParticleSystem2: {fileID: 1761732664021445536}
   playerCamera: {fileID: 519420031}
+  worldCollider: {fileID: 581165525}
+  damageCollider: {fileID: 7736142287956217052}
   dashSound: {fileID: 8300000, guid: ec73f0cdf8783e04db5255e95ec257a9, type: 3}
   runSound: {fileID: 8300000, guid: 95ec74d8727325348812e57ccaa50f73, type: 3}
   runNoise: {fileID: 6093997363735386217}
   moveSpeed: 100
   dashSpeed: 30
-  projectileSpeed: 1
+  projectileSpeed: 10
   basicAttackDamage: 2
   AOEAttackDamage: 1
   AOERadius: 6
@@ -763,6 +766,8 @@ MonoBehaviour:
   health: 10
   maxHealth: 10
   timePerHealthPoint: 0.1
+  iframeDuration: 0.2
+  dashCooldown: 0.25
   dead: 0
 --- !u!114 &-588718393047848135
 MonoBehaviour:

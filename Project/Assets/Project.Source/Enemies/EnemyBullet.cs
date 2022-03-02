@@ -40,7 +40,7 @@ public class EnemyBullet : MonoBehaviour
 
         if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Player player))
         {
-            player.takeDamage(bulletDamage);
+            player.TakeDamage(bulletDamage);
         }
 
         Destroy(gameObject);

@@ -1,16 +1,17 @@
+using System;
+using System.Collections;
 using Project.Source;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-using System.Collections;
-
 public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.IAttackActions
 {
     public static readonly int IsWalking = Animator.StringToHash("IsWalking");
     public static readonly int OnAttack = Animator.StringToHash("OnAttack");
-    
+
     [Header("Dependencies")]
+    public SpriteRenderer playerSprite;
     public Transform rotationTransform;
     public PlayerBullet bulletPrefab;
     public Animator playerAnimator;
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     public ParticleSystem deathParticleSystem;
     public ParticleSystem deathParticleSystem2;
     public Camera playerCamera;
+    public Collider2D worldCollider;
+    public Collider2D damageCollider;
 
     [Header("Sounds")]
     public AudioClip dashSound;
@@ -37,7 +40,9 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     public float health = 10f;
     public float maxHealth = 10f;
     public float timePerHealthPoint = 0.1f;
-    
+    public float iframeDuration = 0.1f;
+    public float dashCooldown = 0.1f;
+
     [Header("Runtime")]
     public bool dead;
     // Private
@@ -46,6 +51,8 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     private Rigidbody2D myRigidbody;
 
     private bool reloading;
+    private bool isInvulnerable;
+    private bool canDash = true;
 
     private void Awake()
     {
@@ -76,24 +83,36 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
         //Debug.Log("moving!");
         movementInput = context.ReadValue<Vector2>();
 
-        if(runNoise.isActiveAndEnabled && !runNoise.isPlaying)
+        if (runNoise.isActiveAndEnabled && !runNoise.isPlaying)
+        {
             runNoise.Play();
+        }
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (dead) return;
+        if (dead)
+        {
+            return;
+        }
+
         if (!context.performed)
         {
             return;
         }
-        myRigidbody.AddForce(movementInput * dashSpeed, ForceMode2D.Impulse);
-        SoundManager.Instance.PlaySound(dashSound, transform.position, 0.75f);
+
+        if (canDash)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     public void OnBasicAttack(InputAction.CallbackContext context)
     {
-        if (dead) return;
+        if (dead)
+        {
+            return;
+        }
 
         if (!context.performed)
         {
@@ -102,86 +121,126 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
 
         var bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.transform.rotation);
         bullet.player = this;
-        
+
         leftArmAnimator.SetTrigger(OnAttack);
         rightArmAnimator.SetTrigger(OnAttack);
     }
 
     public void OnSpreadAttack(InputAction.CallbackContext context)
-    {   
-    //     if(dead) return;
-    //     if (!context.performed)
-    //     {
-    //         return;
-    //     }
-    //     Vector3 rot = attackPoint.transform.rotation.eulerAngles;
-    //     rot = new Vector3(0,0,rot.z);
-    //     var angle1 = Quaternion.Euler(rot);
-    //     rot = new Vector3(0,0,rot.z-20);
-    //     var angle2 = Quaternion.Euler(rot);
-    //     rot = new Vector3(0,0,rot.z+40);
-    //     var angle3 = Quaternion.Euler(rot);
-    //     Instantiate(bullet, attackPoint.position, angle1);
-    //     Instantiate(bullet, attackPoint.position, angle2);
-    //     Instantiate(bullet, attackPoint.position, angle3);
-    //     leftArmAnimator.SetTrigger(OnAttack);
-    //     rightArmAnimator.SetTrigger(OnAttack);
+    {
+        //     if(dead) return;
+        //     if (!context.performed)
+        //     {
+        //         return;
+        //     }
+        //     Vector3 rot = attackPoint.transform.rotation.eulerAngles;
+        //     rot = new Vector3(0,0,rot.z);
+        //     var angle1 = Quaternion.Euler(rot);
+        //     rot = new Vector3(0,0,rot.z-20);
+        //     var angle2 = Quaternion.Euler(rot);
+        //     rot = new Vector3(0,0,rot.z+40);
+        //     var angle3 = Quaternion.Euler(rot);
+        //     Instantiate(bullet, attackPoint.position, angle1);
+        //     Instantiate(bullet, attackPoint.position, angle2);
+        //     Instantiate(bullet, attackPoint.position, angle3);
+        //     leftArmAnimator.SetTrigger(OnAttack);
+        //     rightArmAnimator.SetTrigger(OnAttack);
     }
 
     public void OnAOEAttack(InputAction.CallbackContext context)
     {
-    //     if(dead) return;
-    //     if (!context.performed)
-    //     {
-    //         return;
-    //     }
-    //     Vector3 rot = transform.rotation.eulerAngles;
-    //     leftArmAnimator.SetTrigger(OnAttack);
-    //     rightArmAnimator.SetTrigger(OnAttack);
-    //     for(int i = 0; i < 19; i++)
-    //     {
-    //         rot = new Vector3(0,0,rot.z - 20);
-    //         var angle1 = Quaternion.Euler(rot);
-    //         Instantiate(bullet, attackPoint.position, angle1); 
-    //     }
+        //     if(dead) return;
+        //     if (!context.performed)
+        //     {
+        //         return;
+        //     }
+        //     Vector3 rot = transform.rotation.eulerAngles;
+        //     leftArmAnimator.SetTrigger(OnAttack);
+        //     rightArmAnimator.SetTrigger(OnAttack);
+        //     for(int i = 0; i < 19; i++)
+        //     {
+        //         rot = new Vector3(0,0,rot.z - 20);
+        //         var angle1 = Quaternion.Euler(rot);
+        //         Instantiate(bullet, attackPoint.position, angle1); 
+        //     }
     }
 
-    public void takeDamage(float damageTaken)
+    public void TakeDamage(float damageTaken)
     {
+        if (isInvulnerable)
+        {
+            return;
+        }
+        
         health -= damageTaken;
         if (health <= 0)
         {
-            if(reloading) return;
+            if (reloading)
+            {
+                return;
+            }
+
             deathParticleSystem.Play();
             deathParticleSystem2.Play();
             StartCoroutine(Death());
-            myRigidbody.velocity = new Vector2(0,0);
+            myRigidbody.velocity = new Vector2(0, 0);
             dead = true;
         }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isInvulnerable = true;
+
+        myRigidbody.AddForce(movementInput * dashSpeed, ForceMode2D.Impulse);
+        SoundManager.Instance.PlaySound(dashSound, transform.position, 0.75f);
+
+        yield return new WaitForSeconds(iframeDuration);
+
+        isInvulnerable = false;
+
+        yield return new WaitForSeconds(iframeDuration - dashCooldown);
+
+        canDash = true;
     }
 
     private IEnumerator Death()
     {
         reloading = true;
+
         //Debug.Log("about to reload");
         yield return new WaitForSeconds(1);
 
         yield return FadeTransition.Instance.FadeToBlack(0.5f);
+
         //Debug.Log("reloading");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void FixedUpdate()
     {
-        if (dead) return;
-        if(health < maxHealth)
-            health += Time.deltaTime*timePerHealthPoint;
+        if (dead)
+        {
+            return;
+        }
+
+        if (health < maxHealth)
+        {
+            health += Time.deltaTime * timePerHealthPoint;
+        }
+
+        playerSprite.color = isInvulnerable ? new Color(1, 1, 1, 0.5f) : Color.white;
+        damageCollider.enabled = !isInvulnerable;
+        
         myRigidbody.AddForce(movementInput * moveSpeed);
         playerAnimator.SetBool(IsWalking, movementInput.sqrMagnitude > 0.1f);
-        if(runNoise.isPlaying)
-            if(!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d"))
+        if (runNoise.isPlaying)
+        {
+            if (!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d"))
             {
                 runNoise.Pause();
             }
+        }
     }
 }
