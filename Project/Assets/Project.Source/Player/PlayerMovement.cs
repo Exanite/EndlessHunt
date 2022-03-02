@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
         //Debug.Log("moving!");
         movementInput = context.ReadValue<Vector2>();
 
-        if(!runNoise.isPlaying)
+        if(runNoise.isActiveAndEnabled && !runNoise.isPlaying)
             runNoise.Play();
     }
 

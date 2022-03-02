@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.1994996, y: 0.0056066513, z: 0}
   m_ShapePathHash: 1512121589
   m_Mesh: {fileID: 0}
-  m_InstanceId: 510130
+  m_InstanceId: 1769084
 --- !u!1 &2248949315317763465
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +396,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fc3598ff216e94e8b678add1fc24ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeAnim: {fileID: 5973959783749280564, guid: acade34358b5e9546a8d9a586fa81847, type: 3}
+  bulletPrefab: {fileID: 2146526291249091898, guid: c68f786077a2ca24d988cf3fbfc32392, type: 3}
+  deathParticleSystem: {fileID: 8041111526350766600}
+  attackPoint: {fileID: 0}
+  outOfViewSprite: {fileID: 3449485716271789507}
   moveSpeed: 8
   aggroRadius: 5
   deaggroRadius: 10
@@ -404,17 +409,13 @@ MonoBehaviour:
   attackDamage: 1
   bulletSpread: 10
   isMelee: 1
-  meleeAnim: {fileID: 5973959783749280564, guid: acade34358b5e9546a8d9a586fa81847, type: 3}
-  bulletPrefab: {fileID: 2146526291249091898, guid: c68f786077a2ca24d988cf3fbfc32392, type: 3}
   cooldown: 0.5
   bulletSpeed: 20
   bulletTime: 0.25
   projectileSpawnDistance: 0.2
   meleeSpawnDistance: 1.1
-  deathParticleSystem: {fileID: 8041111526350766600}
   target: {fileID: 0}
   movement: {x: 0, y: 0}
-  attackPoint: {fileID: 0}
   isDead: 0
 --- !u!114 &5113381831998939751
 MonoBehaviour:
