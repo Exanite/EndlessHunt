@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class EndOfGameCutscene : MonoBehaviour
 {
+    public string nextScene = "Credits";
+    
     public PlayerMovement player;
     public SpriteRenderer playerSprite;
     public ShadowCaster2D playerShadow;
@@ -95,7 +97,7 @@ public class EndOfGameCutscene : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2f);
-
-        SceneManager.LoadScene("Credits");
+        
+        SceneManager.LoadScene(nextScene);
     }
 }
