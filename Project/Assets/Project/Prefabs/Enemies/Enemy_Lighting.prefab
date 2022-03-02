@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.1994996, y: 0.0056066513, z: 0}
   m_ShapePathHash: 1512121589
   m_Mesh: {fileID: 0}
-  m_InstanceId: 2723852
+  m_InstanceId: 2757100
 --- !u!1 &2248949315317763465
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeAnim: {fileID: 5973959783749280564, guid: acade34358b5e9546a8d9a586fa81847, type: 3}
-  bulletPrefab: {fileID: 2146526291249091898, guid: c68f786077a2ca24d988cf3fbfc32392, type: 3}
+  bulletPrefab: {fileID: 2146526291249091898, guid: 37a7ef0cbe7dc854392818e5f2505a55, type: 3}
   deathParticleSystem: {fileID: 8041111526350766600}
   attackPoint: {fileID: 0}
   outOfViewSprite: {fileID: 3449485716271789507}
