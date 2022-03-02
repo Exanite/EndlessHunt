@@ -108,6 +108,8 @@ public class Enemy : MonoBehaviour
         }
 
         deaggroTimer = onHitDeaggroTime;
+        movement *= 2;
+        cooldown /= 2;
         target = PlayerManager.Instance.GetClosestPlayer(transform.position);
 
         health -= damage;
