@@ -399,7 +399,7 @@ MonoBehaviour:
   moveSpeed: 8
   aggroRadius: 5
   deaggroRadius: 10
-  stopDistance: 2
+  stopDistance: 1.5
   health: 10
   attackDamage: 1
   bulletSpread: 10
