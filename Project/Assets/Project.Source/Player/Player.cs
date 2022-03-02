@@ -45,7 +45,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     private PlayerInput playerInput;
     private Rigidbody2D myRigidbody;
 
-    private bool reloading = false;
+    private bool reloading;
 
     private void Awake()
     {
@@ -58,6 +58,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         health = maxHealth;
+        PlayerManager.Instance.players.Add(this);
     }
 
     private void OnEnable()

@@ -1,4 +1,3 @@
-using Project.Source;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -9,7 +8,7 @@ public class Enemy : MonoBehaviour
     public ParticleSystem deathParticleSystem;
     public Transform attackPoint;
     public SpriteRenderer outOfViewSprite;
-    
+
     [Header("Configuration")]
     public float moveSpeed = 10f;
     public float aggroRadius = 5f;
@@ -24,13 +23,15 @@ public class Enemy : MonoBehaviour
     public float bulletTime = 3f;
     public float projectileSpawnDistance = 1f;
     public float meleeSpawnDistance = 1f;
+    public float onHitDeaggroTime = 5f;
 
     [Header("Runtime")]
     public Player target;
     public Vector2 movement = new Vector2(0, 0);
     public bool isDead;
-    
+
     private float timer;
+    private float deaggroTimer;
     private Rigidbody2D myRigidbody;
 
     private void Start()
@@ -45,35 +46,31 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        deaggroTimer -= Time.deltaTime;
         timer -= Time.deltaTime;
-        UpdateTarget(GetNearbyEntityColliders(aggroRadius));
+        UpdateTarget();
         UpdateMovementSpeed();
 
         myRigidbody.AddForce(movement * moveSpeed * myRigidbody.mass * myRigidbody.drag);
     }
 
-    private Collider2D[] GetNearbyEntityColliders(float radius)
-    {
-        return Physics2D.OverlapCircleAll(transform.position, aggroRadius, GameSettings.Instance.entityWorldLayerMask);
-    }
-
-    private void UpdateTarget(Collider2D[] colliders)
+    private void UpdateTarget()
     {
         if (target)
         {
-            if (GetDistanceToTarget() > deaggroRadius)
+            if (GetDistanceToTarget() > deaggroRadius && deaggroTimer < 0)
             {
                 target = null;
             }
         }
         else
         {
-            foreach (var collider in colliders)
+            var player = PlayerManager.Instance.GetClosestPlayer(transform.position);
+            var playerDistance = (player.transform.position - transform.position).magnitude;
+
+            if (playerDistance < aggroRadius)
             {
-                if (collider.attachedRigidbody && collider.attachedRigidbody.TryGetComponent(out Player player))
-                {
-                    target = player;
-                }
+                target = player;
             }
         }
     }
@@ -103,25 +100,28 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void takeDamage(float damageTaken)
+    public void TakeDamage(float damage)
     {
         if (isDead)
         {
             return;
         }
 
-        health -= damageTaken;
+        deaggroTimer = onHitDeaggroTime;
+        target = PlayerManager.Instance.GetClosestPlayer(transform.position);
+
+        health -= damage;
         if (health <= 0)
         {
             isDead = true;
             myRigidbody.mass = myRigidbody.mass * 100;
             myRigidbody.velocity = new Vector2(0, 0);
             deathParticleSystem.Play();
-            Invoke("death", deathParticleSystem.main.duration);
+            Invoke("OnDeath", deathParticleSystem.main.duration);
         }
     }
 
-    private void death()
+    private void OnDeath()
     {
         Destroy(gameObject);
     }

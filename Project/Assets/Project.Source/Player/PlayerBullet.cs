@@ -31,7 +31,7 @@ public class PlayerBullet : MonoBehaviour
 
         if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Enemy enemy))
         {
-            enemy.takeDamage(damage);
+            enemy.TakeDamage(damage);
         }
 
         Destroy(gameObject);

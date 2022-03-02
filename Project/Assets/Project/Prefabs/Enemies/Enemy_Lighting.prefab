@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.1994996, y: 0.0056066513, z: 0}
   m_ShapePathHash: 1512121589
   m_Mesh: {fileID: 0}
-  m_InstanceId: 1769084
+  m_InstanceId: 2723852
 --- !u!1 &2248949315317763465
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +414,7 @@ MonoBehaviour:
   bulletTime: 0.25
   projectileSpawnDistance: 0.2
   meleeSpawnDistance: 1.1
+  onHitDeaggroTime: 1
   target: {fileID: 0}
   movement: {x: 0, y: 0}
   isDead: 0

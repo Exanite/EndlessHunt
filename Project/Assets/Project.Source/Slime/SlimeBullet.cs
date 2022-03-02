@@ -36,7 +36,7 @@ public class SlimeBullet : MonoBehaviour
         if(other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Slime slime)) return;
         if(other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Enemy enemy))
         {
-            enemy.takeDamage(bulletDamage);
+            enemy.TakeDamage(bulletDamage);
         }
         Destroy(gameObject);
     }
