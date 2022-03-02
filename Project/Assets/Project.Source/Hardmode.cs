@@ -33,6 +33,7 @@ public class Hardmode : MonoBehaviour
 
         foreach (var enemy in world.GetComponentsInChildren<Enemy>())
         {
+            enemy.onHitEnrageAmount = 2;
             enemy.aggroRadius *= 1.25f;
             enemy.deaggroRadius *= 1.5f;
             enemy.moveSpeed *= 1.5f;
