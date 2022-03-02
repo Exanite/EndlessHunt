@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LeaveMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     public string nextScene;
     public float duration = 0.5f;
@@ -11,6 +11,7 @@ public class LeaveMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            enabled = false;
             StartCoroutine(Fade());
         }
     }
