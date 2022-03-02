@@ -30,7 +30,10 @@ public class Healthbar : MonoBehaviour
             health = 0;
         }
 
-        text.text = $"{health:N0}/{maxHealth:N0}";
+        health = Mathf.Ceil(health - 0.1f);
+        maxHealth = Mathf.Ceil(maxHealth - 0.1f);
+
+        text.text = $"{health}/{maxHealth}";
 
         var targetHealthRatio = health / maxHealth;
         
