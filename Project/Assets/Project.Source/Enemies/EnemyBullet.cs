@@ -5,27 +5,27 @@ public class EnemyBullet : MonoBehaviour
     public Enemy owner;
 
     private float bulletSpeed = 1f;
-    private Rigidbody2D myRigidbody;
     private float bulletDamage = 1f;
-    private float bulletTime = 3f;
-    private float timer;
+    private float bulletLifetime = 3f;
+    
+    private Rigidbody2D myRigidbody;
 
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+        
         bulletSpeed = owner.bulletSpeed;
-        bulletTime = owner.bulletTime;
+        bulletLifetime = owner.bulletTime;
         bulletDamage = owner.attackDamage;
-        timer = bulletTime;
     }
 
     private void FixedUpdate()
     {
-        timer -= Time.deltaTime;
-        if (timer < 0)
+        bulletLifetime -= Time.deltaTime;
+        
+        if (bulletLifetime < 0)
         {
             Destroy(gameObject);
-            timer = bulletTime;
         }
 
         myRigidbody.velocity = transform.right * bulletSpeed;

@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     
     [Header("Dependencies")]
     public Transform rotationTransform;
-    public GameObject bullet;
+    public PlayerBullet bulletPrefab;
     public Animator playerAnimator;
     public Animator leftArmAnimator;
     public Animator rightArmAnimator;
@@ -29,6 +29,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     [Header("Configuration")]
     public float moveSpeed = 10f;
     public float dashSpeed = 10f;
+    public float projectileSpeed = 1f;
     public float basicAttackDamage = 1f;
     public float AOEAttackDamage = 1f;
     public float AOERadius = 6f;
@@ -42,7 +43,6 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     // Private
     private Vector2 movementInput;
     private PlayerInput playerInput;
-    private Collider2D myCollider;
     private Rigidbody2D myRigidbody;
 
     private bool reloading = false;
@@ -56,7 +56,6 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
 
     private void Start()
     {
-        myCollider = GetComponent<Collider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
         health = maxHealth;
     }
@@ -100,7 +99,9 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
             return;
         }
 
-        Instantiate(bullet, attackPoint.position, attackPoint.transform.rotation);
+        var bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.transform.rotation);
+        bullet.player = this;
+        
         leftArmAnimator.SetTrigger(OnAttack);
         rightArmAnimator.SetTrigger(OnAttack);
     }
@@ -181,10 +182,5 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
             {
                 runNoise.Pause();
             }
-    }
-
-    public float getBasicAttackDamage()
-    {
-        return basicAttackDamage;
     }
 }
