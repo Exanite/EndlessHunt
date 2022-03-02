@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Project.Source.Visuals
 {
-    public class TeleporterVisual : MonoBehaviour
+    public class GlowingVisual : MonoBehaviour
     {
         private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
 

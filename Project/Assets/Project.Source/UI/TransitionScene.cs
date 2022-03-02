@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ThemeScene : MonoBehaviour
+public class TransitionScene : MonoBehaviour
 {
     public float fadeToClearDuration = 2;
     public float waitDuration = 1;
