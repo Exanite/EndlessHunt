@@ -1,3 +1,4 @@
+using Project.Source;
 using UnityEngine;
 
 public class Hardmode : MonoBehaviour
@@ -26,6 +27,8 @@ public class Hardmode : MonoBehaviour
 
     private void EnableHardmode()
     {
+        GameSettings.Instance.isHardmode = true;
+        
         gameObject.SetActive(false);
 
         foreach (var enemy in world.GetComponentsInChildren<EnemyController>())

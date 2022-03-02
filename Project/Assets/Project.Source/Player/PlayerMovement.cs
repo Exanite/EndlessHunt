@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour, PlayerInput.IMovementActions, Playe
     public Transform attackPoint;
     public ParticleSystem deathParticleSystem;
     public ParticleSystem deathParticleSystem2;
+    public Camera playerCamera;
 
     [Header("Sounds")]
     public AudioClip dashSound;

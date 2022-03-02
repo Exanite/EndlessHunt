@@ -9,5 +9,7 @@ namespace Project.Source
 
         // Used for checking if there is a nearby entity
         public LayerMask entityWorldLayerMask;
+
+        public bool isHardmode;
     }
 }
