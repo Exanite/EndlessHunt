@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Project.Source;
 using UnityEngine;
@@ -39,20 +38,23 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     public float AOEOffset = 2f;
     public float health = 10f;
     public float maxHealth = 10f;
-    public float timePerHealthPoint = 0.1f;
+    public float healRate = 0.1f;
     public float iframeDuration = 0.1f;
     public float dashCooldown = 0.1f;
+    public float castRate = 5f;
 
     [Header("Runtime")]
-    public bool dead;
+    public bool isDead;
     // Private
     private Vector2 movementInput;
     private PlayerInput playerInput;
     private Rigidbody2D myRigidbody;
 
-    private bool reloading;
+    private float castTimer;
+
     private bool isInvulnerable;
     private bool canDash = true;
+    private bool isCasting;
 
     private void Awake()
     {
@@ -91,7 +93,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (dead)
+        if (isDead)
         {
             return;
         }
@@ -109,21 +111,14 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
 
     public void OnBasicAttack(InputAction.CallbackContext context)
     {
-        if (dead)
+        if (context.performed)
         {
-            return;
+            isCasting = true;
         }
-
-        if (!context.performed)
+        else if (context.canceled)
         {
-            return;
+            isCasting = false;
         }
-
-        var bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.transform.rotation);
-        bullet.player = this;
-
-        leftArmAnimator.SetTrigger(OnAttack);
-        rightArmAnimator.SetTrigger(OnAttack);
     }
 
     public void OnSpreadAttack(InputAction.CallbackContext context)
@@ -167,24 +162,20 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
 
     public void TakeDamage(float damageTaken)
     {
-        if (isInvulnerable)
+        if (isInvulnerable || isDead)
         {
             return;
         }
-        
+
         health -= damageTaken;
+
         if (health <= 0)
         {
-            if (reloading)
-            {
-                return;
-            }
-
             deathParticleSystem.Play();
             deathParticleSystem2.Play();
             StartCoroutine(Death());
             myRigidbody.velocity = new Vector2(0, 0);
-            dead = true;
+            isDead = true;
         }
     }
 
@@ -207,32 +198,35 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
 
     private IEnumerator Death()
     {
-        reloading = true;
-
-        //Debug.Log("about to reload");
         yield return new WaitForSeconds(1);
 
         yield return FadeTransition.Instance.FadeToBlack(0.5f);
 
-        //Debug.Log("reloading");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void FixedUpdate()
     {
-        if (dead)
+        if (isDead)
         {
             return;
         }
 
         if (health < maxHealth)
         {
-            health += Time.deltaTime * timePerHealthPoint;
+            health += Time.deltaTime * healRate;
+        }
+
+        castTimer -= Time.deltaTime;
+        if (isCasting && castTimer < 0)
+        {
+            castTimer += 1 / castRate;
+            Attack();
         }
 
         playerSprite.color = isInvulnerable ? new Color(1, 1, 1, 0.5f) : Color.white;
         damageCollider.enabled = !isInvulnerable;
-        
+
         myRigidbody.AddForce(movementInput * moveSpeed);
         playerAnimator.SetBool(IsWalking, movementInput.sqrMagnitude > 0.1f);
         if (runNoise.isPlaying)
@@ -242,5 +236,19 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
                 runNoise.Pause();
             }
         }
+    }
+
+    public void Attack()
+    {
+        if (isDead)
+        {
+            return;
+        }
+
+        var bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.transform.rotation);
+        bullet.player = this;
+
+        leftArmAnimator.SetTrigger(OnAttack);
+        rightArmAnimator.SetTrigger(OnAttack);
     }
 }
