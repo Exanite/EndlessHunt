@@ -31,17 +31,23 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     [Header("Configuration")]
     public float moveSpeed = 10f;
     public float dashSpeed = 10f;
+    
+    public float castRate = 5f;
     public float projectileSpeed = 1f;
+    public float projectileMaxDistance = 20f;
+    public float projectileLifetime = 10f;
+    
     public float basicAttackDamage = 1f;
     public float AOEAttackDamage = 1f;
     public float AOERadius = 6f;
     public float AOEOffset = 2f;
+    
     public float health = 10f;
     public float maxHealth = 10f;
     public float healRate = 0.1f;
+    
     public float iframeDuration = 0.1f;
     public float dashCooldown = 0.1f;
-    public float castRate = 5f;
 
     [Header("Runtime")]
     public bool isDead;

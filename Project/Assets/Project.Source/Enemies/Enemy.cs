@@ -10,28 +10,37 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer outOfViewSprite;
 
     [Header("Configuration")]
+    public float health = 10;
     public float moveSpeed = 10f;
+    
     public float aggroRadius = 5f;
     public float deaggroRadius = 10f;
     public float stopDistance = 2f;
-    public float health = 10;
-    public float attackDamage = 1f;
-    public float bulletSpread = 10f;
+    
+    // Todo Remove
     public bool isMelee;
-    public float cooldown = 3f;
-    public float bulletSpeed = 1f;
-    public float bulletTime = 3f;
+
     public float projectileSpawnDistance = 1f;
     public float meleeSpawnDistance = 1f;
+    
+    public float bulletSpread = 10f;
+    public float cooldown = 3f;
+    
     public float onHitDeaggroTime = 5f;
     public float onHitEnrageAmount = 0.1f;
+    
+    public float attackDamage = 1f;
+    public float bulletSpeed = 1f;
+    public float bulletTime = 3f;
+    public float projectileMaxDistance = 20f;
+    public float projectileLifetime = 10f;
 
     [Header("Runtime")]
     public Player target;
     public Vector2 movement = new Vector2(0, 0);
     public bool isDead;
 
-    private float timer;
+    private float attackTimer;
     private float deaggroTimer;
     private Rigidbody2D myRigidbody;
 
@@ -48,7 +57,7 @@ public class Enemy : MonoBehaviour
         }
 
         deaggroTimer -= Time.deltaTime;
-        timer -= Time.deltaTime;
+        attackTimer -= Time.deltaTime;
         UpdateTarget();
         UpdateMovementSpeed();
 
@@ -92,11 +101,11 @@ public class Enemy : MonoBehaviour
         if (GetDistanceToTarget() < stopDistance)
         {
             movement = Vector2.zero;
-            if (timer < 0)
+            if (attackTimer < 0)
             {
                 //Debug.Log("attack!");
                 BulletAttack();
-                timer = cooldown;
+                attackTimer = cooldown;
             }
         }
     }
