@@ -42,7 +42,6 @@ namespace Project.Source.Pathfinding
 
             PathfindingNode current;
             var success = false;
-            var lineOfSightCheckCounter = 0;
             var openPathfindingNodeCounter = 1;
 
             while (open.Count > 0)
@@ -98,8 +97,7 @@ namespace Project.Source.Pathfinding
 
             Debug.Log("Finished pathfinding. " +
                 $"Opened {openPathfindingNodeCounter} PathfindingNodes, " +
-                $"closed {closed.Count} PathfindingNodes, and " +
-                $"performed {lineOfSightCheckCounter} line of sight checks");
+                $"closed {closed.Count} PathfindingNodes, and ");
 
             Path path = null;
 
