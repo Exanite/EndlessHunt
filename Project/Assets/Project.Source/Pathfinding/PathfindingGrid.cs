@@ -24,11 +24,11 @@ namespace Project.Source.Pathfinding
                     position += Vector3.up * NodeSize.y * y;
 
                     var isWalkable = !Physics2D.OverlapBox(position, NodeSize, 0, NonWalkableMask);
-                    
+
                     var current = new PathfindingNode
                     {
                         Index = ToIndex(x, y),
-                        
+
                         Position = position,
                         IsWalkable = isWalkable,
                     };
@@ -91,12 +91,12 @@ namespace Project.Source.Pathfinding
                 }
             }
         }
-        
+
         public int ToIndex(int x, int y)
         {
             return Size.x * y + x;
         }
-        
+
         public int ToIndex(Vector2Int position)
         {
             return Size.x * position.y + position.x;
@@ -105,6 +105,27 @@ namespace Project.Source.Pathfinding
         public Vector2Int ToPosition(int index)
         {
             return new Vector2Int(index / Size.x, index % Size.x);
+        }
+
+        public PathfindingNode WorldPositionToNode(Vector3 position)
+        {
+            var localPosition = position;
+            localPosition -= GetPositionOffset();
+            localPosition.x /= NodeSize.x;
+            localPosition.y /= NodeSize.y;
+
+            var nodePosition = new Vector2Int(Mathf.RoundToInt(localPosition.x), Mathf.RoundToInt(localPosition.y));
+
+            if (Nodes != null
+                && nodePosition.x >= 0
+                && nodePosition.y >= 0
+                && nodePosition.x < Size.x
+                && nodePosition.y < Size.y)
+            {
+                return Nodes[ToIndex(nodePosition)];
+            }
+
+            return null;
         }
 
         private void ConnectNodes(PathfindingNode a, PathfindingNode b)
