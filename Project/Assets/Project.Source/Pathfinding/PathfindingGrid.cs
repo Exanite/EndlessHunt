@@ -25,6 +25,7 @@ namespace Project.Source.Pathfinding
 
                     var isWalkable = !Physics2D.OverlapBox(position, NodeSize, 0, NonWalkableMask);
 
+                    // Todo Index
                     var current = new PathfindingNode
                     {
                         Position = position,
