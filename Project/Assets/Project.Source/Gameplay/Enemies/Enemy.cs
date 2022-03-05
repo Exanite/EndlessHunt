@@ -60,6 +60,65 @@ public class Enemy : MonoBehaviour
         myRigidbody.AddForce(movement * moveSpeed * myRigidbody.mass * myRigidbody.drag);
     }
 
+    public void TakeDamage(float damage)
+    {
+        if (isDead)
+        {
+            return;
+        }
+
+        deaggroTimer = onHitDeaggroTime;
+        movement *= 1 + onHitEnrageAmount;
+        cooldown /= 1 + onHitEnrageAmount;
+        target = PlayerManager.Instance.GetClosestPlayer(transform.position);
+
+        health -= damage;
+        if (health <= 0)
+        {
+            isDead = true;
+            myRigidbody.mass = myRigidbody.mass * 100;
+            myRigidbody.velocity = new Vector2(0, 0);
+            deathParticleSystem.Play();
+            StartCoroutine(OnDeath());
+        }
+    }
+
+    public void Despawn()
+    {
+        Destroy(gameObject);
+    }
+
+    public void BulletAttack()
+    {
+        if (isDead)
+        {
+            return;
+        }
+        
+        var offset = target.transform.position - transform.position;
+        var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+        angle += Random.Range(-bulletSpread, bulletSpread);
+        var rotation = Quaternion.Euler(0, 0, angle);
+        
+        var projectile = Instantiate(projectilePrefab, transform.position + offset.normalized * projectileSpawnDistance, rotation);
+        projectile.owner = OffensiveStats;
+        
+        if (projectileSpawnEffectPrefab)
+        {
+            Instantiate(projectileSpawnEffectPrefab, transform.position + offset.normalized * projectileSpawnEffectDistance, rotation);
+        }
+    }
+
+    public float GetDistanceToTarget()
+    {
+        if (!target)
+        {
+            return float.PositiveInfinity;
+        }
+
+        return (target.transform.position - transform.position).magnitude;
+    }
+    
     private void UpdateTarget()
     {
         if (target)
@@ -105,70 +164,11 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-
-    public void TakeDamage(float damage)
-    {
-        if (isDead)
-        {
-            return;
-        }
-
-        deaggroTimer = onHitDeaggroTime;
-        movement *= 1 + onHitEnrageAmount;
-        cooldown /= 1 + onHitEnrageAmount;
-        target = PlayerManager.Instance.GetClosestPlayer(transform.position);
-
-        health -= damage;
-        if (health <= 0)
-        {
-            isDead = true;
-            myRigidbody.mass = myRigidbody.mass * 100;
-            myRigidbody.velocity = new Vector2(0, 0);
-            deathParticleSystem.Play();
-            StartCoroutine(OnDeath());
-        }
-    }
-
+    
     private IEnumerator OnDeath()
     {
         yield return new WaitForSeconds(deathParticleSystem.main.duration);
         
         Despawn();
-    }
-
-    public void Despawn()
-    {
-        Destroy(gameObject);
-    }
-
-    public void BulletAttack()
-    {
-        if (isDead)
-        {
-            return;
-        }
-        
-        var offset = target.transform.position - transform.position;
-        var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
-        angle += Random.Range(-bulletSpread, bulletSpread);
-        var rotation = Quaternion.Euler(0, 0, angle);
-        
-        var projectile = Instantiate(projectilePrefab, transform.position + offset.normalized * projectileSpawnDistance, rotation);
-        projectile.owner = OffensiveStats;
-        
-        if (projectileSpawnEffectPrefab)
-        {
-            Instantiate(projectileSpawnEffectPrefab, transform.position + offset.normalized * projectileSpawnEffectDistance, rotation);
-        }
-    }
-
-    public float GetDistanceToTarget()
-    {
-        if (!target)
-        {
-            return float.PositiveInfinity;
-        }
-
-        return (target.transform.position - transform.position).magnitude;
     }
 }
