@@ -52,6 +52,10 @@ PrefabInstance:
       value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 1140351711967250323, guid: ce8342b3501e48e4fbbacab8afabe1ff, type: 3}
+    - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: onHitEnrageAmount
       value: 0.05
       objectReference: {fileID: 0}
@@ -61,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6619097265491451051, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_InstanceId
-      value: -2522386
+      value: -85288
       objectReference: {fileID: 0}
     - target: {fileID: 6638286354246349116, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_Name

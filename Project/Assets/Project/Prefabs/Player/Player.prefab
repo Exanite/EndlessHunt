@@ -743,7 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 4195889486784360125}
   rotationTransform: {fileID: 5297734401927022959}
-  bulletPrefab: {fileID: 4500699552393342109, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
+  projectilePrefab: {fileID: 9127947047081039539, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
   playerAnimator: {fileID: 2276249961561647975}
   leftArmAnimator: {fileID: 7787965033791307422}
   rightArmAnimator: {fileID: 7194343707456675885}
@@ -758,17 +758,20 @@ MonoBehaviour:
   runNoise: {fileID: 6093997363735386217}
   moveSpeed: 100
   dashSpeed: 30
+  castRate: 5
   projectileSpeed: 10
+  projectileMaxDistance: 20
+  projectileLifetime: 10
   basicAttackDamage: 2
   AOEAttackDamage: 1
   AOERadius: 6
   AOEOffset: 2
   health: 10
   maxHealth: 10
-  timePerHealthPoint: 0.1
-  iframeDuration: 0.2
+  healRate: 0.1
+  iframeDuration: 0.25
   dashCooldown: 0.25
-  dead: 0
+  isDead: 0
 --- !u!114 &-588718393047848135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +987,7 @@ MonoBehaviour:
   - {x: 0.08254404, y: -0.038834974, z: 0}
   m_ShapePathHash: 888784330
   m_Mesh: {fileID: 0}
-  m_InstanceId: 2364086
+  m_InstanceId: 61460
 --- !u!95 &2276249961561647975
 Animator:
   serializedVersion: 4

@@ -1,5 +1,6 @@
 using System.Collections;
 using Project.Source;
+using Project.Source.Gameplay;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -12,7 +13,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     [Header("Dependencies")]
     public SpriteRenderer playerSprite;
     public Transform rotationTransform;
-    public PlayerBullet bulletPrefab;
+    public Projectile projectilePrefab;
     public Animator playerAnimator;
     public Animator leftArmAnimator;
     public Animator rightArmAnimator;
@@ -237,7 +238,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
         playerAnimator.SetBool(IsWalking, movementInput.sqrMagnitude > 0.1f);
         if (runNoise.isPlaying)
         {
-            if (!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d"))
+            if (movementInput.sqrMagnitude < 0.1f)
             {
                 runNoise.Pause();
             }
@@ -250,9 +251,9 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
         {
             return;
         }
-
-        var bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.transform.rotation);
-        bullet.player = this;
+        
+        var projectile = Instantiate(projectilePrefab, attackPoint.position, attackPoint.transform.rotation);
+        projectile.playerOwner = this;
 
         leftArmAnimator.SetTrigger(OnAttack);
         rightArmAnimator.SetTrigger(OnAttack);

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Project.Source.Gameplay
@@ -19,8 +20,12 @@ namespace Project.Source.Gameplay
 
         private Rigidbody2D rb;
 
+        private bool hasInitialized;
+        
         private void Start()
         {
+            hasInitialized = true;
+            
             rb = GetComponent<Rigidbody2D>();
 
             if (enemyOwner)
@@ -41,9 +46,6 @@ namespace Project.Source.Gameplay
                 maxDistance = playerOwner.projectileMaxDistance;
                 lifetime = playerOwner.projectileLifetime;
             }
-
-            speed = playerOwner.projectileSpeed;
-            damage = playerOwner.basicAttackDamage;
         }
 
         private void FixedUpdate()
@@ -53,6 +55,11 @@ namespace Project.Source.Gameplay
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (!hasInitialized)
+            {
+                return;
+            }
+            
             if (other.attachedRigidbody)
             {
                 if (faction == Faction.Enemy && other.attachedRigidbody.TryGetComponent(out Player player))
@@ -62,6 +69,10 @@ namespace Project.Source.Gameplay
                 else if (faction == Faction.Player && other.attachedRigidbody.TryGetComponent(out Enemy enemy))
                 {
                     enemy.TakeDamage(damage);
+                }
+                else
+                {
+                    return;
                 }
             }
 

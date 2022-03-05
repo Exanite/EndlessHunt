@@ -1,10 +1,12 @@
+using Project.Source.Gameplay;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Dependencies")]
-    public GameObject meleeAnim;
-    public EnemyBullet bulletPrefab;
+    public GameObject projectileSpawnEffectPrefab;
+    public Projectile projectilePrefab;
     public ParticleSystem deathParticleSystem;
     public Transform attackPoint;
     public SpriteRenderer outOfViewSprite;
@@ -16,12 +18,10 @@ public class Enemy : MonoBehaviour
     public float aggroRadius = 5f;
     public float deaggroRadius = 10f;
     public float stopDistance = 2f;
-    
-    // Todo Remove
-    public bool isMelee;
 
     public float projectileSpawnDistance = 1f;
-    public float meleeSpawnDistance = 1f;
+    [FormerlySerializedAs("meleeSpawnDistance")]
+    public float projectileSpawnEffectDistance = 1f;
     
     public float bulletSpread = 10f;
     public float cooldown = 3f;
@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Runtime")]
     public Player target;
-    public Vector2 movement = new Vector2(0, 0);
+    public Vector2 movement;
     public bool isDead;
 
     private float attackTimer;
@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour
 
         deaggroTimer -= Time.deltaTime;
         attackTimer -= Time.deltaTime;
+        
         UpdateTarget();
         UpdateMovementSpeed();
 
@@ -144,17 +145,18 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-
-        //Debug.Log("Shooting!");
-        var angleDifference = Random.Range(-bulletSpread, bulletSpread);
+        
         var offset = target.transform.position - transform.position;
         var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
-        var rotation = Quaternion.Euler(0, 0, angle + angleDifference);
-        var bullet = Instantiate(bulletPrefab, transform.position + offset.normalized * projectileSpawnDistance, rotation);
-        bullet.owner = this;
-        if (isMelee)
+        angle += Random.Range(-bulletSpread, bulletSpread);
+        var rotation = Quaternion.Euler(0, 0, angle);
+        
+        var projectile = Instantiate(projectilePrefab, transform.position + offset.normalized * projectileSpawnDistance, rotation);
+        projectile.enemyOwner = this;
+        
+        if (projectileSpawnEffectPrefab)
         {
-            Instantiate(meleeAnim, transform.position + offset.normalized * meleeSpawnDistance, rotation);
+            Instantiate(projectileSpawnEffectPrefab, transform.position + offset.normalized * projectileSpawnEffectDistance, rotation);
         }
     }
 
