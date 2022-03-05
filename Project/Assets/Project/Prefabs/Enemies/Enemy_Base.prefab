@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.1994996, y: 0.0056066513, z: 0}
   m_ShapePathHash: 1512121589
   m_Mesh: {fileID: 0}
-  m_InstanceId: 552900
+  m_InstanceId: 712686
 --- !u!1 &2248949315317763465
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,14 +414,10 @@ MonoBehaviour:
   cooldown: 0.5
   onHitDeaggroTime: 1
   onHitEnrageAmount: 0.1
-  attackDamage: 1
-  bulletSpeed: 20
-  bulletTime: 0.25
-  projectileMaxDistance: 20
-  projectileLifetime: 10
   target: {fileID: 0}
-  movement: {x: 0, y: 0}
+  movementDirection: {x: 0, y: 0}
   isDead: 0
+  hasDirectSightOfTarget: 0
 --- !u!114 &5113381831998939751
 MonoBehaviour:
   m_ObjectHideFlags: 0

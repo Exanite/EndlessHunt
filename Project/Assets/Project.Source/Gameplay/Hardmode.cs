@@ -27,7 +27,7 @@ public class Hardmode : MonoBehaviour
 
     private void EnableHardmode()
     {
-        GameSettings.Instance.isHardmode = true;
+        GameSettings.Instance.IsHardmode = true;
         
         gameObject.SetActive(false);
 

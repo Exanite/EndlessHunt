@@ -5,22 +5,27 @@ namespace Project.Source.Pathfinding
 {
     public class PathSolver
     {
-        private struct NodeData
+        private NodeData[] NodeDataCache;
+
+        private readonly List<PathfindingNode> open;
+        private readonly HashSet<PathfindingNode> closed;
+
+        private readonly PathfindingGrid grid;
+
+        public PathSolver(PathfindingGrid grid)
         {
-            public PathfindingNode Parent;
-            public float FCost;
-            public float GCost;
+            this.grid = grid;
+
+            open = new List<PathfindingNode>();
+            closed = new HashSet<PathfindingNode>();
         }
 
-        private NodeData[] NodeDataCache;
-        
-        private readonly List<PathfindingNode> open = new List<PathfindingNode>();
-        private readonly HashSet<PathfindingNode> closed = new HashSet<PathfindingNode>();
+        public Path FindPath(Vector3 start, Vector3 destination, Heuristic heuristic = null)
+        {
+            return FindPath(grid.WorldPositionToNode(start), grid.WorldPositionToNode(destination));
+        }
 
-        private readonly List<PathfindingNode> neighborResultsCache = new List<PathfindingNode>();
-        private readonly List<PathfindingNode> isDirectlyWalkableCache = new List<PathfindingNode>();
-
-        public Path FindPath(PathfindingGrid grid, PathfindingNode start, PathfindingNode destination, Heuristic heuristic = null)
+        public Path FindPath(PathfindingNode start, PathfindingNode destination, Heuristic heuristic = null)
         {
             if (heuristic == null)
             {
@@ -72,7 +77,7 @@ namespace Project.Source.Pathfinding
                     {
                         continue;
                     }
-                    
+
                     if (closed.Contains(neighbor))
                     {
                         continue;
@@ -111,7 +116,7 @@ namespace Project.Source.Pathfinding
 
                 path = new Path(nodes);
             }
-            
+
             return path;
         }
 
@@ -138,9 +143,16 @@ namespace Project.Source.Pathfinding
             {
                 NodeDataCache = new NodeData[pathfindingGrid.Nodes.Length];
             }
-            
+
             open.Clear();
             closed.Clear();
+        }
+
+        private struct NodeData
+        {
+            public PathfindingNode Parent;
+            public float FCost;
+            public float GCost;
         }
     }
 }

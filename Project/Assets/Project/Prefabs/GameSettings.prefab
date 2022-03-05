@@ -45,9 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  entityDamageLayerMask:
+  NonWalkableLayerMask:
+    serializedVersion: 2
+    m_Bits: 2049
+  EntityDamageLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  entityWorldLayerMask:
+  EntityWorldLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  IsHardmode: 0

@@ -22,5 +22,13 @@ namespace Project.Source.Pathfinding
         }
 
         public List<Vector3> Waypoints { get; private set; }
+        
+        public void DrawWithGizmos()
+        {
+            for (var i = 0; i < Waypoints.Count - 1; i++)
+            {
+                Gizmos.DrawLine(Waypoints[i], Waypoints[i + 1]);
+            }
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Project.Source.Utilities.Components;
 using UnityEngine;
 
@@ -5,36 +6,19 @@ namespace Project.Source.Pathfinding
 {
     public class Pathfinder : SingletonBehaviour<Pathfinder>
     {
-        public PathfindingGrid grid;
-        public Transform pointA;
-        public Transform pointB;
+        public List<PathfindingGrid> grids;
 
-        public bool hasPath;
-
-        private readonly PathSolver solver = new PathSolver();
-        private Path path;
-
-        private void Update()
+        public PathSolver GetSolver(Vector3 position)
         {
-            var nodeA = grid.WorldPositionToNode(pointA.position);
-            var nodeB = grid.WorldPositionToNode(pointB.position);
-
-            path = solver.FindPath(grid, nodeA, nodeB, Heuristics.Default);
-            hasPath = path != null;
-        }
-
-        private void OnDrawGizmos()
-        {
-            var offset = Vector3.back * 0.1f;
-
-            if (path != null)
+            foreach (var grid in grids)
             {
-                for (var i = 0; i < path.Waypoints.Count - 1; i++)
+                if (grid.WorldPositionToNode(position) != null)
                 {
-                    Gizmos.color = Color.cyan;
-                    Gizmos.DrawLine(path.Waypoints[i], path.Waypoints[i + 1]);
+                    return new PathSolver(grid);
                 }
             }
+
+            return new PathSolver(grids[0]);
         }
     }
 }

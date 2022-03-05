@@ -4,14 +4,12 @@ namespace Project.Source.Pathfinding
 {
     public class PathfindingGrid : MonoBehaviour
     {
-        public LayerMask NonWalkableMask;
-
         public Vector2Int Size;
         public Vector2 NodeSize = Vector2.one;
 
         public PathfindingNode[] Nodes;
 
-        private void OnEnable()
+        private void Start()
         {
             Nodes = new PathfindingNode[Size.x * Size.y];
 
@@ -23,7 +21,7 @@ namespace Project.Source.Pathfinding
                     position += Vector3.right * NodeSize.x * x;
                     position += Vector3.up * NodeSize.y * y;
 
-                    var isWalkable = !Physics2D.OverlapBox(position, NodeSize, 0, NonWalkableMask);
+                    var isWalkable = !Physics2D.OverlapBox(position, NodeSize, 0, GameSettings.Instance.NonWalkableLayerMask);
 
                     var current = new PathfindingNode
                     {
@@ -62,7 +60,7 @@ namespace Project.Source.Pathfinding
             }
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             if (Nodes == null)
             {

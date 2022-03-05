@@ -1,16 +1,21 @@
 using Project.Source.Utilities.Components;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Project.Source
 {
     public class GameSettings : SingletonBehaviour<GameSettings>
     {
+        public LayerMask NonWalkableLayerMask;
+        
         // Used for checking if attacks have hit an enemy
-        public LayerMask entityDamageLayerMask;
+        [FormerlySerializedAs("entityDamageLayerMask")]
+        public LayerMask EntityDamageLayerMask;
 
         // Used for checking if there is a nearby entity
-        public LayerMask entityWorldLayerMask;
+        [FormerlySerializedAs("entityWorldLayerMask")]
+        public LayerMask EntityWorldLayerMask;
 
-        public bool isHardmode;
+        public bool IsHardmode;
     }
 }

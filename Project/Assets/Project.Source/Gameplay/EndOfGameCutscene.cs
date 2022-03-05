@@ -89,7 +89,7 @@ public class EndOfGameCutscene : MonoBehaviour
         playerSprite.sortingLayerName = "Ground";
         playerSprite.sortingOrder = -50;
 
-        if (GameSettings.Instance.isHardmode)
+        if (GameSettings.Instance.IsHardmode)
         {
             player.playerCamera.transform.parent = null;
             playerSpriteWhite.gameObject.SetActive(true);
