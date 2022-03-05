@@ -68,6 +68,11 @@ namespace Project.Source.Pathfinding
 
                 foreach (var neighbor in current.Neighbors)
                 {
+                    if (!neighbor.IsWalkable)
+                    {
+                        continue;
+                    }
+                    
                     if (closed.Contains(neighbor))
                     {
                         continue;
@@ -96,8 +101,7 @@ namespace Project.Source.Pathfinding
             }
 
             Debug.Log("Finished pathfinding. " +
-                $"Opened {openPathfindingNodeCounter} PathfindingNodes, " +
-                $"closed {closed.Count} PathfindingNodes, and ");
+                $"Opened {openPathfindingNodeCounter} PathfindingNodes and closed {closed.Count} PathfindingNodes");
 
             Path path = null;
 
