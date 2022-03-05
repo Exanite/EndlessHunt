@@ -11,16 +11,20 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     public static readonly int OnAttack = Animator.StringToHash("OnAttack");
 
     [Header("Dependencies")]
-    public SpriteRenderer playerSprite;
-    public Transform rotationTransform;
+    public Camera playerCamera;
     public Projectile projectilePrefab;
+    
+    public Transform rotationTransform;
+    public Transform attackPoint;
+    
     public Animator playerAnimator;
     public Animator leftArmAnimator;
     public Animator rightArmAnimator;
-    public Transform attackPoint;
+    
+    public SpriteRenderer playerSprite;
     public ParticleSystem deathParticleSystem;
     public ParticleSystem deathParticleSystem2;
-    public Camera playerCamera;
+
     public Collider2D worldCollider;
     public Collider2D damageCollider;
 
@@ -52,7 +56,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
 
     [Header("Runtime")]
     public bool isDead;
-    // Private
+    
     private Vector2 movementInput;
     private PlayerInput playerInput;
     private Rigidbody2D myRigidbody;
@@ -74,22 +78,22 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         health = maxHealth;
-        PlayerManager.Instance.players.Add(this);
     }
 
     private void OnEnable()
     {
+        PlayerManager.Instance.players.Add(this);
         playerInput.Enable();
     }
 
     private void OnDisable()
     {
         playerInput.Disable();
+        PlayerManager.Instance.players.Remove(this);
     }
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        //Debug.Log("moving!");
         movementInput = context.ReadValue<Vector2>();
 
         if (runNoise.isActiveAndEnabled && !runNoise.isPlaying)
