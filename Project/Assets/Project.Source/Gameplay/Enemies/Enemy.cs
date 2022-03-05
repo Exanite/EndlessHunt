@@ -190,7 +190,7 @@ public class Enemy : MonoBehaviour
         else if (path.Waypoints.Count > 0)
         {
             var offset = path.Waypoints[0] - transform.position;
-            movementDirection = offset.normalized / 2f;
+            movementDirection = offset.normalized;
         }
         
         if (GetDistanceToTarget() < stopDistance)

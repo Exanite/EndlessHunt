@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Project.Source.Pathfinding
 {
     public class PathfindingGrid : MonoBehaviour
     {
         public Vector2Int Size;
+        public Vector2 NodeSpacing = Vector2.one;
         public Vector2 NodeSize = Vector2.one;
 
         public PathfindingNode[] Nodes;
@@ -18,8 +20,8 @@ namespace Project.Source.Pathfinding
                 for (var x = 0; x < Size.x; x++)
                 {
                     var position = GetPositionOffset();
-                    position += Vector3.right * NodeSize.x * x;
-                    position += Vector3.up * NodeSize.y * y;
+                    position += Vector3.right * NodeSpacing.x * x;
+                    position += Vector3.up * NodeSpacing.y * y;
 
                     var isWalkable = !Physics2D.OverlapBox(position, NodeSize, 0, GameSettings.Instance.NonWalkableLayerMask);
 
@@ -75,7 +77,8 @@ namespace Project.Source.Pathfinding
                 }
 
                 Gizmos.color = Color.green;
-                Gizmos.DrawCube(node.Position, new Vector3(NodeSize.x * 0.75f, NodeSize.y * 0.75f, 0.1f));
+                Gizmos.DrawWireCube(node.Position, new Vector3(NodeSpacing.x, NodeSpacing.y, 0.1f));
+                Gizmos.DrawCube(node.Position, new Vector3(NodeSize.x, NodeSize.y, 0.1f));
 
                 foreach (var neighbor in node.Neighbors)
                 {
@@ -109,8 +112,8 @@ namespace Project.Source.Pathfinding
         {
             var localPosition = position;
             localPosition -= GetPositionOffset();
-            localPosition.x /= NodeSize.x;
-            localPosition.y /= NodeSize.y;
+            localPosition.x /= NodeSpacing.x;
+            localPosition.y /= NodeSpacing.y;
 
             var nodePosition = new Vector2Int(Mathf.RoundToInt(localPosition.x), Mathf.RoundToInt(localPosition.y));
 
@@ -135,8 +138,8 @@ namespace Project.Source.Pathfinding
         private Vector3 GetPositionOffset()
         {
             var offset = (Vector2)Size / 2f;
-            offset.Scale(NodeSize);
-            offset += -NodeSize / 2f;
+            offset.Scale(NodeSpacing);
+            offset += -NodeSpacing / 2f;
 
             return transform.position - (Vector3)offset;
         }
