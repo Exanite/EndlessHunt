@@ -1,3 +1,4 @@
+using System.Collections;
 using Project.Source.Gameplay;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -130,11 +131,18 @@ public class Enemy : MonoBehaviour
             myRigidbody.mass = myRigidbody.mass * 100;
             myRigidbody.velocity = new Vector2(0, 0);
             deathParticleSystem.Play();
-            Invoke("OnDeath", deathParticleSystem.main.duration);
+            StartCoroutine(OnDeath());
         }
     }
 
-    private void OnDeath()
+    private IEnumerator OnDeath()
+    {
+        yield return new WaitForSeconds(deathParticleSystem.main.duration);
+        
+        Despawn();
+    }
+
+    public void Despawn()
     {
         Destroy(gameObject);
     }
