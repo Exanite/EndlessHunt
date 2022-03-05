@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 7229557065030329774}
   - component: {fileID: 5113381831998939751}
   m_Layer: 10
-  m_Name: Enemy_Lighting
+  m_Name: Enemy_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
