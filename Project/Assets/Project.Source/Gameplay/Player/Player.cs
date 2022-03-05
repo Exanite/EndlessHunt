@@ -78,18 +78,18 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         health = maxHealth;
+        
+        PlayerManager.Instance.players.Add(this);
     }
 
     private void OnEnable()
     {
-        PlayerManager.Instance.players.Add(this);
         playerInput.Enable();
     }
 
     private void OnDisable()
     {
         playerInput.Disable();
-        PlayerManager.Instance.players.Remove(this);
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -226,6 +226,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
         if (health < maxHealth)
         {
             health += Time.deltaTime * healRate;
+            health = Mathf.Clamp(health, 0, maxHealth);
         }
 
         castTimer -= Time.deltaTime;

@@ -15,17 +15,15 @@ namespace Project.Source.Gameplay
 
         public float speed;
         public float damage;
-        public float maxDistance;
+        public float distanceRemaining;
         public float lifetime;
-
-        private Rigidbody2D rb;
 
         private bool hasInitialized;
         
+        private Rigidbody2D rb;
+
         private void Start()
         {
-            hasInitialized = true;
-            
             rb = GetComponent<Rigidbody2D>();
 
             if (enemyOwner)
@@ -34,7 +32,7 @@ namespace Project.Source.Gameplay
 
                 speed = enemyOwner.bulletSpeed;
                 damage = enemyOwner.attackDamage;
-                maxDistance = enemyOwner.projectileMaxDistance;
+                distanceRemaining = enemyOwner.projectileMaxDistance;
                 lifetime = enemyOwner.projectileLifetime;
             }
             else
@@ -43,14 +41,24 @@ namespace Project.Source.Gameplay
                 
                 speed = playerOwner.projectileSpeed;
                 damage = playerOwner.basicAttackDamage;
-                maxDistance = playerOwner.projectileMaxDistance;
+                distanceRemaining = playerOwner.projectileMaxDistance;
                 lifetime = playerOwner.projectileLifetime;
             }
+
+            hasInitialized = true;
         }
 
         private void FixedUpdate()
         {
             rb.velocity = transform.right * speed;
+
+            var distanceTraveled = rb.velocity.magnitude * Time.deltaTime;
+            distanceRemaining -= distanceTraveled;
+
+            if (distanceRemaining < 0)
+            {
+                Despawn();
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -76,6 +84,11 @@ namespace Project.Source.Gameplay
                 }
             }
 
+            Despawn();
+        }
+
+        public void Despawn()
+        {
             Destroy(gameObject);
         }
     }
