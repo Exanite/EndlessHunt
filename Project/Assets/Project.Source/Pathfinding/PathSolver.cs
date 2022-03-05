@@ -20,6 +20,8 @@ namespace Project.Source.Pathfinding
             closed = new HashSet<PathfindingNode>();
         }
 
+        public PathfindingGrid Grid => grid;
+
         public Path FindPath(Vector3 start, Vector3 destination, Heuristic heuristic = null)
         {
             return FindPath(grid.WorldPositionToNode(start), grid.WorldPositionToNode(destination));

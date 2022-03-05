@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Project.Source.Utilities.Components;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace Project.Source.Pathfinding
                 }
             }
 
-            return new PathSolver(grids[0]);
+            throw new ArgumentException($"Couldn't find {nameof(PathfindingGrid)} for position {position}");
         }
     }
 }

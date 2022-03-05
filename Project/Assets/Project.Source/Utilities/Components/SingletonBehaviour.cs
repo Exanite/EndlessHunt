@@ -3,11 +3,14 @@ using UnityEngine;
 
 namespace Project.Source.Utilities.Components
 {
+    [DefaultExecutionOrder(-100)]
     public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<T>
     {
         private static T instance;
 
         public bool dontDestroyOnLoad;
+
+        private bool hasInitialized;
         
         public static T Instance
         {
@@ -24,6 +27,23 @@ namespace Project.Source.Utilities.Components
 
         protected virtual void Awake()
         {
+            Initialize();
+        }
+
+        protected virtual void OnEnable()
+        {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            if (hasInitialized)
+            {
+                return;
+            }
+
+            hasInitialized = true;
+            
             if (instance)
             {
                 Destroy(gameObject);

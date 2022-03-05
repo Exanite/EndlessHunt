@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Project.Source.Pathfinding
 {
@@ -11,7 +10,7 @@ namespace Project.Source.Pathfinding
 
         public PathfindingNode[] Nodes;
 
-        private void Start()
+        private void OnEnable()
         {
             Nodes = new PathfindingNode[Size.x * Size.y];
 
