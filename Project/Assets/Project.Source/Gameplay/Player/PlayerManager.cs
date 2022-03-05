@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Project.Source;
+using Project.Source.Utilities.Components;
 using UnityEngine;
 
 public class PlayerManager : SingletonBehaviour<PlayerManager>

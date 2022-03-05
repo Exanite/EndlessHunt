@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Project.Source
+namespace Project.Source.Utilities.Components
 {
     public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<T>
     {

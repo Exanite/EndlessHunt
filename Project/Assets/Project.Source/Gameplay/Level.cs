@@ -21,7 +21,6 @@ public class Level : MonoBehaviour
         objective.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     private void Update()
     {
         enemies.RemoveAll(enemy => enemy == null);

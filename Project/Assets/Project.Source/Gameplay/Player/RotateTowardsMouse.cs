@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ConeOfVision : MonoBehaviour, MouseInput.IMouseActions
+public class RotateTowardsMouse : MonoBehaviour, MouseInput.IMouseActions
 {
     public Camera referenceCamera;
 
