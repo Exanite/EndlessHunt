@@ -1,49 +1,34 @@
-using System;
 using UnityEngine;
 
 namespace Project.Source.Gameplay
 {
     public class Projectile : MonoBehaviour
     {
-        // Todo Add base class / interface
         [Header("Dependencies")]
-        public Enemy enemyOwner;
-        public Player playerOwner;
+        public UnitOffensiveStats owner;
 
         [Header("Runtime")]
         public Faction faction;
 
-        public float speed;
         public float damage;
+        public float speed;
         public float distanceRemaining;
         public float lifetime;
 
         private bool hasInitialized;
-        
+
         private Rigidbody2D rb;
 
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
 
-            if (enemyOwner)
-            {
-                faction = Faction.Enemy;
+            faction = owner.faction;
 
-                speed = enemyOwner.bulletSpeed;
-                damage = enemyOwner.attackDamage;
-                distanceRemaining = enemyOwner.projectileMaxDistance;
-                lifetime = enemyOwner.projectileLifetime;
-            }
-            else
-            {
-                faction = Faction.Player;
-                
-                speed = playerOwner.projectileSpeed;
-                damage = playerOwner.basicAttackDamage;
-                distanceRemaining = playerOwner.projectileMaxDistance;
-                lifetime = playerOwner.projectileLifetime;
-            }
+            speed = owner.projectileSpeed;
+            damage = owner.projectileDamage;
+            distanceRemaining = owner.projectileMaxDistance;
+            lifetime = owner.projectileLifetime;
 
             hasInitialized = true;
         }
@@ -67,7 +52,7 @@ namespace Project.Source.Gameplay
             {
                 return;
             }
-            
+
             if (other.attachedRigidbody)
             {
                 if (faction == Faction.Enemy && other.attachedRigidbody.TryGetComponent(out Player player))

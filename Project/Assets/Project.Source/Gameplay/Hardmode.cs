@@ -38,8 +38,8 @@ public class Hardmode : MonoBehaviour
             enemy.deaggroRadius *= 1.5f;
             enemy.moveSpeed *= 1.5f;
             enemy.cooldown *= 0.5f;
-            enemy.bulletSpeed *= 1.25f;
-            enemy.attackDamage *= 2;
+            enemy.OffensiveStats.projectileSpeed *= 1.25f;
+            enemy.OffensiveStats.projectileDamage *= 2;
 
             var color = enemy.outOfViewSprite.color;
             color.a *= 0.30f;

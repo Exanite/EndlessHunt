@@ -13,6 +13,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     [Header("Dependencies")]
     public Camera playerCamera;
     public Projectile projectilePrefab;
+    public UnitOffensiveStats OffensiveStats;
     
     public Transform rotationTransform;
     public Transform attackPoint;
@@ -38,11 +39,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
     public float dashSpeed = 10f;
     
     public float castRate = 5f;
-    public float projectileSpeed = 1f;
-    public float projectileMaxDistance = 20f;
-    public float projectileLifetime = 10f;
-    
-    public float basicAttackDamage = 1f;
+
     public float AOEAttackDamage = 1f;
     public float AOERadius = 6f;
     public float AOEOffset = 2f;
@@ -258,7 +255,7 @@ public class Player : MonoBehaviour, PlayerInput.IMovementActions, PlayerInput.I
         }
         
         var projectile = Instantiate(projectilePrefab, attackPoint.position, attackPoint.transform.rotation);
-        projectile.playerOwner = this;
+        projectile.owner = OffensiveStats;
 
         leftArmAnimator.SetTrigger(OnAttack);
         rightArmAnimator.SetTrigger(OnAttack);

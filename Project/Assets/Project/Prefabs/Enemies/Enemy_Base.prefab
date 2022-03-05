@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.1994996, y: 0.0056066513, z: 0}
   m_ShapePathHash: 1512121589
   m_Mesh: {fileID: 0}
-  m_InstanceId: 124218
+  m_InstanceId: 552900
 --- !u!1 &2248949315317763465
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 3449485716470880827}
   - component: {fileID: 7229557065030329774}
   - component: {fileID: 5113381831998939751}
+  - component: {fileID: 823333114409781184}
   m_Layer: 10
   m_Name: Enemy_Base
   m_TagString: Untagged
@@ -401,6 +402,7 @@ MonoBehaviour:
   deathParticleSystem: {fileID: 8041111526350766600}
   attackPoint: {fileID: 0}
   outOfViewSprite: {fileID: 3449485716271789507}
+  OffensiveStats: {fileID: 823333114409781184}
   health: 10
   moveSpeed: 8
   aggroRadius: 5
@@ -439,6 +441,23 @@ MonoBehaviour:
   transformsToFlip:
   - {fileID: 5576029254134607737}
   isFacingRight: 0
+--- !u!114 &823333114409781184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449485716470880826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef333055cd34d0f9f2a8879891bd463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 1
+  projectileDamage: 1
+  projectileSpeed: 20
+  projectileMaxDistance: 5
+  projectileLifetime: 10
 --- !u!1 &5766755991856951728
 GameObject:
   m_ObjectHideFlags: 0

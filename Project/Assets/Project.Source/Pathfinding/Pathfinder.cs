@@ -1,4 +1,3 @@
-using System;
 using Project.Source.Utilities.Components;
 using UnityEngine;
 
@@ -27,7 +26,7 @@ namespace Project.Source.Pathfinding
         private void OnDrawGizmos()
         {
             var offset = Vector3.back * 0.1f;
-            
+
             if (path != null)
             {
                 for (var i = 0; i < path.Waypoints.Count - 1; i++)

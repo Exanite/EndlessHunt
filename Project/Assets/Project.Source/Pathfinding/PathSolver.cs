@@ -100,8 +100,8 @@ namespace Project.Source.Pathfinding
                 }
             }
 
-            Debug.Log("Finished pathfinding. " +
-                $"Opened {openPathfindingNodeCounter} PathfindingNodes and closed {closed.Count} PathfindingNodes");
+            // Debug.Log("Finished pathfinding. " +
+            //     $"Opened {openPathfindingNodeCounter} PathfindingNodes and closed {closed.Count} PathfindingNodes");
 
             Path path = null;
 

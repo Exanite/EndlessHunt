@@ -15,6 +15,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 823333114409781184, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+      propertyPath: projectileSpeed
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 823333114409781184, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
+      propertyPath: projectileMaxDistance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2163389675124273774, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -33,7 +41,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2889946859852953517, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_InstanceId
-      value: -120460
+      value: -442774
       objectReference: {fileID: 0}
     - target: {fileID: 3449485716154172588, guid: 4af48a1c6d9b90644b4c16eb54c79fc9, type: 3}
       propertyPath: m_Layer

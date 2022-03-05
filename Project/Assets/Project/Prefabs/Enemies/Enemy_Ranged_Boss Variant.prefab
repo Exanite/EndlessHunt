@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6619097265491451051, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_InstanceId
-      value: -85288
+      value: -444130
       objectReference: {fileID: 0}
     - target: {fileID: 6638286354246349116, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_Name
@@ -122,6 +122,14 @@ PrefabInstance:
     - target: {fileID: 6638286354246349119, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695878746820635846, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
+      propertyPath: projectileSpeed
+      value: 12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695878746820635846, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
+      propertyPath: projectileDamage
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a36e49069bed1a048a0858906dd13db9, type: 3}

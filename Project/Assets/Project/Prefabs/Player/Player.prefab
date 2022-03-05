@@ -678,6 +678,7 @@ GameObject:
   - component: {fileID: 807610485613652829}
   - component: {fileID: 807610485613652818}
   - component: {fileID: -588718393047848135}
+  - component: {fileID: 7261911745376831196}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -743,6 +744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 519420031}
   projectilePrefab: {fileID: 9127947047081039539, guid: b7120ea4163017e4aa1b73fa2ae12eaa, type: 3}
+  OffensiveStats: {fileID: 7261911745376831196}
   rotationTransform: {fileID: 5297734401927022959}
   attackPoint: {fileID: 7943224849887910509}
   playerAnimator: {fileID: 2276249961561647975}
@@ -791,6 +793,23 @@ MonoBehaviour:
   transformsToFlip:
   - {fileID: 1367592735108024692}
   isFacingRight: 0
+--- !u!114 &7261911745376831196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807610485613652819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef333055cd34d0f9f2a8879891bd463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 0
+  projectileDamage: 2
+  projectileSpeed: 10
+  projectileMaxDistance: 10
+  projectileLifetime: 10
 --- !u!1 &1354075786717804306
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +1006,7 @@ MonoBehaviour:
   - {x: 0.08254404, y: -0.038834974, z: 0}
   m_ShapePathHash: 888784330
   m_Mesh: {fileID: 0}
-  m_InstanceId: 61460
+  m_InstanceId: 564618
 --- !u!95 &2276249961561647975
 Animator:
   serializedVersion: 4

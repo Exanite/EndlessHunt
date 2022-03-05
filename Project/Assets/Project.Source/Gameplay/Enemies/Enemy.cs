@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public ParticleSystem deathParticleSystem;
     public Transform attackPoint;
     public SpriteRenderer outOfViewSprite;
+    public UnitOffensiveStats OffensiveStats;
 
     [Header("Configuration")]
     public float health = 10;
@@ -21,7 +22,6 @@ public class Enemy : MonoBehaviour
     public float stopDistance = 2f;
 
     public float projectileSpawnDistance = 1f;
-    [FormerlySerializedAs("meleeSpawnDistance")]
     public float projectileSpawnEffectDistance = 1f;
     
     public float bulletSpread = 10f;
@@ -29,12 +29,6 @@ public class Enemy : MonoBehaviour
     
     public float onHitDeaggroTime = 5f;
     public float onHitEnrageAmount = 0.1f;
-    
-    public float attackDamage = 1f;
-    public float bulletSpeed = 1f;
-    public float bulletTime = 3f;
-    public float projectileMaxDistance = 20f;
-    public float projectileLifetime = 10f;
 
     [Header("Runtime")]
     public Player target;
@@ -160,7 +154,7 @@ public class Enemy : MonoBehaviour
         var rotation = Quaternion.Euler(0, 0, angle);
         
         var projectile = Instantiate(projectilePrefab, transform.position + offset.normalized * projectileSpawnDistance, rotation);
-        projectile.enemyOwner = this;
+        projectile.owner = OffensiveStats;
         
         if (projectileSpawnEffectPrefab)
         {
