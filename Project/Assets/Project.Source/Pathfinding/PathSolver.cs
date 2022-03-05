@@ -5,10 +5,15 @@ namespace Project.Source.Pathfinding
 {
     public class PathSolver
     {
-        private readonly Dictionary<PathfindingNode, PathfindingNode> parent = new Dictionary<PathfindingNode, PathfindingNode>();
-        private readonly Dictionary<PathfindingNode, float> fCost = new Dictionary<PathfindingNode, float>();
-        private readonly Dictionary<PathfindingNode, float> gCost = new Dictionary<PathfindingNode, float>();
+        private struct NodeData
+        {
+            public PathfindingNode Parent;
+            public float FCost;
+            public float GCost;
+        }
 
+        private NodeData[] NodeDataCache;
+        
         private readonly List<PathfindingNode> open = new List<PathfindingNode>();
         private readonly HashSet<PathfindingNode> closed = new HashSet<PathfindingNode>();
 
@@ -29,11 +34,11 @@ namespace Project.Source.Pathfinding
                 return null;
             }
 
-            CleanupPathfindingData();
+            Prepare(grid);
 
             open.Add(start);
-            fCost[start] = 0;
-            gCost[start] = 0;
+            NodeDataCache[start.Index].FCost = 0;
+            NodeDataCache[start.Index].GCost = 0;
 
             PathfindingNode current;
             var success = false;
@@ -46,7 +51,7 @@ namespace Project.Source.Pathfinding
 
                 for (var i = 1; i < open.Count; i++)
                 {
-                    if (fCost[open[i]] < fCost[current])
+                    if (NodeDataCache[open[i].Index].FCost < NodeDataCache[current.Index].FCost)
                     {
                         current = open[i];
                     }
@@ -75,19 +80,19 @@ namespace Project.Source.Pathfinding
 
                         open.Add(neighbor);
 
-                        gCost[neighbor] = float.PositiveInfinity;
-                        parent[neighbor] = current;
+                        NodeDataCache[neighbor.Index].GCost = float.PositiveInfinity;
+                        NodeDataCache[neighbor.Index].Parent = current;
                     }
 
-                    var newGCost = gCost[current] + heuristic(current, neighbor);
+                    var newGCost = NodeDataCache[current.Index].GCost + heuristic(current, neighbor);
 
-                    if (newGCost < gCost[neighbor])
+                    if (newGCost < NodeDataCache[neighbor.Index].GCost)
                     {
-                        gCost[neighbor] = newGCost;
-                        parent[neighbor] = current;
+                        NodeDataCache[neighbor.Index].GCost = newGCost;
+                        NodeDataCache[neighbor.Index].Parent = current;
                     }
 
-                    fCost[neighbor] = gCost[neighbor] + heuristic(neighbor, destination);
+                    NodeDataCache[neighbor.Index].FCost = NodeDataCache[neighbor.Index].GCost + heuristic(neighbor, destination);
                 }
             }
 
@@ -104,9 +109,7 @@ namespace Project.Source.Pathfinding
 
                 path = new Path(nodes);
             }
-
-            CleanupPathfindingData();
-
+            
             return path;
         }
 
@@ -119,7 +122,7 @@ namespace Project.Source.Pathfinding
             {
                 result.Add(current);
 
-                current = parent[current];
+                current = NodeDataCache[current.Index].Parent;
             }
 
             result.Reverse();
@@ -127,8 +130,13 @@ namespace Project.Source.Pathfinding
             return result;
         }
 
-        private void CleanupPathfindingData()
+        private void Prepare(PathfindingGrid pathfindingGrid)
         {
+            if (NodeDataCache == null || NodeDataCache.Length != pathfindingGrid.Nodes.Length)
+            {
+                NodeDataCache = new NodeData[pathfindingGrid.Nodes.Length];
+            }
+            
             open.Clear();
             closed.Clear();
         }

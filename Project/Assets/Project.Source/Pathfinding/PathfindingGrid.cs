@@ -9,7 +9,7 @@ namespace Project.Source.Pathfinding
         public Vector2Int Size;
         public Vector2 NodeSize = Vector2.one;
 
-        private PathfindingNode[] Nodes;
+        public PathfindingNode[] Nodes;
 
         private void OnEnable()
         {
