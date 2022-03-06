@@ -40,7 +40,8 @@ public class Enemy : MonoBehaviour
     public float onHitDeaggroTime = 5f;
     public float onHitEnrageAmount = 0.1f;
 
-    public float pathfindingCooldown = 1;
+    public float pathfindingCooldown = 1f;
+    public float pathfindingWaypointPopDistance = 1f;
 
     [Header("Runtime")]
     public Player target;
@@ -230,7 +231,9 @@ public class Enemy : MonoBehaviour
             var offset = next - transform.position;
             movementDirection = offset.normalized;
 
-            if (offset.magnitude < 0.25f)
+            Debug.Log(offset);
+            
+            if (offset.magnitude < pathfindingWaypointPopDistance)
             {
                 path.Pop();
             }
