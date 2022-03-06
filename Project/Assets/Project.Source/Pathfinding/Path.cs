@@ -45,6 +45,35 @@ namespace Project.Source.Pathfinding
             }
         }
 
+        public bool HasNext()
+        {
+            return Waypoints.Count > 0;
+        }
+        
+        public Vector3 GetNext()
+        {
+            return Waypoints[Waypoints.Count - 1];
+        }
+
+        public bool TryGetNext(out Vector3 waypoint)
+        {
+            waypoint = Vector3.zero;
+
+            if (HasNext())
+            {
+                waypoint = GetNext();
+
+                return true;
+            }
+
+            return false;
+        }
+        
+        public void Pop()
+        {
+            Waypoints.RemoveAt(Waypoints.Count - 1);
+        }
+
         public void DrawWithGizmos()
         {
             for (var i = 0; i < Waypoints.Count - 1; i++)

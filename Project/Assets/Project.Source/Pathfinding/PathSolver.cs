@@ -135,8 +135,6 @@ namespace Project.Source.Pathfinding
 
                 current = NodeDataCache[current.Index].Parent;
             }
-
-            path.Waypoints.Reverse();
         }
 
         private void Prepare(PathfindingGrid pathfindingGrid)

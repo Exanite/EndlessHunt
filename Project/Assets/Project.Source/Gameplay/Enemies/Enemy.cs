@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
 using Project.Source;
 using Project.Source.Gameplay;
 using Project.Source.Pathfinding;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -42,7 +40,8 @@ public class Enemy : MonoBehaviour
 
     private float attackTimer;
     private float deaggroTimer;
-    
+    private float pathUpdateTimer;
+
     private Rigidbody2D myRigidbody;
     private PathSolver pathSolver;
     private Path path;
@@ -67,6 +66,7 @@ public class Enemy : MonoBehaviour
 
         deaggroTimer -= Time.deltaTime;
         attackTimer -= Time.deltaTime;
+        pathUpdateTimer -= Time.deltaTime;
 
         UpdateTarget();
         UpdateMovementSpeed();
@@ -152,15 +152,16 @@ public class Enemy : MonoBehaviour
     {
         if (target)
         {
-            hasDirectSightOfTarget = !Physics2D.Linecast(transform.position, 
-                target.transform.position,
-                GameSettings.Instance.NonWalkableLayerMask).collider;
+            hasDirectSightOfTarget = !Physics2D.Linecast(transform.position,
+                    target.transform.position,
+                    GameSettings.Instance.NonWalkableLayerMask)
+                .collider;
 
             if (!hasDirectSightOfTarget)
             {
                 pathSolver.FindPath(transform.position, target.transform.position, path);
             }
-            
+
             if (GetDistanceToTarget() > deaggroRadius && deaggroTimer < 0)
             {
                 target = null;
@@ -186,18 +187,18 @@ public class Enemy : MonoBehaviour
 
             return;
         }
-        
+
         if (hasDirectSightOfTarget || !path.IsValid)
         {
             var offset = target.transform.position - transform.position;
             movementDirection = offset.normalized;
         }
-        else if (path.Waypoints.Count > 0 && path.Length < deaggroRadius)
+        else if (path.HasNext() && path.Length < deaggroRadius)
         {
-            var offset = path.Waypoints[0] - transform.position;
+            var offset = path.GetNext() - transform.position;
             movementDirection = offset.normalized;
         }
-        
+
         if (GetDistanceToTarget() < stopDistance)
         {
             movementDirection = Vector2.zero;
