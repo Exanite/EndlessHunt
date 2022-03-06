@@ -157,9 +157,10 @@ public class Enemy : MonoBehaviour
                     GameSettings.Instance.NonWalkableLayerMask)
                 .collider;
 
-            if (!hasDirectSightOfTarget)
+            if (!hasDirectSightOfTarget && pathUpdateTimer < 0)
             {
                 pathSolver.FindPath(transform.position, target.transform.position, path);
+                pathUpdateTimer = 1;
             }
 
             if (GetDistanceToTarget() > deaggroRadius && deaggroTimer < 0)
@@ -195,8 +196,15 @@ public class Enemy : MonoBehaviour
         }
         else if (path.HasNext() && path.Length < deaggroRadius)
         {
-            var offset = path.GetNext() - transform.position;
+            var next = path.GetNext();
+            
+            var offset = next - transform.position;
             movementDirection = offset.normalized;
+
+            if (offset.magnitude < 0.1f)
+            {
+                path.Pop();
+            }
         }
 
         if (GetDistanceToTarget() < stopDistance)
