@@ -6,6 +6,8 @@ namespace Project.Source
 {
     public class GameSettings : SingletonBehaviour<GameSettings>
     {
+        public LayerMask ProjectileBlockingLayerMask;
+        
         public LayerMask NonWalkableLayerMask;
         
         // Used for checking if attacks have hit an enemy

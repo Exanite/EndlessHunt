@@ -1,8 +1,17 @@
+using System;
 using System.Collections;
 using Project.Source;
 using Project.Source.Gameplay;
 using Project.Source.Pathfinding;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
+public enum TargetStatus
+{
+    NoLineOfSight = 0,
+    CanDirectlyShootAt = 1,
+    CanDirectlyWalkTo = 2,
+}
 
 public class Enemy : MonoBehaviour
 {
@@ -31,12 +40,14 @@ public class Enemy : MonoBehaviour
     public float onHitDeaggroTime = 5f;
     public float onHitEnrageAmount = 0.1f;
 
+    public float pathfindingCooldown = 1;
+
     [Header("Runtime")]
     public Player target;
     public Vector2 movementDirection;
     public bool isDead;
 
-    public bool hasDirectSightOfTarget;
+    public TargetStatus TargetStatus;
 
     private float attackTimer;
     private float deaggroTimer;
@@ -78,10 +89,17 @@ public class Enemy : MonoBehaviour
     {
         if (target)
         {
-            Gizmos.color = hasDirectSightOfTarget ? Color.green : Color.red;
+            Gizmos.color = TargetStatus switch
+            {
+                TargetStatus.NoLineOfSight => Color.red,
+                TargetStatus.CanDirectlyShootAt => Color.yellow,
+                TargetStatus.CanDirectlyWalkTo => Color.green,
+                _ => throw new NotSupportedException($"{TargetStatus} is not supported"),
+            };
+            
             Gizmos.DrawLine(transform.position + Vector3.back, target.transform.position + Vector3.back);
 
-            if (!hasDirectSightOfTarget && path.IsValid)
+            if (TargetStatus < TargetStatus.CanDirectlyWalkTo && path.IsValid)
             {
                 Gizmos.color = Color.cyan;
                 path.DrawWithGizmos();
@@ -152,15 +170,26 @@ public class Enemy : MonoBehaviour
     {
         if (target)
         {
-            hasDirectSightOfTarget = !Physics2D.Linecast(transform.position,
+            if (!Physics2D.Linecast(transform.position,
                     target.transform.position,
-                    GameSettings.Instance.NonWalkableLayerMask)
-                .collider;
-
-            if (!hasDirectSightOfTarget && pathUpdateTimer < 0)
+                    GameSettings.Instance.NonWalkableLayerMask).collider)
+            {
+                TargetStatus = TargetStatus.CanDirectlyWalkTo;
+            } else if (!Physics2D.Linecast(transform.position,
+                    target.transform.position,
+                    GameSettings.Instance.ProjectileBlockingLayerMask).collider)
+            {
+                TargetStatus = TargetStatus.CanDirectlyShootAt;
+            }
+            else
+            {
+                TargetStatus = TargetStatus.NoLineOfSight;
+            }
+            
+            if (TargetStatus < TargetStatus.CanDirectlyWalkTo && pathUpdateTimer < 0)
             {
                 pathSolver.FindPath(transform.position, target.transform.position, path);
-                pathUpdateTimer = 1;
+                pathUpdateTimer = pathfindingCooldown;
             }
 
             if (GetDistanceToTarget() > deaggroRadius && deaggroTimer < 0)
@@ -189,7 +218,7 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        if (hasDirectSightOfTarget || !path.IsValid)
+        if (TargetStatus == TargetStatus.CanDirectlyWalkTo || !path.IsValid)
         {
             var offset = target.transform.position - transform.position;
             movementDirection = offset.normalized;
@@ -207,7 +236,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (GetDistanceToTarget() < stopDistance)
+        if (GetDistanceToTarget() < stopDistance && TargetStatus >= TargetStatus.CanDirectlyShootAt)
         {
             movementDirection = Vector2.zero;
             if (attackTimer < 0)
