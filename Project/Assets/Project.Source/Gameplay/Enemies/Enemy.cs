@@ -187,7 +187,7 @@ public class Enemy : MonoBehaviour
             var offset = target.transform.position - transform.position;
             movementDirection = offset.normalized;
         }
-        else if (path.Waypoints.Count > 0)
+        else if (path.Waypoints.Count > 0 && path.Length < deaggroRadius)
         {
             var offset = path.Waypoints[0] - transform.position;
             movementDirection = offset.normalized;
@@ -198,7 +198,6 @@ public class Enemy : MonoBehaviour
             movementDirection = Vector2.zero;
             if (attackTimer < 0)
             {
-                //Debug.Log("attack!");
                 BulletAttack();
                 attackTimer = cooldown;
             }

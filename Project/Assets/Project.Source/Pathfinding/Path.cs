@@ -21,8 +21,23 @@ namespace Project.Source.Pathfinding
             }
         }
 
-        public List<Vector3> Waypoints { get; private set; }
-        
+        public List<Vector3> Waypoints { get; }
+
+        public float Length
+        {
+            get
+            {
+                float result = 0;
+
+                for (var i = 0; i < Waypoints.Count - 1; i++)
+                {
+                    result += (Waypoints[i] - Waypoints[i + 1]).magnitude;
+                }
+
+                return result;
+            }
+        }
+
         public void DrawWithGizmos()
         {
             for (var i = 0; i < Waypoints.Count - 1; i++)
