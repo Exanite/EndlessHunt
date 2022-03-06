@@ -1,21 +1,26 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Project.Source.Pathfinding
 {
     public class PathSolver
     {
-        private NodeData[] NodeDataCache;
+        private NodeData[] nodeDataCache;
 
         private readonly List<PathfindingNode> open;
         private readonly HashSet<PathfindingNode> closed;
 
         private readonly Heuristic heuristic;
+        private readonly IPathProcessor[] pathProcessors;
 
-        public PathSolver(PathfindingGrid grid, Heuristic heuristic = null)
+        public PathSolver(PathfindingGrid grid, Heuristic heuristic = null, IEnumerable<IPathProcessor> pathProcessors = null)
         {
-            this.Grid = grid;
+            Grid = grid;
             this.heuristic = heuristic ?? Heuristics.Default;
+            this.pathProcessors = pathProcessors == null ? new IPathProcessor[0] : pathProcessors.ToArray();
+
+            Path = new Path();
 
             open = new List<PathfindingNode>();
             closed = new HashSet<PathfindingNode>();
@@ -23,35 +28,31 @@ namespace Project.Source.Pathfinding
 
         public PathfindingGrid Grid { get; }
 
-        public Path FindPath(Vector3 start, Vector3 destination, Path path = null)
+        public Path Path { get; }
+
+        public bool FindPath(Vector3 start, Vector3 destination)
         {
-            return FindPath(Grid.WorldPositionToNode(start), Grid.WorldPositionToNode(destination), path);
+            return FindPath(Grid.WorldPositionToNode(start), Grid.WorldPositionToNode(destination));
         }
 
-        public Path FindPath(PathfindingNode start, PathfindingNode destination, Path path = null)
+        public bool FindPath(PathfindingNode start, PathfindingNode destination)
         {
-            if (path == null)
-            {
-                path = new Path();
-            }
-
             if (start == null
                 || destination == null
                 || !destination.IsWalkable)
             {
-                return null;
+                return false;
             }
 
             Prepare(Grid);
 
             open.Add(start);
-            NodeDataCache[start.Index].FCost = 0;
-            NodeDataCache[start.Index].GCost = 0;
-            NodeDataCache[start.Index].IsOpen = true;
+            nodeDataCache[start.Index].FCost = 0;
+            nodeDataCache[start.Index].GCost = 0;
+            nodeDataCache[start.Index].IsOpen = true;
 
             PathfindingNode current;
             var isSuccess = false;
-            var openPathfindingNodeCounter = 1;
 
             while (open.Count > 0)
             {
@@ -59,7 +60,7 @@ namespace Project.Source.Pathfinding
 
                 for (var i = 1; i < open.Count; i++)
                 {
-                    if (NodeDataCache[open[i].Index].FCost < NodeDataCache[current.Index].FCost)
+                    if (nodeDataCache[open[i].Index].FCost < nodeDataCache[current.Index].FCost)
                     {
                         current = open[i];
                     }
@@ -67,7 +68,7 @@ namespace Project.Source.Pathfinding
 
                 open.Remove(current);
                 closed.Add(current);
-                NodeDataCache[current.Index].IsOpen = false;
+                nodeDataCache[current.Index].IsOpen = false;
 
                 if (current == destination)
                 {
@@ -88,40 +89,37 @@ namespace Project.Source.Pathfinding
                         continue;
                     }
 
-                    if (!NodeDataCache[neighbor.Index].IsOpen)
+                    if (!nodeDataCache[neighbor.Index].IsOpen)
                     {
-                        openPathfindingNodeCounter++;
-
                         open.Add(neighbor);
-                        NodeDataCache[neighbor.Index].IsOpen = true;
+                        nodeDataCache[neighbor.Index].IsOpen = true;
 
-                        NodeDataCache[neighbor.Index].GCost = float.PositiveInfinity;
-                        NodeDataCache[neighbor.Index].Parent = current;
+                        nodeDataCache[neighbor.Index].GCost = float.PositiveInfinity;
+                        nodeDataCache[neighbor.Index].Parent = current;
                     }
 
-                    var newGCost = NodeDataCache[current.Index].GCost + heuristic(current, neighbor);
+                    var newGCost = nodeDataCache[current.Index].GCost + heuristic(current, neighbor);
 
-                    if (newGCost < NodeDataCache[neighbor.Index].GCost)
+                    if (newGCost < nodeDataCache[neighbor.Index].GCost)
                     {
-                        NodeDataCache[neighbor.Index].GCost = newGCost;
-                        NodeDataCache[neighbor.Index].Parent = current;
+                        nodeDataCache[neighbor.Index].GCost = newGCost;
+                        nodeDataCache[neighbor.Index].Parent = current;
                     }
 
-                    NodeDataCache[neighbor.Index].FCost = NodeDataCache[neighbor.Index].GCost + heuristic(neighbor, destination);
+                    nodeDataCache[neighbor.Index].FCost = nodeDataCache[neighbor.Index].GCost + heuristic(neighbor, destination);
                 }
             }
 
-            // Debug.Log("Finished pathfinding. " +
-            //     $"Opened {openPathfindingNodeCounter} PathfindingNodes and closed {closed.Count} PathfindingNodes");
-
-            path.IsValid = isSuccess;
+            Path.IsValid = isSuccess;
 
             if (isSuccess)
             {
-                RetracePath(start, destination, path);
+                RetracePath(start, destination, Path);
             }
+            
+            ProcessPath(Path);
 
-            return path;
+            return Path.IsValid;
         }
 
         private void RetracePath(PathfindingNode start, PathfindingNode destination, Path path)
@@ -133,20 +131,28 @@ namespace Project.Source.Pathfinding
             {
                 path.Waypoints.Add(current.Position);
 
-                current = NodeDataCache[current.Index].Parent;
+                current = nodeDataCache[current.Index].Parent;
+            }
+        }
+
+        private void ProcessPath(Path path)
+        {
+            foreach (var pathProcessor in pathProcessors)
+            {
+                pathProcessor.Process(path);
             }
         }
 
         private void Prepare(PathfindingGrid pathfindingGrid)
         {
-            if (NodeDataCache == null || NodeDataCache.Length != pathfindingGrid.Nodes.Length)
+            if (nodeDataCache == null || nodeDataCache.Length < pathfindingGrid.Nodes.Length)
             {
-                NodeDataCache = new NodeData[pathfindingGrid.Nodes.Length];
+                nodeDataCache = new NodeData[pathfindingGrid.Nodes.Length];
             }
 
-            for (var i = 0; i < NodeDataCache.Length; i++)
+            for (var i = 0; i < nodeDataCache.Length; i++)
             {
-                NodeDataCache[i] = new NodeData();
+                nodeDataCache[i] = new NodeData();
             }
 
             open.Clear();

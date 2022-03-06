@@ -57,15 +57,11 @@ public class Enemy : MonoBehaviour
     private PathSolver pathSolver;
     private Path path;
 
-    private void Awake()
-    {
-        path = new Path();
-    }
-
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         pathSolver = Pathfinder.Instance.GetSolver(transform.position);
+        path = pathSolver.Path;
     }
 
     private void FixedUpdate()
@@ -188,7 +184,7 @@ public class Enemy : MonoBehaviour
             
             if (TargetStatus < TargetStatus.CanDirectlyWalkTo && pathUpdateTimer < 0)
             {
-                pathSolver.FindPath(transform.position, target.transform.position, path);
+                pathSolver.FindPath(transform.position, target.transform.position);
                 pathUpdateTimer = pathfindingCooldown;
             }
 
