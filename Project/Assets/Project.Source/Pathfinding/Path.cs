@@ -6,6 +6,13 @@ namespace Project.Source.Pathfinding
 {
     public class Path
     {
+        public bool IsValid;
+
+        public Path()
+        {
+            Waypoints = new List<Vector3>();
+        }
+        
         public Path(List<Vector3> waypoints)
         {
             Waypoints = waypoints ?? throw new ArgumentNullException(nameof(waypoints));

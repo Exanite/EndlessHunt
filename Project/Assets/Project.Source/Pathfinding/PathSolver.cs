@@ -22,16 +22,21 @@ namespace Project.Source.Pathfinding
 
         public PathfindingGrid Grid => grid;
 
-        public Path FindPath(Vector3 start, Vector3 destination, Heuristic heuristic = null)
+        public Path FindPath(Vector3 start, Vector3 destination, Path path = null, Heuristic heuristic = null)
         {
-            return FindPath(grid.WorldPositionToNode(start), grid.WorldPositionToNode(destination));
+            return FindPath(grid.WorldPositionToNode(start), grid.WorldPositionToNode(destination), path, heuristic);
         }
 
-        public Path FindPath(PathfindingNode start, PathfindingNode destination, Heuristic heuristic = null)
+        public Path FindPath(PathfindingNode start, PathfindingNode destination, Path path = null, Heuristic heuristic = null)
         {
             if (heuristic == null)
             {
                 heuristic = Heuristics.Default;
+            }
+
+            if (path == null)
+            {
+                path = new Path();
             }
 
             if (start == null
@@ -48,7 +53,7 @@ namespace Project.Source.Pathfinding
             NodeDataCache[start.Index].GCost = 0;
 
             PathfindingNode current;
-            var success = false;
+            var isSuccess = false;
             var openPathfindingNodeCounter = 1;
 
             while (open.Count > 0)
@@ -68,7 +73,7 @@ namespace Project.Source.Pathfinding
 
                 if (current == destination)
                 {
-                    success = true;
+                    isSuccess = true;
 
                     break;
                 }
@@ -110,33 +115,29 @@ namespace Project.Source.Pathfinding
             // Debug.Log("Finished pathfinding. " +
             //     $"Opened {openPathfindingNodeCounter} PathfindingNodes and closed {closed.Count} PathfindingNodes");
 
-            Path path = null;
-
-            if (success)
+            path.IsValid = isSuccess;
+            
+            if (isSuccess)
             {
-                var nodes = RetracePath(start, destination);
-
-                path = new Path(nodes);
+                RetracePath(start, destination, path);
             }
 
             return path;
         }
 
-        private List<PathfindingNode> RetracePath(PathfindingNode start, PathfindingNode destination)
+        private void RetracePath(PathfindingNode start, PathfindingNode destination, Path path)
         {
-            var result = new List<PathfindingNode>();
+            path.Waypoints.Clear();
+            
             var current = destination;
-
             while (current != start)
             {
-                result.Add(current);
+                path.Waypoints.Add(current.Position);
 
                 current = NodeDataCache[current.Index].Parent;
             }
 
-            result.Reverse();
-
-            return result;
+            path.Waypoints.Reverse();
         }
 
         private void Prepare(PathfindingGrid pathfindingGrid)

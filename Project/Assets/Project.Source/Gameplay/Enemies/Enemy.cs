@@ -47,6 +47,11 @@ public class Enemy : MonoBehaviour
     private PathSolver pathSolver;
     private Path path;
 
+    private void Awake()
+    {
+        path = new Path();
+    }
+
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -76,7 +81,7 @@ public class Enemy : MonoBehaviour
             Gizmos.color = hasDirectSightOfTarget ? Color.green : Color.red;
             Gizmos.DrawLine(transform.position + Vector3.back, target.transform.position + Vector3.back);
 
-            if (!hasDirectSightOfTarget && path != null)
+            if (!hasDirectSightOfTarget && path.IsValid)
             {
                 Gizmos.color = Color.cyan;
                 path.DrawWithGizmos();
@@ -153,7 +158,7 @@ public class Enemy : MonoBehaviour
 
             if (!hasDirectSightOfTarget)
             {
-                path = pathSolver.FindPath(transform.position, target.transform.position);
+                pathSolver.FindPath(transform.position, target.transform.position, path);
             }
             
             if (GetDistanceToTarget() > deaggroRadius && deaggroTimer < 0)
@@ -182,7 +187,7 @@ public class Enemy : MonoBehaviour
             return;
         }
         
-        if (hasDirectSightOfTarget || path == null)
+        if (hasDirectSightOfTarget || !path.IsValid)
         {
             var offset = target.transform.position - transform.position;
             movementDirection = offset.normalized;
