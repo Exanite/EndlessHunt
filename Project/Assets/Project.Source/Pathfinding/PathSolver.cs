@@ -10,30 +10,26 @@ namespace Project.Source.Pathfinding
         private readonly List<PathfindingNode> open;
         private readonly HashSet<PathfindingNode> closed;
 
-        private readonly PathfindingGrid grid;
+        private readonly Heuristic heuristic;
 
-        public PathSolver(PathfindingGrid grid)
+        public PathSolver(PathfindingGrid grid, Heuristic heuristic = null)
         {
-            this.grid = grid;
+            this.Grid = grid;
+            this.heuristic = heuristic ?? Heuristics.Default;
 
             open = new List<PathfindingNode>();
             closed = new HashSet<PathfindingNode>();
         }
 
-        public PathfindingGrid Grid => grid;
+        public PathfindingGrid Grid { get; }
 
-        public Path FindPath(Vector3 start, Vector3 destination, Path path = null, Heuristic heuristic = null)
+        public Path FindPath(Vector3 start, Vector3 destination, Path path = null)
         {
-            return FindPath(grid.WorldPositionToNode(start), grid.WorldPositionToNode(destination), path, heuristic);
+            return FindPath(Grid.WorldPositionToNode(start), Grid.WorldPositionToNode(destination), path);
         }
 
-        public Path FindPath(PathfindingNode start, PathfindingNode destination, Path path = null, Heuristic heuristic = null)
+        public Path FindPath(PathfindingNode start, PathfindingNode destination, Path path = null)
         {
-            if (heuristic == null)
-            {
-                heuristic = Heuristics.Default;
-            }
-
             if (path == null)
             {
                 path = new Path();
@@ -46,11 +42,12 @@ namespace Project.Source.Pathfinding
                 return null;
             }
 
-            Prepare(grid);
+            Prepare(Grid);
 
             open.Add(start);
             NodeDataCache[start.Index].FCost = 0;
             NodeDataCache[start.Index].GCost = 0;
+            NodeDataCache[start.Index].IsOpen = true;
 
             PathfindingNode current;
             var isSuccess = false;
@@ -70,6 +67,7 @@ namespace Project.Source.Pathfinding
 
                 open.Remove(current);
                 closed.Add(current);
+                NodeDataCache[current.Index].IsOpen = false;
 
                 if (current == destination)
                 {
@@ -90,11 +88,12 @@ namespace Project.Source.Pathfinding
                         continue;
                     }
 
-                    if (!open.Contains(neighbor))
+                    if (!NodeDataCache[neighbor.Index].IsOpen)
                     {
                         openPathfindingNodeCounter++;
 
                         open.Add(neighbor);
+                        NodeDataCache[neighbor.Index].IsOpen = true;
 
                         NodeDataCache[neighbor.Index].GCost = float.PositiveInfinity;
                         NodeDataCache[neighbor.Index].Parent = current;
@@ -116,7 +115,7 @@ namespace Project.Source.Pathfinding
             //     $"Opened {openPathfindingNodeCounter} PathfindingNodes and closed {closed.Count} PathfindingNodes");
 
             path.IsValid = isSuccess;
-            
+
             if (isSuccess)
             {
                 RetracePath(start, destination, path);
@@ -128,7 +127,7 @@ namespace Project.Source.Pathfinding
         private void RetracePath(PathfindingNode start, PathfindingNode destination, Path path)
         {
             path.Waypoints.Clear();
-            
+
             var current = destination;
             while (current != start)
             {
@@ -147,6 +146,11 @@ namespace Project.Source.Pathfinding
                 NodeDataCache = new NodeData[pathfindingGrid.Nodes.Length];
             }
 
+            for (var i = 0; i < NodeDataCache.Length; i++)
+            {
+                NodeDataCache[i] = new NodeData();
+            }
+
             open.Clear();
             closed.Clear();
         }
@@ -156,6 +160,13 @@ namespace Project.Source.Pathfinding
             public PathfindingNode Parent;
             public float FCost;
             public float GCost;
+
+            /// <summary>
+            ///     Is the node in the open list. <br/>
+            ///     Doesn't replace the use of the list, but optimizes
+            ///     the contains check that is otherwise needed
+            /// </summary>
+            public bool IsOpen;
         }
     }
 }
