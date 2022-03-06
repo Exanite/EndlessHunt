@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: moveSpeed
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: bulletTime
@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: aggroRadius
-      value: 10
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: bulletSpeed
@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 2146526291249091898, guid: ce8342b3501e48e4fbbacab8afabe1ff, type: 3}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: stopDistance
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1699103252645580456, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: deaggroRadius
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6619097265491451051, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_InstanceId
-      value: -444130
+      value: -1094626
       objectReference: {fileID: 0}
     - target: {fileID: 6638286354246349116, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_Name
@@ -85,11 +85,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6638286354246349119, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.58
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6638286354246349119, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.98
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6638286354246349119, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -122,6 +122,22 @@ PrefabInstance:
     - target: {fileID: 6638286354246349119, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638286354310700741, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9449339
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638286354310700741, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638286354462388139, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638286354462388139, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8695878746820635846, guid: a36e49069bed1a048a0858906dd13db9, type: 3}
       propertyPath: projectileSpeed

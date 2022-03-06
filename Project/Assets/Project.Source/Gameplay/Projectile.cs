@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +15,7 @@ namespace Project.Source.Gameplay
         public float speed;
         public float distanceRemaining;
         public float lifetime;
-        
+
         private Rigidbody2D rb;
         private Queue<Collider2D> colliderQueue;
 
@@ -41,9 +40,12 @@ namespace Project.Source.Gameplay
         {
             while (colliderQueue.TryDequeue(out var collider))
             {
-                OnCollide(collider);
+                if (collider)
+                {
+                    OnCollide(collider);
+                }
             }
-            
+
             rb.velocity = transform.right * speed;
 
             var distanceTraveled = rb.velocity.magnitude * Time.deltaTime;

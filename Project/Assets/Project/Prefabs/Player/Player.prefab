@@ -761,10 +761,6 @@ MonoBehaviour:
   moveSpeed: 100
   dashSpeed: 30
   castRate: 5
-  projectileSpeed: 10
-  projectileMaxDistance: 10
-  projectileLifetime: 10
-  basicAttackDamage: 2
   AOEAttackDamage: 1
   AOERadius: 6
   AOEOffset: 2
@@ -808,7 +804,7 @@ MonoBehaviour:
   faction: 0
   projectileDamage: 2
   projectileSpeed: 10
-  projectileMaxDistance: 10
+  projectileMaxDistance: 12
   projectileLifetime: 10
 --- !u!1 &1354075786717804306
 GameObject:
