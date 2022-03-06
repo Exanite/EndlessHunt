@@ -226,7 +226,7 @@ public class Enemy : MonoBehaviour
             var offset = next - transform.position;
             movementDirection = offset.normalized;
 
-            if (offset.magnitude < 0.1f)
+            if (offset.magnitude < 0.25f)
             {
                 path.Pop();
             }
