@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour
                 TargetStatus.CanDirectlyWalkTo => Color.green,
                 _ => throw new NotSupportedException($"{TargetStatus} is not supported"),
             };
-            
+
             Gizmos.DrawLine(transform.position + Vector3.back, target.transform.position + Vector3.back);
 
             if (TargetStatus < TargetStatus.CanDirectlyWalkTo && path.IsValid)
@@ -168,12 +168,15 @@ public class Enemy : MonoBehaviour
         {
             if (!Physics2D.Linecast(transform.position,
                     target.transform.position,
-                    GameSettings.Instance.NonWalkableLayerMask).collider)
+                    GameSettings.Instance.NonWalkableLayerMask)
+                .collider)
             {
                 TargetStatus = TargetStatus.CanDirectlyWalkTo;
-            } else if (!Physics2D.Linecast(transform.position,
+            }
+            else if (!Physics2D.Linecast(transform.position,
                     target.transform.position,
-                    GameSettings.Instance.ProjectileBlockingLayerMask).collider)
+                    GameSettings.Instance.ProjectileBlockingLayerMask)
+                .collider)
             {
                 TargetStatus = TargetStatus.CanDirectlyShootAt;
             }
@@ -181,7 +184,7 @@ public class Enemy : MonoBehaviour
             {
                 TargetStatus = TargetStatus.NoLineOfSight;
             }
-            
+
             if (TargetStatus < TargetStatus.CanDirectlyWalkTo && pathUpdateTimer < 0)
             {
                 pathSolver.FindPath(transform.position, target.transform.position);
@@ -218,11 +221,12 @@ public class Enemy : MonoBehaviour
         {
             var offset = target.transform.position - transform.position;
             movementDirection = offset.normalized;
+            path.IsValid = false;
         }
         else if (path.HasNext() && path.Length < deaggroRadius)
         {
             var next = path.GetNext();
-            
+
             var offset = next - transform.position;
             movementDirection = offset.normalized;
 
