@@ -18,7 +18,7 @@ namespace Project.Source.Pathfinding
                 {
                     return new PathSolver(grid, Heuristics.Default, new[]
                     {
-                        new StraightPathProcessor(),
+                        new StraightPathProcessor(gameObject.scene.GetPhysicsScene2D(), GameSettings.Instance.NonWalkableLayerMask),
                     });
                 }
             }
